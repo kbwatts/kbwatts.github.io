@@ -190,10 +190,14 @@
             padding: 20px;
             font-size: 12px;
             color: #fafafa;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 10%,rgba(0,0,0,0.7) 60%); /* W3C */
         }
         #account {
             background-color: #388e3c;
             height: 200px;
+            background: url("img/kit.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         paper-item {
             color: #333;
@@ -207,6 +211,11 @@
             font-size: 20px;
             color: #888;
             font-weight: 500;
+        }
+        swipeable-card core-icon {
+            margin-left: -40px;
+            top: 35px;
+            /*padding-top: 40px;*/
         }
         h2 {
             font-size: 16px;
@@ -224,6 +233,10 @@
             color: #888;
             font-weight: 300;
         }
+        hr {
+            margin-right: -8px;
+            border-color: #ccc;
+        }
     </style>
 
 </head>
@@ -233,20 +246,25 @@
     <core-drawer-panel>
 
         <div drawer>
-            <div horizontal layout id="account">
-                <div id="icon">
-                    <core-icon icon="account-circle" class="active-inverse" style="height: 64px; width: 64px; color: #fafafa;"></core-icon>
-                </div>
+            <div horizontal layout end id="account">
+                <!--<div id="icon">-->
+                    <!--<core-icon icon="account-circle" class="active-inverse" style="height: 64px; width: 64px; color: #fafafa;"></core-icon>-->
+                <!--</div>-->
                 <div id="details" class="body1.inverse" flex>
                     <div>
                         <div id="name" style="font-weight:600">Mr Kit Brown-Watts</div>
-                        <div id="mail">kbw@uq.edu.au</div>
+                        <div id="mail">Senior User Experience Developer</div>
                     </div>
                 </div>
             </div>
             <core-menu selectedAttribute="">
-                <paper-item>
-                    <core-icon icon="dashboard"></core-icon> Home</paper-item>
+                <paper-item><core-icon icon="account-circle"></core-icon> About Me</paper-item>
+                <paper-item><core-icon icon="question-answer"></core-icon> Contact</paper-item>
+                <paper-item><core-icon icon="maps:place"></core-icon> Location</paper-item>
+                <paper-item><core-icon icon="assignment"></core-icon> Professional Skills</paper-item>
+                <p>User Testing</p><paper-slider value="90"></paper-slider>
+                <p>Design: Wireframing, Prototyping</p><paper-slider value="90"></paper-slider>
+                <p>Development: HTML5, CSS3, JS</p><paper-slider value="80"></paper-slider>
             </core-menu>
         </div>
 
@@ -262,10 +280,10 @@
                 </div>
             </template>
 
-            <!--<paper-tabs selected="0">-->
-                <!--<paper-tab>Page 1</paper-tab>-->
-                <!--<paper-tab>Page 2</paper-tab>-->
-            <!--</paper-tabs>-->
+            <paper-tabs selected="0" style="display:none">
+                <paper-tab>Page 1</paper-tab>
+                <paper-tab>Page 2</paper-tab>
+            </paper-tabs>
 
             <core-animated-pages selected="{{selected}}" transitions="slide-from-right">
 
@@ -275,6 +293,7 @@
                         <div id="cards">
                             <swipeable-card renewable removable>
                                 <paper-shadow class="card" z="1">
+                                    <core-icon icon="done-all"></core-icon>
                                     <h1>Work Experience</h1>
                                     <h2>Senior UX Developer, University of Queensland Library</h2>
                                     <h3>Sep 2013 - Current</h3>
@@ -318,22 +337,23 @@
 
         function clickAction(e) {
             var t = e.target;
-            if (t.localName === 'paper-icon-button') {
-                // if user clicks 'search'
-                if (t.id == "search") {
-                    // slideElements('paper-tabs');
-                    slideElements('#search-card');
-                    slideElements('core-animated-pages');
-                    // setTimeout(function() {
-                    // slideElements('paper-tabs');
-                    // slideElements('#search-card');
-                    // slideElements('core-animated-pages');
-                    // }, 200);
-
-                    // slideElements('core-toolbar');
-                }
-                // console.log('click', t);
-            }
+            console.log(t);
+//            if (t.localName === 'paper-icon-button') {
+//                // if user clicks 'search'
+//                if (t.id == "search") {
+//                    // slideElements('paper-tabs');
+//                    slideElements('#search-card');
+//                    slideElements('core-animated-pages');
+//                    // setTimeout(function() {
+//                    // slideElements('paper-tabs');
+//                    // slideElements('#search-card');
+//                    // slideElements('core-animated-pages');
+//                    // }, 200);
+//
+//                    // slideElements('core-toolbar');
+//                }
+//                // console.log('click', t);
+//            }
         }
         addEventListener('template-bound', function (e) {
             e.target.clickAction = clickAction;
