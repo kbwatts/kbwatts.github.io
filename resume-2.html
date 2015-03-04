@@ -102,9 +102,6 @@
         * {
             font-family: 'Roboto', sans-serif;
         }
-        body {
-            height: 100%;
-        }
         core-toolbar {
             font-size: 20px;
             font-weight: 300;
@@ -142,6 +139,10 @@
         core-animated-pages {
             height: 100%;
             transition: 300ms ease-in-out;
+            overflow-y: scroll;
+        }
+        core-animated-pages > div {
+            height: 800px;
         }
         paper-input-decorator {
             margin: 0;
