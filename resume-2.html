@@ -478,7 +478,7 @@
         <paper-button affirmative autofocus onclick="showToast()">Send message</paper-button>
     </paper-action-dialog>
 
-    <core-ajax method="POST" url="https://mandrillapp.com/api/1.0/messages/send.json" body='{"key":"REPLACEME",
+    <core-ajax method="POST" url="https://mandrillapp.com/api/1.0/messages/send.json" body='{"key":"YaHDlTOwFJuIr4BL4RDW3g",
     "message": {"from_email": "kbwatts@gmail.com","to": [{"email": "kbwatts@gmail.com","name": "kit","type": "to"}],"autotext": "true","subject": "From your resume app","html": "message"}}' handleAs="json" on-core-response="{{handleResponse}}">
     </core-ajax>
 
