@@ -532,18 +532,20 @@
         // create a new instance of the Mandrill class with your API key
         var m = new mandrill.Mandrill('YaHDlTOwFJuIr4BL4RDW3g');
 
-        // create a variable for the API call parameters
-        var params = {
-            "message": {
-                "from_email":"kbwatts@gmail.com",
-                "to":[{"email":"kbwatts@gmail.com"}],
-                "subject": "A message from your resume app",
-                "text": messageContent
-            }
-        };
+
 
         function sendTheMail() {
             var messageContent = document.querySelector('#thisMessage').value;
+
+            // create a variable for the API call parameters
+            var params = {
+                "message": {
+                    "from_email":"kbwatts@gmail.com",
+                    "to":[{"email":"kbwatts@gmail.com"}],
+                    "subject": "A message from your resume app",
+                    "text": messageContent
+                }
+            };
 
 // Send the email!
 
