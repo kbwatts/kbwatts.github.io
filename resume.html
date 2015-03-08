@@ -490,9 +490,9 @@
     <paper-action-dialog backdrop heading="Get in touch!" layered="false" id="msg">
         <p>Want to get in touch? Go ahead and type your message here:</p>
 
-        <paper-input label="Your message here"></paper-input>
+        <paper-input id="thisMessage" label="Your message here"></paper-input>
         <paper-button affirmative>Cancel</paper-button>
-        <paper-button affirmative autofocus onclick="showToast()">Send message</paper-button>
+        <paper-button affirmative autofocus onclick="sendTheMail(); return false;">Send message</paper-button>
     </paper-action-dialog>
 
     <core-ajax method="POST" url="https://mandrillapp.com/api/1.0/messages/send.json" body='{"key":"YaHDlTOwFJuIr4BL4RDW3g",
@@ -523,6 +523,33 @@
 
         function mailMe() {
             document.querySelector('paper-action-dialog').toggle();
+        }
+
+        var messageContent = document.querySelector('#thisMessage').innerText;
+
+        // create a new instance of the Mandrill class with your API key
+        var m = new mandrill.Mandrill('YaHDlTOwFJuIr4BL4RDW3g');
+
+        // create a variable for the API call parameters
+        var params = {
+            "message": {
+                "from_email":"kbwatts@gmail.com",
+                "to":[{"email":"kbwatts@gmail.com"}],
+                "subject": "A message from your resume app",
+                "text": messageContent
+            }
+        };
+
+        function sendTheMail() {
+
+// Send the email!
+
+            m.messages.send(params, function(res) {
+                console.log(res);
+            }, function(err) {
+                console.log(err);
+            });
+            showToast();
         }
 
         function showToast() {
