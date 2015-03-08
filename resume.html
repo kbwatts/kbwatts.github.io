@@ -527,7 +527,7 @@
             document.querySelector('paper-action-dialog').toggle();
         }
 
-        var messageContent = document.querySelector('#thisMessage').innerText;
+        var messageContent = document.querySelector('#thisMessage').value;
 
         // create a new instance of the Mandrill class with your API key
         var m = new mandrill.Mandrill('YaHDlTOwFJuIr4BL4RDW3g');
@@ -552,6 +552,7 @@
                 console.log(err);
             });
             showToast();
+            messageContent = "";
         }
 
         function showToast() {
