@@ -13,11 +13,12 @@
 
   :root {
     --dark-primary-color: #303F9F;
-    --default-primary-color: #3F51B5;
-    --light-primary-color: #C5CAE9;
-    --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: #FF4081;
-    --primary-background-color: #c5cae9;
+    --default-primary-color: var(--paper-grey-100);
+    --light-primary-color: var(--paper-grey-50);
+    --text-primary-color: rgba(0,0,0,0.87); /*text/icons*/
+    --accent-color: var(--paper-grey-700);
+    --secondary-accent-color: var(--paper-grey-50);
+    --primary-background-color: var(--paper-grey-50);
     --primary-text-color: #212121;
     --secondary-text-color: #727272;
     --disabled-text-color: #bdbdbd;
@@ -31,9 +32,229 @@
     --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
 
     /* paper-menu */
-    --paper-menu-background-color: #fff;
+    --paper-menu-background-color: var(--paper-white);
     --menu-link-color: #111111;
+
+      --paper-fab-background: #fff;
+
+      /*
+        Custom property | Description | Default
+        ----------------|-------------|----------
+        `--paper-fab-background` | The background color of the button | `--accent-color`
+        `--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
+        `--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
+        `--paper-fab-disabled-text` | The text color of the button when it's disabled | `--paper-grey-500`
+        `--paper-fab` | Mixin applied to the button | `{}`
+        `--paper-fab-mini` | Mixin applied to a mini button | `{}`
+        `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
+      */
+
+      /*--paper-button-flat-focus-color:              #009688;*/
+      /*--paper-button:                               #009688;*/
+      /*--paper-button-disabled:                      #009688;*/
+
+      --paper-tabs-selection-bar-color: var(--accent-color);
+      --paper-tabs: var(--text-primary-color);
+
+      --paper-tab-ink: var(--accent-color);
+      --paper-tab: var(--text-primary-color);
+      --paper-tab-content: var(--text-primary-color);
+
+
+      /*Custom property | Description | Default*/
+      /*----------------|-------------|----------*/
+      /*`--paper-tab-ink` | Ink color | `--paper-yellow-a100`*/
+      /*`--paper-tab` | Mixin applied to the tab | `{}`*/
+      /*`--paper-tab-content` | Mixin applied to the tab content | `{}`*/
+
+
+      /*--paper-checkbox-unchecked-color: var(--paper-grey-900);*/
+      /*--paper-checkbox-unchecked-ink-color: var(--paper-grey-900);*/
+      --paper-checkbox-checked-color: var(--accent-color);
+      --paper-checkbox-checked-ink-color: var(--accent-color);
+      /*--paper-checkbox-label-color: var(--paper-grey-900);*/
+
+        /*
+        Custom property | Description | Default
+        ----------------|-------------|----------
+        `--paper-checkbox-unchecked-color` | Checkbox color when the input is not checked | `--primary-text-color`
+        `--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
+        `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--default-primary-color`
+        `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color`
+        `--paper-checkbox-label-color` | Label color | `--primary-text-color`
+        */
+
+      /*--paper-radio-button-unchecked-color: var(--paper-grey-900);*/
+      /*--paper-radio-button-unchecked-ink-color: var(--accent-color);*/
+      --paper-radio-button-checked-color: var(--accent-color);
+      --paper-radio-button-checked-ink-color: var(--accent-color);
+      /*--paper-radio-button-label-color: var(--paper-grey-900);*/
+
+      /*
+        Custom property | Description | Default
+        ----------------|-------------|----------
+        `--paper-radio-button-unchecked-color` | Radio button color when the input is not checked | `--primary-text-color`
+        `--paper-radio-button-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
+        `--paper-radio-button-checked-color` | Radio button color when the input is checked | `--default-primary-color`
+        `--paper-radio-button-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color`
+        `--paper-radio-button-label-color` | Label color | `--primary-text-color`
+      */
+
+      --paper-toggle-button-unchecked-bar-color: #000000;
+      --paper-toggle-button-unchecked-button-color: var(--paper-grey-50);
+      --paper-toggle-button-unchecked-ink-color: var(--primary-text-color);
+      --paper-toggle-button-checked-bar-color: var(--accent-color);
+      --paper-toggle-button-checked-button-color: var(--accent-color);
+      --paper-toggle-button-checked-ink-color: var(--accent-color);
+      /*
+        Custom property | Description | Default
+        ----------------|-------------|----------
+        `--paper-toggle-button-unchecked-bar-color` | Slider color when the input is not checked | `#000000`
+        `--paper-toggle-button-unchecked-button-color` | Button color when the input is not checked | `--paper-grey-50`
+        `--paper-toggle-button-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--dark-primary-color`
+        `--paper-toggle-button-checked-bar-color` | Slider button color when the input is checked | `--google-green-500`
+        `--paper-toggle-button-checked-button-color` | Button color when the input is checked | `--google-green-500`
+        `--paper-toggle-button-checked-ink-color` | Selected/focus ripple color when the input is checked | `--google-green-500`
+      */
+
+      /*--paper-input-container-color:                 var(--accent-color);*/
+      /*--paper-input-container-focus-color:           var(--accent-color);*/
+      --paper-input-container-invalid-color:         var(--google-red-500);
+      --paper-input-container-input-color:           var(--accent-color);
+      --paper-input-container:                       var(--google-red-500);
+      --paper-input-container-label:                 var(--google-red-500);
+      --paper-input-container-input:                 var(--google-red-500);
+
+      /*
+        Custom property | Description | Default
+        ----------------|-------------|----------
+        `--paper-input-container-color` | Label and underline color when the input is not focused | `--secondary-text-color`
+        `--paper-input-container-focus-color` | Label and underline color when the input is focused | `--default-primary-color`
+        `--paper-input-container-invalid-color` | Label and underline color when the input is focused | `--google-red-500`
+        `--paper-input-container-input-color` | Input foreground color | `--primary-text-color`
+        `--paper-input-container` | Mixin applied to the container | `{}`
+        `--paper-input-container-label` | Mixin applied to the label | `{}`
+        `--paper-input-container-input` | Mixin applied to the input | `{}`
+      */
   }
+
+  /*paper-checkbox.new {*/
+      /*--paper-checkbox-checked-color: blue;*/
+      /*--paper-checkbox-checked-ink-color: blue;*/
+  /*}*/
+
+  .heading {
+      padding: 10px 15px;
+      margin-top: 20px;
+      background-color: #f3f3f3;
+      border: 1px solid #dedede;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      width: 100%;
+      text-align: left;
+  }
+
+  .content {
+      padding: 15px;
+      border: 1px solid #dedede;
+      border-top: none;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+  }
+  paper-button {
+      color: var(--accent-color);
+      --paper-button-flat-focus-color: var(--accent-color);
+  }
+  paper-button:hover {
+      background: var(--secondary-accent-color);
+  }
+  paper-button[disabled] {
+      color: var(--paper-grey-500);
+  }
+
+  paper-tabs {
+      background: var(--default-primary-color);
+  }
+
+  paper-slider {
+      --paper-slider-active-color: var(--accent-color);
+      --paper-slider-knob-color: var(--accent-color);
+      --paper-slider-pin-color: var(--accent-color);
+      --paper-slider-pin-font-color: var(--accent-color);
+      --paper-slider-secondary-color: var(--accent-color);
+      --paper-slider-disabled-active-color: #ccc;
+      --paper-slider-disabled-secondary-color: #ccc;
+  }
+
+  /*Changing Colours*/
+
+  #teal {
+      color: var(--paper-teal-500);
+  }
+  #teal:hover {
+      color: #fff;
+      background: var(--paper-teal-500);
+  }
+  #indigo {
+      color: var(--paper-indigo-500);
+  }
+  #indigo:hover {
+      color: #fff;
+      background: var(--paper-indigo-500);
+  }
+
+  /* hacky deep shadow stuff I'd rather not use */
+  body /deep/ #ink.teal {
+      /*color: var(--paper-teal-500);*/
+  }
+
+  .teal {
+      color: var(--paper-teal-500);
+      --paper-tabs-selection-bar-color: var(--paper-teal-500);
+      --paper-tabs: #fff;
+      --paper-tab-ink: var(--paper-teal-500);
+      --paper-tab: #fff;
+      --paper-tab-content: #fff;
+  }
+  paper-fab.teal {
+      color: #fff;
+      background: var(--paper-teal-500);
+  }
+  paper-toolbar.tealBack {
+      color: #fff;
+      background: var(--paper-teal-500);
+  }
+  paper-tabs.teal {
+      color: white;
+      background: var(--paper-teal-500);
+  }
+  .indigo {
+      color: var(--paper-pink-a200);
+      --paper-tabs-selection-bar-color: var(--paper-indigo-500);
+      --paper-tabs: #fff;
+      --paper-tab-ink: var(--paper-indigo-500);
+      --paper-tab: #fff;
+      --paper-tab-content: #fff;
+  }
+  paper-fab.indigo {
+      color: #fff;
+      background: var(--paper-pink-a200);
+  }
+  paper-toolbar.indigoBack {
+      color: #fff;
+      background: var(--paper-indigo-500);
+  }
+  paper-tabs.indigo {
+      color: white;
+      background: var(--paper-indigo-500);
+  }
+  .title {
+  @apply(--my-red-theme);
+  }
+
 
   /* General styles */
 
@@ -47,10 +268,17 @@
   paper-material {
     border-radius: 2px;
     height: 100%;
-    padding: 16px 0 16px 0;
+    padding: 32px 0 32px 0;
     width: calc(98.66% - 16px);
     margin: 16px auto;
     background: white;
+  }
+
+  paper-material > * {
+      margin: 32px;
+  }
+  section paper-material:not(:first-child) > * {
+      width: 100%;
   }
 
   paper-menu iron-icon {
