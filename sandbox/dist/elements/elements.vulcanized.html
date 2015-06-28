@@ -11152,12 +11152,12 @@ styles. All other styles should exist as single lines."
       background: var(--paper-indigo-500);
   }
 
-  /* hacky deep shadow stuff I'd rather not use */
+  /* hacky deep shadow dom stuff I'd rather not use */
   body /deep/ #ink.teal {
       /*color: var(--paper-teal-500);*/
   }
 
-  .teal {
+  .teal paper-tabs {
       color: var(--paper-teal-500);
       --paper-tabs-selection-bar-color: var(--paper-teal-500);
       --paper-tabs: #fff;
@@ -11176,10 +11176,15 @@ styles. All other styles should exist as single lines."
   paper-tabs.teal {
       color: white;
       background: var(--paper-teal-500);
+      --paper-tabs-selection-bar-color: var(--paper-yellow-500);
+      --paper-tabs: #fff;
+  }
+  paper-button.teal  {
+      color: var(--paper-teal-500);
   }
   .indigo {
       color: var(--paper-pink-a200);
-      --paper-tabs-selection-bar-color: var(--paper-indigo-500);
+      --paper-tabs-selection-bar-color: var(--paper-pink-500);
       --paper-tabs: #fff;
       --paper-tab-ink: var(--paper-indigo-500);
       --paper-tab: #fff;
@@ -11194,11 +11199,19 @@ styles. All other styles should exist as single lines."
       background: var(--paper-indigo-500);
   }
   paper-tabs.indigo {
-      color: white;
+      color: #fff;
       background: var(--paper-indigo-500);
   }
   .title {
   @apply(--my-red-theme);
+  }
+
+  .indigo paper-tabs {
+      --paper-tabs-selection-bar-color: var(--paper-indigo-500);
+      --paper-tabs: #fff;
+      --paper-tab-ink: var(--paper-indigo-500);
+      --paper-tab: #fff;
+      --paper-tab-content: #fff;
   }
 
 
