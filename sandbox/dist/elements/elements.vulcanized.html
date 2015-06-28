@@ -11156,7 +11156,14 @@ styles. All other styles should exist as single lines."
   body /deep/ #ink.teal {
       /*color: var(--paper-teal-500);*/
   }
-
+  .teal {
+      color: var(--paper-white);
+      --paper-tabs-selection-bar-color: var(--paper-yellow-500);
+      --paper-tabs: #fff;
+      --paper-tab-ink: var(--paper-yellow-500);
+      --paper-tab: #fff;
+      --paper-tab-content: #fff;
+  }
   .teal paper-tabs {
       color: var(--paper-teal-500);
       --paper-tabs-selection-bar-color: var(--paper-teal-500);
@@ -11179,20 +11186,28 @@ styles. All other styles should exist as single lines."
       --paper-tabs-selection-bar-color: var(--paper-yellow-500);
       --paper-tabs: #fff;
   }
+  paper-tab.indigo {
+      --paper-tab-ink: var(--paper-yellow-500);
+      --paper-tab: #fff;
+      --paper-tab-content: #fff;
+  }
   paper-button.teal  {
       color: var(--paper-teal-500);
   }
   .indigo {
-      color: var(--paper-pink-a200);
-      --paper-tabs-selection-bar-color: var(--paper-pink-500);
+      color: var(--paper-white);
+      --paper-tabs-selection-bar-color: var(--paper-pink-a200);
       --paper-tabs: #fff;
-      --paper-tab-ink: var(--paper-indigo-500);
+      --paper-tab-ink: var(--paper-pink-a200);
       --paper-tab: #fff;
       --paper-tab-content: #fff;
   }
   paper-fab.indigo {
       color: #fff;
       background: var(--paper-pink-a200);
+  }
+  paper-button.indigo  {
+      color: var(--paper-pink-a200);
   }
   paper-toolbar.indigoBack {
       color: #fff;
@@ -11201,6 +11216,11 @@ styles. All other styles should exist as single lines."
   paper-tabs.indigo {
       color: #fff;
       background: var(--paper-indigo-500);
+  }
+  paper-tab.indigo {
+      /*--paper-tab-ink: var(--paper-pink-a200);*/
+      --paper-tab: #fff;
+      --paper-tab-content: #fff;
   }
   .title {
   @apply(--my-red-theme);
