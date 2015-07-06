@@ -14025,6 +14025,16 @@ IN THE SOFTWARE.
     color:  var(--primary-text-color);
   }
 
+  /*Organisms*/
+
+  #header-logo {
+    padding-bottom: 55px;
+  }
+  #header-logo iron-image {
+    width:200px;
+    height:55px;
+  }
+
 
   /* General styles */
 
@@ -15129,27 +15139,27 @@ module.exports = Array.isArray || function (arr) {
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
-    page('/sandbox/uq/', function () {
+    page('/', function () {
       app.route = 'atoms';
     });
 
-    page('/sandbox/uq/atoms', function () {
+    page('/atoms', function () {
       app.route = 'atoms';
     });
 
-    page('/sandbox/uq/molecules', function () {
+    page('/molecules', function () {
       app.route = 'molecules';
     });
 
-    page('/sandbox/uq/organisms', function () {
+    page('/organisms', function () {
       app.route = 'organisms';
     });
 
-    page('/sandbox/uq/templates', function () {
+    page('/templates', function () {
       app.route = 'templates';
     });
 
-    page('/sandbox/uq/pages', function () {
+    page('/pages', function () {
       app.route = 'pages';
     });
 
