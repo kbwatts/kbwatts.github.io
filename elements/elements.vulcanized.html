@@ -7334,6 +7334,7 @@ call the form's `submit` method.
      */
     listeners: {
       'iron-form-element-register': '_registerElement',
+      'iron-form-element-unregister': '_unregisterElement',
       'submit': '_onSubmit'
     },
 
@@ -7412,7 +7413,7 @@ call the form's `submit` method.
 
       // Go through all of the registered custom components.
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (el.name) {
+        if (this._useValue(el)) {
           addSerializedElement(el);
         }
       }
@@ -7424,7 +7425,7 @@ call the form's `submit` method.
         // `<input is="fancy-input">`) will appear in both lists. Since they
         // were already added as a custom element, they don't need
         // to be re-added.
-        if (!el.name || !this._useValue(el) ||
+        if (!this._useValue(el) ||
             (el.hasAttribute('is') && json[el.name])) {
           continue;
         }
@@ -7446,15 +7447,28 @@ call the form's `submit` method.
       this._customElements.push(e.target);
     },
 
+    _unregisterElement: function(e) {
+      var target = e.detail.target;
+      if (target) {
+        var index = this._customElements.indexOf(target);
+        if (index > -1) {
+          this._customElements.splice(index, 1);
+        }
+      }
+    },
+
     _validate: function() {
       var valid = true;
 
       // Validate all the custom elements.
       var validatable;
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (el.required) {
+        if (el.required && this._useValue(el)) {
           validatable = /** @type {{validate: (function() : boolean)}} */ (el);
-          valid = validatable.validate() && valid;
+          // TODO(notwaldorf): IronValidatableBehavior can return undefined if
+          // a validator is not set. It probably shouldn't, but in the meantime
+          // deal with that scenario.
+          valid = !!validatable.validate() && valid;
         }
       }
 
@@ -7462,7 +7476,7 @@ call the form's `submit` method.
       for (var el, i = 0; el = this.elements[i], i < this.elements.length; i++) {
         // Custom elements that extend a native element will also appear in
         // this list, but they've already been validated.
-        if (!el.hasAttribute('is') && el.willValidate && el.checkValidity) {
+        if (!el.hasAttribute('is') && el.willValidate && el.checkValidity && el.name) {
           valid = el.checkValidity() && valid;
         }
       }
@@ -7471,16 +7485,21 @@ call the form's `submit` method.
     },
 
     _useValue: function(el) {
-      // Skip disabled elements
-      if (el.disabled) {
+      // Skip disabled elements or elements that don't have a `name` attribute.
+      if (el.disabled || !el.name) {
         return false;
       }
-      // Checkboxes and radio buttons should only use their value if they're checked.
-      if (el.type !== 'checkbox' && el.type !== 'radio') {
-        return true;
-      } else {
+
+      // Checkboxes and radio buttons should only use their value if they're
+      // checked. Custom paper-checkbox and paper-radio-button elements
+      // don't have a type, but they have the correct role set.
+      if (el.type == 'checkbox' ||
+          el.type == 'radio' ||
+          el.getAttribute('role') == 'checkbox' ||
+          el.getAttribute('role') == 'radio') {
         return el.checked;
       }
+      return true;
     },
 
     _doFakeSubmitForValidation: function() {
@@ -10532,15 +10551,26 @@ is separate from validation, and `allowed-pattern` does not affect how the input
 
 <script>
 
-  /** 
-  
+  /**
+
   @demo demo/index.html
-  @polymerBehavior 
-  
+  @polymerBehavior
+
   */
   Polymer.IronFormElementBehavior = {
 
     properties: {
+      /**
+       * Fired when the element is added to an `iron-form`.
+       *
+       * @event iron-form-element-register
+       */
+
+      /**
+       * Fired when the element is removed from an `iron-form`.
+       *
+       * @event iron-form-element-unregister
+       */
 
       /**
        * The name of this element.
@@ -10556,10 +10586,25 @@ is separate from validation, and `allowed-pattern` does not affect how the input
         notify: true,
         type: String
       },
+
+      /**
+       * Need to keep a reference to the form this element is registered
+       * to, so that it can unregister if detached.
+       */
+      _parentForm: {
+        type: Object
+      }
     },
 
     attached: function() {
+      this._parentForm = Polymer.dom(this).parentNode;
       this.fire('iron-form-element-register');
+    },
+
+    detached: function() {
+      if (this._parentForm) {
+        this._parentForm.fire('iron-form-element-unregister', {target: this});
+      }
     }
 
   };
@@ -13766,8 +13811,9 @@ IN THE SOFTWARE.
     --default-primary-color: #49075e;
     --light-primary-color: #7b0c9d;
     --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: #007e9e;
-    --primary-background-color: #c5cae9;
+    --accent-color: #2377cb;
+    --accent-color-hover: #005ea5;
+    --primary-background-color: #fafafa;
     --primary-text-color: #212121;
     --secondary-text-color: #727272;
     --disabled-text-color: #bdbdbd;
@@ -13775,6 +13821,8 @@ IN THE SOFTWARE.
 
     --uq-green: #8cb800;
     --uq-green-secondary: #38852e;
+
+    --uq-blue: #2377cb;
 
     /* Components */
 
@@ -13788,7 +13836,7 @@ IN THE SOFTWARE.
     --menu-link-color: #111111;
 
     --paper-tabs-selection-bar-color: var(--accent-color);
-    --paper-tabs: var(--accent-color);
+    --paper-tabs: var(--text-primary-color);
 
     --paper-tab-ink: var(--accent-color);
     --paper-tab: var(--accent-color);
@@ -13830,15 +13878,46 @@ IN THE SOFTWARE.
     --paper-spinner-layer-2-color: var(--light-primary-color);
     --paper-spinner-layer-3-color: var(--light-primary-color);
     --paper-spinner-layer-4-color: var(--default-primary-color);
+
+    --default-animation-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  paper-button.colourful {
+  * {
+    transition: var(--default-animation-transition);
+  }
+
+  paper-button.colourful, paper-button.colourful iron-icon {
     color: var(--accent-color);
+  }
+
+  paper-button.colourful:hover, paper-button.colourful iron-icon:hover {
+    color: var(--accent-color-hover);
+  }
+
+  paper-button[raised]:hover, paper-button:hover, paper-button.colourful:hover {
+    background: var(--primary-background-color);
   }
 
   paper-button[raised].colourful {
     background: var(--accent-color);
     color: #fff;
+  }
+
+  paper-button[raised].colourful:hover, paper-fab:hover {
+    background: var(--accent-color-hover);
+  }
+
+  a {
+    color: var(--accent-color);
+  }
+  a:hover {
+    color: var(--accent-color-hover);
+  }
+  paper-menu a:hover {
+    color: var(--default-primary-color);
+  }
+  paper-menu a iron-icon:hover {
+    color: var(--default-primary-color);
   }
 
   paper-button[raised].colourful iron-icon, .title iron-icon {
@@ -13853,22 +13932,25 @@ IN THE SOFTWARE.
     height: auto;
   }
 
-  paper-tabs, paper-toolbar {
+  paper-toolbar {
     background-color: var(--default-primary-color);
     color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
+  paper-tabs {
+    background-color: var(--text-primary-color);
+  }
   paper-tabs a {
     background-color: transparent;
-    color: #fff;
+    color: var(--primary-text-color);
     text-decoration: none;
   }
   /* only use if noink */
-  paper-tabs a:hover, paper-tabs a:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+  paper-tabs a:hover, paper-tabs a:focus, paper-tab:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
-  paper-tabs a:active {
-    background-color: rgba(255, 255, 255, 0.2);
+  paper-tabs a:active, paper-tab:active {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   .mobile-app {
@@ -21113,7 +21195,7 @@ paper-ripple {
 
       Polymer.IronA11yAnnouncer.requestAvailability = function() {
         if (!Polymer.IronA11yAnnouncer.instance) {
-          document.createElement('iron-a11y-announcer');
+          Polymer.IronA11yAnnouncer.instance = document.createElement('iron-a11y-announcer');
         }
 
         document.body.appendChild(Polymer.IronA11yAnnouncer.instance);

@@ -16,8 +16,9 @@
     --default-primary-color: #49075e;
     --light-primary-color: #7b0c9d;
     --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: #007e9e;
-    --primary-background-color: #c5cae9;
+    --accent-color: #2377cb;
+    --accent-color-hover: #005ea5;
+    --primary-background-color: #fafafa;
     --primary-text-color: #212121;
     --secondary-text-color: #727272;
     --disabled-text-color: #bdbdbd;
@@ -25,6 +26,8 @@
 
     --uq-green: #8cb800;
     --uq-green-secondary: #38852e;
+
+    --uq-blue: #2377cb;
 
     /* Components */
 
@@ -38,7 +41,7 @@
     --menu-link-color: #111111;
 
     --paper-tabs-selection-bar-color: var(--accent-color);
-    --paper-tabs: var(--accent-color);
+    --paper-tabs: var(--text-primary-color);
 
     --paper-tab-ink: var(--accent-color);
     --paper-tab: var(--accent-color);
@@ -80,15 +83,46 @@
     --paper-spinner-layer-2-color: var(--light-primary-color);
     --paper-spinner-layer-3-color: var(--light-primary-color);
     --paper-spinner-layer-4-color: var(--default-primary-color);
+
+    --default-animation-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  paper-button.colourful {
+  * {
+    transition: var(--default-animation-transition);
+  }
+
+  paper-button.colourful, paper-button.colourful iron-icon {
     color: var(--accent-color);
+  }
+
+  paper-button.colourful:hover, paper-button.colourful iron-icon:hover {
+    color: var(--accent-color-hover);
+  }
+
+  paper-button[raised]:hover, paper-button:hover, paper-button.colourful:hover {
+    background: var(--primary-background-color);
   }
 
   paper-button[raised].colourful {
     background: var(--accent-color);
     color: #fff;
+  }
+
+  paper-button[raised].colourful:hover, paper-fab:hover {
+    background: var(--accent-color-hover);
+  }
+
+  a {
+    color: var(--accent-color);
+  }
+  a:hover {
+    color: var(--accent-color-hover);
+  }
+  paper-menu a:hover {
+    color: var(--default-primary-color);
+  }
+  paper-menu a iron-icon:hover {
+    color: var(--default-primary-color);
   }
 
   paper-button[raised].colourful iron-icon, .title iron-icon {
@@ -103,22 +137,25 @@
     height: auto;
   }
 
-  paper-tabs, paper-toolbar {
+  paper-toolbar {
     background-color: var(--default-primary-color);
     color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
+  paper-tabs {
+    background-color: var(--text-primary-color);
+  }
   paper-tabs a {
     background-color: transparent;
-    color: #fff;
+    color: var(--primary-text-color);
     text-decoration: none;
   }
   /* only use if noink */
-  paper-tabs a:hover, paper-tabs a:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+  paper-tabs a:hover, paper-tabs a:focus, paper-tab:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
-  paper-tabs a:active {
-    background-color: rgba(255, 255, 255, 0.2);
+  paper-tabs a:active, paper-tab:active {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   .mobile-app {
