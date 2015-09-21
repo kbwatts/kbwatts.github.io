@@ -1,4 +1,5 @@
-/*
+/**
+@license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
@@ -33,6 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   height: 48px;
   color: var(--paper-radio-button-unchecked-ink-color, --primary-text-color);
   opacity: 0.6;
+  pointer-events: none;
 }
 
 :host #ink[checked] {
@@ -41,18 +43,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 :host #offRadio {
   position: absolute;
+  box-sizing: content-box;
   top: 0px;
   left: 0px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   border: solid 2px;
+  background-color: var(--paper-radio-button-unchecked-background-color, transparent);
   border-color: var(--paper-radio-button-unchecked-color, --primary-text-color);
   transition: border-color 0.28s;
 }
 
 :host #onRadio {
   position: absolute;
+  box-sizing: content-box;
   top: 4px;
   left: 4px;
   width: 8px;

@@ -8,35 +8,52 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<script src="../../bower_components/page/page.js"></script>
+<script src="../bower_components/page/page.js"></script>
 <script>
   window.addEventListener('WebComponentsReady', function() {
 
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
-    page('/', function () {
-      app.route = 'atoms';
+
+    // Middleware
+    function scrollToTop(ctx, next) {
+      app.scrollPageToTop();
+      next();
+    }
+
+    // Routes
+    page('/', scrollToTop, function() {
+      app.route = 'home';
     });
 
-    page('/atoms', function () {
-      app.route = 'atoms';
+    page('/research', scrollToTop, function() {
+      app.route = 'research';
     });
 
-    page('/molecules', function () {
-      app.route = 'molecules';
+    page('/design', scrollToTop, function() {
+      app.route = 'design';
     });
 
-    page('/organisms', function () {
-      app.route = 'organisms';
+    page('/develop', scrollToTop, function() {
+      app.route = 'develop';
     });
 
-    page('/templates', function () {
-      app.route = 'templates';
+    page('/users/:name', scrollToTop, function(data) {
+      app.route = 'user-info';
+      app.params = data.params;
     });
 
-    page('/pages', function () {
-      app.route = 'pages';
+    page('/test', scrollToTop, function() {
+      app.route = 'test';
+    });
+
+    page('/learn', scrollToTop, function() {
+      app.route = 'learn';
+    });
+
+    page('/examples', scrollToTop, function() {
+      app.route = 'examples';
     });
 
     // add #! before urls

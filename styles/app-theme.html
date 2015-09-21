@@ -12,22 +12,16 @@
   /* Application theme */
 
   :root {
-    --dark-primary-color: #49075e;
-    --default-primary-color: #49075e;
-    --light-primary-color: #7b0c9d;
+    --dark-primary-color: #303F9F;
+    --default-primary-color: #3F51B5;
+    --light-primary-color: #C5CAE9;
     --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: #2377cb;
-    --accent-color-hover: #005ea5;
-    --primary-background-color: #fafafa;
+    --accent-color: #FF4081;
+    --primary-background-color: #c5cae9;
     --primary-text-color: #212121;
     --secondary-text-color: #727272;
     --disabled-text-color: #bdbdbd;
     --divider-color: #B6B6B6;
-
-    --uq-green: #8cb800;
-    --uq-green-secondary: #38852e;
-
-    --uq-blue: #2377cb;
 
     /* Components */
 
@@ -39,289 +33,7 @@
     /* paper-menu */
     --paper-menu-background-color: #fff;
     --menu-link-color: #111111;
-
-    --paper-tabs-selection-bar-color: var(--accent-color);
-    --paper-tabs: var(--text-primary-color);
-
-    --paper-tab-ink: var(--accent-color);
-    --paper-tab: var(--accent-color);
-    --paper-tab-content: var(--accent-color);
-
-    --paper-fab-background: var(--accent-color);
-    --paper-fab-keyboard-focus-background: var(--accent-color);
-    /*--paper-fab-disabled-background: var(--default-primary-color);*/
-    /*--paper-fab-disabled-text: var(--default-primary-color);*/
-    --paper-fab: var(--accent-color);
-    --paper-fab-mini: var(--accent-color);
-    /*--paper-fab-disabled: var(--default-primary-color);*/
-
-    --paper-button-flat-focus-color:              var(--accent-color);
-    --paper-button:                               var(--accent-color);
-    --paper-button-disabled:                      var(--accent-color);
-    --paper-checkbox-checked-color: var(--accent-color);
-    --paper-checkbox-checked-ink-color: var(--accent-color);
-    --paper-radio-button-checked-color: var(--accent-color);
-    --paper-radio-button-checked-ink-color: var(--accent-color);
-    --paper-toggle-button-checked-bar-color: var(--accent-color);
-    --paper-toggle-button-checked-button-color: var(--accent-color);
-    --paper-toggle-button-checked-ink-color: var(--accent-color);
-    --paper-slider-active-color: var(--accent-color);
-    --paper-slider-knob-color: var(--accent-color);
-    --paper-slider-pin-color: var(--accent-color);
-    --paper-slider-pin-font-color: var(--accent-color);
-    --paper-slider-secondary-color: var(--accent-color);
-
-    /*--paper-input-container-color: var(--default-primary-color);*/
-    /*--paper-input-container-focus-color: var(--accent-color);*/
-    /*--paper-input-container-invalid-color: var(--accent-color);*/
-    /*--paper-input-container-input-color: var(--accent-color);*/
-    --paper-input-container: var(--accent-color);
-    /*--paper-input-container-label: var(--accent-color);*/
-    /*--paper-input-container-input: var(--default-primary-color);*/
-
-    --paper-spinner-layer-1-color: var(--default-primary-color);
-    --paper-spinner-layer-2-color: var(--light-primary-color);
-    --paper-spinner-layer-3-color: var(--light-primary-color);
-    --paper-spinner-layer-4-color: var(--default-primary-color);
-
-    --default-animation-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  * {
-    transition: var(--default-animation-transition);
-  }
-
-  paper-button.colourful, paper-button.colourful iron-icon {
-    color: var(--accent-color);
-  }
-
-  paper-button.colourful:hover, paper-button.colourful iron-icon:hover {
-    color: var(--accent-color-hover);
-  }
-
-  paper-button[raised]:hover, paper-button:hover, paper-button.colourful:hover {
-    background: var(--primary-background-color);
-  }
-
-  paper-button[raised].colourful {
-    background: var(--accent-color);
-    color: #fff;
-  }
-
-  paper-button[raised].colourful:hover, paper-fab:hover {
-    background: var(--accent-color-hover);
-  }
-
-  a {
-    color: var(--accent-color);
-  }
-  a:hover {
-    color: var(--accent-color-hover);
-  }
-  paper-menu a:hover {
-    color: var(--default-primary-color);
-  }
-  paper-menu a iron-icon:hover {
-    color: var(--default-primary-color);
-  }
-
-  paper-button[raised].colourful iron-icon, .title iron-icon {
-    color: #fff;
-  }
-  .search {
-    padding: 0;
-    margin: 0;
-  }
-  iron-image, img{
-    width: 100%;
-    height: auto;
-  }
-
-  paper-toolbar {
-    background-color: var(--default-primary-color);
-    color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  }
-  paper-tabs {
-    background-color: var(--text-primary-color);
-  }
-  paper-tabs a {
-    background-color: transparent;
-    color: var(--primary-text-color);
-    text-decoration: none;
-  }
-  /* only use if noink */
-  paper-tabs a:hover, paper-tabs a:focus, paper-tab:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  paper-tabs a:active, paper-tab:active {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .mobile-app {
-    width: 30%;
-    min-width: 300px;
-  }
-
-  .toolbar {
-    height: 144px;
-    padding: 16px;
-    background: var(--default-primary-color);
-    color: var(--text-primary-color);
-    @apply(--paper-font-display1);
-  }
-  .toolbar.uqPurpleAlt {
-    background: var(--default-primary-color);
-  }
-  .toolbar.uqPurpleAlt {
-    background: #7b0c9d;
-  }
-  .toolbar.uqGreen {
-    background: #8cb800;
-  }
-  .toolbar.uqGreenAlt {
-    background: #38852e;
-  }
-  .toolbar.uqAqua {
-    background: #007e9e;
-  }
-  .toolbar.uqBlue {
-    background: #2874d7;
-  }
-  .toolbar.uqGold {
-    background: #bda14e;
-  }
-  .toolbar.uqGoldAlt {
-    background: #8a7433;
-  }
-  .toolbar.uqYellow {
-    background: #ffc82e;
-  }
-  .toolbar.uqRed {
-    background: #aa0041;
-  }
-  .toolbar.uqRedAlt {
-    background: #ce4627;
-  }
-
-  marked-element {
-    display: block;
-    background-color: var(--google-grey-100);
-    padding: 10px 30px;
-    margin-bottom: 10px;
-    border-radius: 2px;
-  }
-
-  .item, .disabled-item {
-    position: relative;
-    padding: 8px;
-    border: 1px solid;
-    border-color: var(--divider-color);
-    border-top: 0;
-  }
-
-  .item .primary {
-    color: var(--primary-text-color);
-    @apply(--paper-font-body2);
-  }
-
-  .item .secondary, paper-material iron-icon {
-    color: var(--secondary-text-color);
-    @apply(--paper-font-body1);
-  }
-
-  .disabled-item {
-    color: var(--disabled-text-color);
-    @apply(--paper-font-body2);
-  }
-
-  .fab {
-    position: absolute;
-    box-sizing: border-box;
-    padding: 8px;
-    width: 56px;
-    height: 56px;
-    right: 16px;
-    top: -28px;
-    border-radius: 50%;
-    text-align: center;
-    background: var(--accent-color);
-    color: var(--text-primary-color);
-    @apply(--paper-font-display1);
-  }
-  .redlines {
-    background: linear-gradient(0deg, transparent, transparent 3.5px, rgba(255,0,0,0.2) 3.5px, rgba(255,0,0,0.2) 4px);
-    background-size: 100% 4px;
-  }
-
-  /*Molecules*/
-
-  gold-cc-expiration-input, gold-cc-cvc-input {
-    width: 120px;
-    margin-right: 20px;
-  }
-
-  gold-zip-input {
-    width: 120px;
-  }
-
-  .country {
-    width: 260px;
-    margin-right: 20px;
-  }
-
-  .quantity {
-    display: inline-block;
-    width: 30px;
-    text-align: center;
-    padding-left: 10px;
-  }
-
-  .form-title, .footer {
-    margin-bottom: 20px;
-  }
-
-  .avatar {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: var(--google-blue-700);
-    margin-right: 20px;
-  }
-
-  .company {
-    color: var(--google-blue-700);
-    font-size: 20px;
-    font-weight: 200;
-  }
-
-  gold-cc-expiration-input, .filler {
-    width: 50%;
-    margin-right: 20px;
-  }
-
-  .footer {
-    width: 50%;
-  @apply(--paper-input-container-font);
-    color:  var(--secondary-text-color);
-  }
-
-  .price {
-    color:  var(--primary-text-color);
-  }
-
-  /*Organisms*/
-
-  #header-logo {
-    padding-bottom: 55px;
-  }
-  #header-logo iron-image {
-    width:200px;
-    height:55px;
-  }
-
 
   /* General styles */
 
@@ -331,6 +43,10 @@
     border-bottom: var(--drawer-toolbar-border-color);
   }
 
+  paper-scroll-header-panel {
+    height: 100%;
+  }
+
   paper-material {
     border-radius: 2px;
     height: 100%;
@@ -338,12 +54,6 @@
     width: calc(98.66% - 16px);
     margin: 16px auto;
     background: white;
-  }
-  paper-material > div > * {
-    margin: 24px 0;
-  }
-  paper-slider, paper-input, paper-textarea {
-    width: 100%;
   }
 
   paper-menu iron-icon {
@@ -377,24 +87,29 @@
     padding: 0 16px;
   }
 
-  #mainToolbar .middle {
+  paper-toolbar.tall .app-name {
+    font-size: 40px;
+    font-weight: 300;
+    /* Required for main area's paper-scroll-header-panel custom condensing transformation */
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+  }
+
+  #mainToolbar .middle-container  {
+    height: 100%;
     margin-left: 48px;
   }
 
   #mainToolbar:not(.tall) .middle {
-    font-size: 20px;
+    font-size: 18px;
     padding-bottom: 0;
-    margin-left: 48px;
   }
 
   #mainToolbar .bottom {
-    transition: 0.18s opacity 0.18s ease-in;
-    opacity: 1;
-  }
-
-  #mainToolbar:not(.tall) .bottom {
-    transition: 0.18s opacity ease-in;
-    opacity: 0;
+    margin-left: 48px;
+    /* Required for main area's paper-scroll-header-panel custom condensing transformation */
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
   }
 
   /* Height of the scroll area */
@@ -414,12 +129,9 @@
       padding-right: 16px;
     }
 
-    .paper-font-display1 {
-      font-size: 12px;
-    }
-
-    .app-name {
-      font-size: 26px;
+    paper-toolbar.tall .app-name {
+      font-size: 24px;
+      font-weight: 400;
     }
 
     #drawer .paper-toolbar {
