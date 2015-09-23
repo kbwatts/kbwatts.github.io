@@ -117,6 +117,17 @@
     height: 900px;
   }
 
+  paper-fab {
+    position: fixed;
+    bottom: 16px;
+  }
+  .arrow-forward {
+    right: 16px;
+  }
+  .arrow-back {
+    left: 16px;
+    background: #aaa;
+  }
   .sized {
     width: 80%;
     max-width: 440px;
@@ -129,33 +140,11 @@
     -moz-border-radius: 2px;
     border-radius: 2px;
   }
-  tr {
-    text-align: left;
-    height: 32px;
-  }
-  paper-dialog {
-    background: #fff;
-  }
-  paper-fab {
-    position: fixed;
-    bottom: 16px;
-  }
-  .arrow-forward {
-    right: 16px;
-  }
-  .arrow-back {
-    left: 16px;
-    background: #aaa;
-  }
 
   /* Breakpoints */
 
   /* Small */
   @media (max-width: 600px) {
-
-    paper-dialog {
-      width: 80%;
-    }
 
     paper-material {
       --menu-container-display: none;
@@ -186,9 +175,6 @@
   /* Tablet+ */
   @media (min-width: 601px) {
 
-    paper-dialog {
-      width: 50%;
-    }
     paper-material {
       width: calc(85% - 46px);
       margin-bottom: 32px;
