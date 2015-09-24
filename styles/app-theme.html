@@ -12,11 +12,11 @@
   /* Application theme */
 
   :root {
-    --dark-primary-color: #303F9F;
-    --default-primary-color: #3F51B5;
+    --dark-primary-color: var(--paper-grey-800);
+    --default-primary-color: var(--paper-grey-800);
     --light-primary-color: #C5CAE9;
     --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: var(--paper-light-blue-500);
+    --accent-color: var(--paper-blue-grey-300);
     --primary-background-color: #c5cae9;
     --primary-text-color: #212121;
     --secondary-text-color: #727272;
@@ -142,6 +142,9 @@
   }
   neon-animated-pages {
     height: 100%;
+  }
+  paper-toolbar {
+    @apply(--shadow-elevation-3dp);
   }
 
   /* Breakpoints */
