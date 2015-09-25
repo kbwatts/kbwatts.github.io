@@ -12,11 +12,11 @@
   /* Application theme */
 
   :root {
-    --dark-primary-color: var(--paper-grey-800);
-    --default-primary-color: var(--paper-grey-800);
+    --dark-primary-color: var(--paper-green-900);
+    --default-primary-color: var(--paper-green-900);
     --light-primary-color: #C5CAE9;
     --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: var(--paper-blue-grey-300);
+    --accent-color: var(--paper-light-green-500);
     --primary-background-color: #c5cae9;
     --primary-text-color: #212121;
     --secondary-text-color: #727272;
@@ -128,12 +128,6 @@
   @apply(--layout-center-justified);
   @apply(--layout-wrap);
   }
-  .sized {
-    width: 80%;
-    max-width: 440px;
-    /*height: 600px;*/
-  }
-
   img {
     max-width: 100%;
     -webkit-border-radius: 2px;
@@ -182,6 +176,43 @@
   iron-collapse {
     margin-left: 12px;
     padding-left: 12px;
+  }
+  .card-divider {
+    border-top: 1px solid var(--paper-grey-500);
+  }
+  .nomargins {
+    padding-left: 0;
+    padding-right: 0;
+    padding: 0;
+    /*width: 600px;*/
+  }
+  .cardmargins {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .card-primary {
+    margin-bottom: 0;
+  }
+  .card-secondary {
+    margin-top: 0;
+  }
+  .card-button {
+    margin: 8px;
+  }
+  .card-content {
+    padding-right: 24px;
+  }
+  .sized {
+    width: 80%;
+    max-width: 440px;
+    /*height: 600px;*/
+  }
+  .cardsized {
+    width: 100%;
+  }
+  .apptitle {
+    padding-top: 32px;
+    padding-left: 24px;
   }
 
   /* Breakpoints */
