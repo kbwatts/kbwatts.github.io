@@ -38,3 +38,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 .green-300 {
   background: var(--google-green-300);
 }
+
+#card {
+  background: #ffffff;
+  padding-top: 42px;
+  padding-bottom: 42px;
+  margin-bottom: 64px;
+@apply(--shadow-transition);
+@apply(--shadow-elevation-3dp);
+}
+#card:hover {
+@apply(--shadow-transition);
+@apply(--shadow-elevation-4dp);
+  cursor: pointer;
+}
+#card:active {
+@apply(--shadow-elevation-6dp);
+@apply(--shadow-transition);
+}
+.card-content {
+  padding-left:64px;
+  padding-right:64px;
+}
+.card-image {
+  width: 100%;
+}

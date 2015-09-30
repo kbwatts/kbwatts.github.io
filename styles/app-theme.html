@@ -40,7 +40,33 @@
   --paper-tab-content: var(--accent-color);
   --paper-tabs-selection-bar-color: var(--accent-color);
   --paper-tabs: var(--accent-color);
+
+    /*paper-dialog*/
+  --paper-dialog-background-color: white;
+  --paper-dialog-color: --primary-text-color;
+  --paper-dialog: white;
+  --paper-dialog-title: --primary-text-color;
+  --paper-dialog-button-color: --primary-text-color;
+
+    /*paper-fab*/
+  --paper-fab-background: var(--paper-grey-500);
+  /*--paper-fab-keyboard-focus-background: var(--paper-pink-900);*/
+  /*--paper-fab-disabled-background: var(--paper-grey-300);*/
+  /*--paper-fab-disabled-text: var(--paper-grey-500);*/
+  /*--paper-fab: none;*/
+  /*--paper-fab-mini: none;*/
+  /*--paper-fab-disabled: none;*/
   }
+
+  /*----------------|-------------|----------
+`--paper-fab-background` | The background color of the button | `--accent-color`
+`--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
+`--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
+`--paper-fab-disabled-text` | The text color of the button when it's disabled | `--paper-grey-500`
+`--paper-fab` | Mixin applied to the button | `{}`
+`--paper-fab-mini` | Mixin applied to a mini button | `{}`
+`--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
+*/
 
   /* General styles */
 
@@ -137,6 +163,12 @@
   neon-animated-pages {
     height: 100%;
   }
+  paper-dialog {
+    /*height: 60%;*/
+    margin-left: 2%;
+    width: 85%;
+    border-radius: 2px;
+  }
   paper-toolbar {
     @apply(--shadow-elevation-3dp);
   }
@@ -162,20 +194,18 @@
     background-color: var(--paper-grey-100);
   }
   paper-material {
-    cursor: pointer;
-    @apply(--shadow-transition);
+    transition: all 1s ease;
+    /*@apply(--shadow-transition);*/
   }
   paper-material:hover, paper-material:focus {
     @apply(--shadow-elevation-3dp);
-    @apply(--shadow-transition);
+    transition: all 300ms ease;
+    /*@apply(--shadow-transition);*/
   }
   paper-material:active {
     @apply(--shadow-elevation-4dp);
-    @apply(--shadow-transition);
-  }
-  iron-collapse {
-    margin-left: 12px;
-    padding-left: 12px;
+    transition: all 1s ease;
+    /*@apply(--shadow-transition);*/
   }
   .card-divider {
     border-top: 1px solid var(--paper-grey-500);
@@ -184,7 +214,6 @@
     padding-left: 0;
     padding-right: 0;
     padding: 0;
-    /*width: 600px;*/
   }
   .cardmargins {
     padding-left: 16px;
@@ -194,13 +223,14 @@
     margin-bottom: 0;
   }
   .card-secondary {
-    margin-top: 0;
+    margin-top: 12px;
   }
   .card-button {
     margin: 8px;
   }
   .card-content {
     padding-right: 24px;
+    padding-left: 24px;
   }
   .sized {
     width: 80%;
@@ -213,6 +243,40 @@
   .apptitle {
     padding-top: 32px;
     padding-left: 24px;
+  }
+  .card-image {
+    width: 100%;
+  }
+  .card-cover {
+    height: 200px;
+    width: 100%;
+    border-radius: 2px 2px 0 0;
+    padding-bottom: 12px;
+    color: #ffffff;
+  }
+  .light-blue {
+    background-color: var(--paper-light-blue-500);
+  }
+  .blue {
+    background-color: var(--paper-blue-500);
+  }
+  .indigo {
+    background-color: var(--paper-indigo-500);
+  }
+  .cyan {
+    background-color: var(--paper-cyan-500);
+  }
+  .orange {
+    background-color: var(--paper-deep-orange-500);
+  }
+  .green {
+    background-color: var(--paper-green-500);
+  }
+  .hidden {
+    display: none;
+  }
+  #cardcontrols {
+    margin: 0 42px;
   }
 
   /* Breakpoints */
@@ -260,6 +324,20 @@
       margin-bottom: 32px;
       padding-left: 30px;
       padding-right: 30px;
+    }
+
+    .example-cards {
+      width: 356px;
+      transition: all .2s;
+    }
+    .expand-cards {
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1)t;
+      width: 90%;
+      @apply(--shadow-elevation-8dp);
+    }
+    .expand-cards:hover {
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      @apply(--shadow-elevation-16dp);
     }
 
     #drawer.paper-drawer-panel > [drawer] {

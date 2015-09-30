@@ -31,7 +31,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .card {
       position: relative;
       margin: 200px 100px 0;
-      height: 700px;
     }
 
   </style>
@@ -40,7 +39,91 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="fixed" class$="[[_computeFixedBackgroundClass(color)]]"></div>
 
-    <div id="card" class$="[[_computeCardClass(color)]]"></div>
+    <!--<div id="card" class$="[[_computeCardClass(color)]]">-->
+    <div id="card" class$="[[_computeCardClass(color)]]">
+      <!--<div class="card-content">-->
+      <h3 class="paper-font-title card-content">1. The "How do I get started?" Problem</h3>
+      <h4 class="paper-font-subhead card-content">Users report not knowing how to get started from the home screen.</h4>
+      <p class="paper-font-body1 card-content">Client feedback suggests that users simply don't know where to begin.
+      They see five options, but they don't think it's immediately obvious what any of the options means
+      or why they should start with one option over another:</p>
+      <img class="flex self-center card-image"
+           src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-start-initial.png">
+      <p class="paper-font-caption card-content">The initial start screen on Lambda Analytika's home screen.</p>
+
+      <p class="paper-font-body1 card-content">Steps have been taken to improve the situation through the
+      addition of pdf and video guides,
+      however these options have their own usability issues. The PDF is very long (over 200 pages!)
+      and the video
+      is 11 minutes long without a searchable transcript, so at best these options
+      require significant user investment in finding the relevant information rather than providing
+      the right information at the right time for each user.</p>
+      <p class="paper-font-body1 card-content">At first glance, this appears to be an onboarding problem -
+      providing a better onboarding experience
+      could certainly make starting off in the right direction more obvious to people. But I tend to
+      think onboarding is a solution to a symptom, not the root cause itself. Google Now and Siri
+      are excellent examples of proactive, in-context help.</p>
+
+      <p class="paper-font-body1 card-content"><b>Onboarding:</b> the practice of quickly equipping novice
+      users with the minimum amount
+      of knowledge required for them to get started on their own. See
+      <a href="https://www.useronboard.com/onboarding-teardowns/">
+      UserOnBoard's Onboarding Teardowns</a>
+      for much more on this.</p>
+
+      <p class="paper-font-body1 card-content">I was inspired by some of the problems that Google Now solves, and
+      decided to see if that
+      might spark any ideas. Keeping in mind the '80/20 rule' really just means to focus on the problems that
+      cause a disproportionate amount of issues for people, I wondered if there were a handful of most
+      common types of analysis that people generally want to use, and therefore whether we can simply
+      proactively generate them and suggest them to the user as examples of finished products to quickly
+      demonstrate value.</p>
+
+      <img class="card-image" src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-start-new.png">
+      <p class="paper-font-caption card-content">A materialized start page.</p>
+
+      <p class="paper-font-body1 card-content">A second idea came to me about having a more interactive way of
+      learning how to create an Ad Hoc
+      Table, which is a typical scenario. Having clearly visible steps, an indication of progress,
+      time remaining, and questions prompting feedback and more tailored help experience - with novices
+      receiving more verbose help, and experts receiving a much leaner help package, for example.</p>
+
+      <img class="card-image" src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-start-guide.png">
+      <p class="paper-font-caption card-content">An interactive learning flow.</p>
+
+      <h3 class="paper-font-title card-content">2. The "How do I see the most useful reports for me?" Problem</h3>
+      <p class="paper-font-body1 card-content">Client feedback indicates that another usability hurdle exists at the
+      point when a user,
+      such as a Line Manager, wants to see a certain kind of report. The main idea with this mockup is
+      to investigate whether there are some kinds of reports or views that get created/viewed
+      disproportionately more than others. If so, maybe we can proactively suggest those reports with
+      the necessary values prefilled? Or alternatively go even further and provide the highlight
+      findings using actionable cards?</p>
+
+      <p class="paper-font-body1 card-content">Here, for example, the user is getting notified that the list of
+      users he or she is
+      managing is
+      performing better than the previous cohort.</p>
+      <img class="card-image" src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-0-icons.png">
+      <p class="paper-font-caption card-content">Proactive suggestions of meaningful and helpful reports.</p>
+
+      <p class="paper-font-body1 card-content">If the user wants to create or view their own report,
+      the following storyboard shows one idea, relying on search.
+
+      Visually you’ll notice these screens are a little different, with the current
+      iconography and a floating action button.
+
+      From here, the user clicks Search.</p>
+      <img class="card-image" src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-1-search.png">
+      <p class="paper-font-caption card-content">1 - "I want to find a report, or create it if I don't have it yet."</p>
+      <img class="card-image" src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-2-search.png">
+      <p class="paper-font-caption card-content">2 - Search can be such a powerful piece of UI - giving it
+      sufficient space to showcase that. </p>
+      <img class="card-image" src="https://dl.dropboxusercontent.com/u/13309969/portfolio/lambda-3-search.png">
+      <p class="paper-font-caption card-content">3 - Chunk words into discrete tags from phrases as you type, and
+      suggest creating a report if there are 0 search results.</p>
+      </div>
+    </div>
 
   </template>
 
@@ -94,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }, {
               name: 'transform-animation',
               transformFrom: 'none',
-              transformTo: 'translate(0px,-200vh) scale(0.9,1)',
+              transformTo: 'translate(0px,-100%) scale(1,1)',
               node: this.$.card
             }]
           }
