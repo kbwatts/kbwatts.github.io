@@ -263,8 +263,20 @@
   .indigo {
     background-color: var(--paper-indigo-500);
   }
-  .purple {
+  .deep-purple {
     background-color: var(--paper-deep-purple-500);
+  }
+  .lime {
+    background-color: var(--paper-lime-500);
+  }
+  .pink {
+    background-color: var(--paper-pink-500);
+  }
+  .purple {
+    background-color: var(--paper-purple-500);
+  }
+  .blue-grey {
+    background-color: var(--paper-blue-grey-500);
   }
   .cyan {
     background-color: var(--paper-cyan-500);
@@ -276,6 +288,15 @@
     background-color: var(--paper-green-500);
   }
   .hidden {
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    height: 0;
+  }
+  .no-display {
     display: none;
   }
   #cardcontrols {
@@ -334,7 +355,7 @@
       transition: all .2s;
     }
     .expand-cards {
-      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1)t;
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
       width: 95%;
       @apply(--shadow-elevation-8dp);
     }
