@@ -87,6 +87,15 @@
     width: calc(98.66% - 16px);
     margin: 16px auto;
     background: white;
+    transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  paper-material:hover, paper-material:focus {
+  @apply(--shadow-elevation-3dp);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  paper-material:active {
+  @apply(--shadow-elevation-4dp);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   paper-menu {
@@ -131,6 +140,12 @@
     -webkit-transform-origin: left center;
     transform-origin: left center;
   }
+  paper-icon-button {
+    border-radius: 50%;
+  }
+  paper-button:hover, paper-button:focus, paper-icon-button:hover, paper-icon-button:focus {
+    background-color: var(--paper-grey-200);
+  }
 
   #mainToolbar .middle-container  {
     height: 100%;
@@ -168,7 +183,6 @@
     height: 100%;
   }
   paper-dialog {
-    /*height: 60%;*/
     margin-left: 2%;
     width: 85%;
     border-radius: 2px;
@@ -193,23 +207,8 @@
     list-style: none;
   }
   paper-material > ol > li:hover, paper-material > ol > li:active, paper-material > ol > li:focus {
-    /*text-decoration: underline;*/
     cursor: pointer;
     background-color: var(--paper-grey-100);
-  }
-  paper-material {
-    transition: all 1s ease;
-    /*@apply(--shadow-transition);*/
-  }
-  paper-material:hover, paper-material:focus {
-    @apply(--shadow-elevation-3dp);
-    transition: all 300ms ease;
-    /*@apply(--shadow-transition);*/
-  }
-  paper-material:active {
-    @apply(--shadow-elevation-4dp);
-    transition: all 1s ease;
-    /*@apply(--shadow-transition);*/
   }
   .card-divider {
     border-top: 1px solid var(--paper-grey-500);
@@ -292,13 +291,18 @@
     background-color: var(--paper-green-500);
   }
   .hidden {
-    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2,
+    1), width .5s, height .5s, opacity .5s;
     -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-transform: scale(0);
     transform: scale(0);
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
     height: 0;
+    opacity: 0;
+    /*width: 0;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
   }
   .no-display {
     display: none;
@@ -306,6 +310,7 @@
   #cardcontrols {
     margin: 0 42px;
   }
+
 
   /* Breakpoints */
 
