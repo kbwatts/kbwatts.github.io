@@ -1,0 +1,1433 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Lion Brand Survey</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+
+    <link rel="import" href="bower_components/swipeable-card/swipeable-card.html">
+    <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="bower_components/core-pages/core-pages.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/paper-toast/paper-toast.html">
+    <link href="bower_components/core-animated-pages/core-animated-pages.html" rel="import">
+    <link href="bower_components/core-animated-pages/transitions/slide-from-right.html" rel="import">
+    <link href="bower_components/paper-shadow/paper-shadow.html" rel="import">
+    <link href="bower_components/paper-button/paper-button.html" rel="import">
+    <link href="bower_components/paper-dialog/paper-dialog.html" rel="import">
+    <link href="bower_components/paper-dialog/paper-action-dialog.html" rel="import">
+    <link rel="import" href="bower_components/core-drag-drop/core-drag-drop.html">
+    <link href="bower_components/paper-fab/paper-fab.html" rel="import">
+    <link rel="import" href="bower_components/core-icons/av-icons.html">
+    <link rel="import" href="bower_components/core-tooltip/core-tooltip.html">
+
+    <style>
+    ::selection {
+        background: transparent;
+    }
+    ::-moz-selection {
+        background: transparent;
+    }
+    body {
+        background-color: #eee;
+        font-family: Roboto, sans-serif;
+        /*overflow: hidden;*/
+    }
+    /*div::selection {*/
+        /*background-color: #fdbf2d;*/
+        /*color: #333;*/
+    /*}*/
+    paper-tab {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 300;
+    }
+    /*paper-tabs::shadow #selectionBar {*/
+        /*background-color: #4285f4;*/
+    /*}*/
+    paper-tabs paper-tab::shadow #ink {
+        color: #4285f4;
+    }
+    paper-button.colored {
+        color: #4285f4;
+        float: right;
+    }
+    paper-fab {
+        background: #000;
+        position: fixed;
+        color: #fff;
+        bottom: 16px;
+        transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    }
+    paper-fab[showing] {
+        -webkit-transform: none;
+        transform: none;
+    }
+    paper-fab:hover {
+        transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    }
+    .deckTitle {
+        text-transform: uppercase;
+        text-align: center;
+        background-color: transparent;
+        box-shadow: none;
+        margin: 1px auto;
+        padding: 1px auto;
+        width: auto;
+    }
+    .deckTitle2 {
+        text-transform: uppercase;
+        text-align: center;
+        box-shadow: none;
+        margin: 1px auto;
+        padding: 1px auto;
+    }
+    .deck {
+        padding: 0 5px;
+        margin: 0;
+        float: left;
+        background: #eee;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+    swipeable-card {
+        cursor: pointer;
+        height: auto;
+        width: 180px;
+        margin: 10px 5px;
+        padding: 0;
+        background-color: #0f0f0f;
+    }
+    #step3 swipeable-card {
+        width: 200px;
+    }
+    #step3 .deckTitle {
+        width: auto;
+    }
+    #intro swipeable-card {
+        width: 250px;
+    }
+    #instruct1 swipeable-card {
+        width: 250px;
+    }
+    #instruct2 swipeable-card {
+        width: 250px;
+    }
+    #instruct3 swipeable-card {
+        width: 250px;
+    }
+    #instruct4 swipeable-card {
+        width: 250px;
+    }
+    #discard swipeable-card {
+        cursor: pointer;
+        height: auto;
+        width: 150px;
+        margin: 10px 0;
+        padding: 0;
+        background-color: #0f0f0f;
+    }
+    #discard2 swipeable-card {
+        cursor: pointer;
+        height: auto;
+        width: 150px;
+        margin: 10px 0;
+        padding: 0;
+        background-color: #0f0f0f;
+    }
+    #discard {
+        background-color: #ccc;
+        padding: 12px;
+        height: 1475px;
+        box-shadow: 0px 2px 5px #ccc;
+    }
+    #discard2 {
+        width: 150px;
+        background-color: #ccc;
+        padding: 12px;
+        height: 950px;
+        box-shadow: 0px 2px 5px #ccc;
+    }
+    #discardtext {} h1 {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    h2 {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        font-weight: 500;
+        color: #777;
+    }
+    p {
+        font-size: 14px;
+        cursor: pointer;
+        padding: 4px 20px 20px 20px;
+        margin: 0;
+    }
+    /*span::selection {*/
+        /*background-color: #333;*/
+        /*color: white;*/
+    /*}*/
+    a {
+        padding: 0 18px;
+    }
+    a:hover {
+        color: purple;
+    }
+    #browserWarning {
+        cursor: text;
+        margin: 0;
+        padding: 10px 0px 10px 8px;
+        vertical-align: middle;
+        position: fixed;
+        width: 100%;
+        border-radius: 2px;
+        box-shadow: 0 2px 6px 0 #ccc;
+        background-color: #fff;
+        color: #333;
+        font-weight: 500;
+        z-index: 12;
+        height: 100%;
+    }
+    span {
+        line-height: 2;
+        display: block;
+    }
+    .hidden {
+        display: none;
+    }
+    #ch-logo {
+        background: url('img/ch.png');
+        background-repeat: no-repeat;
+    }
+    #ff-logo {
+        background: url('img/ff.png');
+        background-repeat: no-repeat;
+    }
+    #ie-logo {
+        background: url('img/ie.png');
+        background-repeat: no-repeat;
+    }
+    .box {
+        display: inline-block;
+        margin: 16px;
+        position: relative;
+        width: 200px;
+        height: auto;
+        min-height: 160px;
+        box-shadow: 0px 2px 5px #ccc;
+        color: #333;
+        background-color: #0f0f0f;
+        cursor: pointer;
+    }
+    .dropped {
+        position: absolute;
+        border: 1px solid black;
+        width: 5px;
+        height: 5px;
+        background-color: #0f0f0f;
+        cursor: pointer;
+    }
+    .being-img {
+        width: 100%;
+        pointer-events: none;
+        margin-bottom: -4px;
+    }
+    .doing-img {
+        width: 100%;
+        pointer-events: none;
+        margin-bottom: -4px;
+    }
+    .result-img {
+        width: 100%;
+        pointer-events: none;
+    }
+    .logo {
+        height: 90%;
+        padding: 10px;
+    }
+    .logo2 {
+        height: 60%;
+        padding: 10px;
+        margin-top: 0.6% !important;
+        margin-right: 7% !important;
+        float: right;
+    }
+    core-toolbar {
+        background-color: #0f0f0f;
+        color: #fdbf2d;
+        height: 80px;
+        padding-top: 8px;
+    }
+    /*core-toolbar::selection {*/
+        /*background-color: transparent;*/
+    /*}*/
+    #being-choices img {
+        float: left;
+        width: 200px;
+        margin: 10px;
+        background-color: #0f0f0f;
+    }
+    #doing-choices img {
+        float: left;
+        width: 200px;
+        margin: 10px;
+        background-color: #0f0f0f;
+    }
+    #prefLabel {
+        color: #fafafa;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .finalLabel {
+        color: #333;
+        border-radius: 2px;
+        background-color: white;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+        height: 132px;
+        width: 200px;
+        padding: 12px;
+        margin-top: 10%;
+        cursor: auto;
+    }
+    /*.finalLabel::selection {*/
+        /*background-color: #fdbf2d;*/
+        /*color: #333;*/
+    /*}*/
+    .finalLabel p {
+        cursor: auto;
+        font-weight: 500;
+    }
+    #resetThis {
+        position: fixed;
+        left: 24px;
+        bottom: 88px;
+        background-color: #757575;
+        color: white;
+    }
+    #restart {
+        position: fixed;
+        left: 16px;
+        bottom: 16px;
+        background-color: #FFC107;
+        color: #000;
+    }
+    #floatingInstructions {
+        position: fixed;
+        top: 15px;
+        left: 40%;
+        font-weight: 700;
+        padding: 16px;
+        background-color: #fafafa;
+        color: #333;
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.7);
+        border-radius: 2px;
+        transition: 300ms ease-in-out;
+    }
+    #floatingInstructions::selection {
+        background: transparent;
+    }
+    #drop1 img:first-child {
+        display: none;
+    }
+    #drop2 img:first-child {
+        display: none;
+    }
+    #drop3 img:first-child {
+        display: none;
+    }
+    #drop4 img:first-child {
+        display: none;
+    }
+    #drop5 img:first-child {
+        display: none;
+    }
+    #drop6 img:first-child {
+        display: none;
+    }
+    #drop1 img:not(:first-child) {
+        width: 100%;
+    }
+    #drop2 img:not(:first-child) {
+        width: 100%;
+    }
+    #drop3 img:not(:first-child) {
+        width: 100%;
+    }
+    #drop4 img:not(:first-child) {
+        width: 100%;
+    }
+    #drop5 img:not(:first-child) {
+        width: 100%;
+    }
+    #drop6 img:not(:first-child) {
+        width: 100%;
+    }
+    #final img:first-child {
+        display: none;
+    }
+    #final {
+        width: 290px;
+    }
+    #final2 img:first-child {
+        display: none;
+    }
+    #final2 {
+        width: 290px;
+    }
+    #fab-1 {
+        right: 16px;
+    }
+    #fab-2 {
+        right: 16px;
+    }
+    #fab-3 {
+        right: 16px;
+    }
+    #fab-4 {
+        right: 16px;
+    }
+    </style>
+
+    <style shim-shadowdom>
+    core-tooltip.fancy::shadow .core-tooltip {
+        opacity: 0;
+        -webkit-transition: all 300ms cubic-bezier(0, 1.92, .99, 1.07);
+        transition: all 300ms cubic-bezier(0, 1.92, .99, 1.07);
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+    core-tooltip.fancy:hover::shadow .core-tooltip,
+    core-tooltip.fancy:focus::shadow .core-tooltip {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    </style>
+
+</head>
+
+<body unresolved fullbleed>
+
+    <core-toolbar>
+        <img src="img/logo.png" class="logo">
+        <div flex style="font-size:24px;font-weight:300;white-space:nowrap">Archetype Quiz</div>
+        <img src="img/555logo.png" class="logo2">
+
+
+    </core-toolbar>
+     <!--<paper-tabs selected="0">-->
+        <paper-tabs selected="0" style="display:none;">
+
+        <paper-tab>Intro</paper-tab>
+        <paper-tab>Instructions 1</paper-tab>
+        <paper-tab>Step 1</paper-tab>
+        <paper-tab>Instructions 2</paper-tab>
+        <paper-tab>Step 2</paper-tab>
+        <paper-tab>Instructions 3</paper-tab>
+        <paper-tab>Step 3</paper-tab>
+        <paper-tab>Instructions 4</paper-tab>
+        <paper-tab>Step 4</paper-tab>
+        <paper-tab>Finish</paper-tab>
+
+    </paper-tabs>
+
+    <core-animated-pages selected="{{selected}}" transitions="slide-from-right">
+
+        <div horizontal center-justified layout id="firstpage">
+            <div id="intro" class="deck">
+                <swipeable-card>
+                    <img src="img/intro.jpg" class="being-img">
+                </swipeable-card>
+            </div>
+
+        </div>
+
+        <div horizontal center-justified layout>
+            <div id="instruct1" class="deck">
+                <swipeable-card>
+                    <img src="img/instruct1.jpg" class="being-img">
+                </swipeable-card>
+            </div>
+        </div>
+
+        <div horizontal center-justified layout id="step1">
+            <div horizontal center-justified wrap width="600px" layout>
+                <div id="cards1" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="caregiver">
+                        <img src="img/caregiver-being.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="ruler">
+                        <img src="img/ruler-being.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards2" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="innocent">
+                        <img src="img/innocent-being.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="explorer">
+                        <img src="img/explorer-being.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards3" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="sage">
+                        <img src="img/sage-being.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="magician">
+                        <img src="img/magician-being.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards4" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="outlaw">
+                        <img src="img/outlaw-being.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="hero">
+                        <img src="img/hero-being.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards5" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="lover">
+                        <img src="img/lover-being.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="regular">
+                        <img src="img/regular-being.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards6" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="jester">
+                        <img src="img/jester-being.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="creator">
+                        <img src="img/creator-being.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+            </div>
+
+            <div id="discard" class="deck">
+                <div id="discardtext"></div>
+                <swipeable-card disableSwipe="true" class="deckTitle2"></swipeable-card>
+            </div>
+            <core-tooltip label="Continue to the next section" class="fancy" position="left" style="position: fixed;bottom: 42px;right: 75px;">
+                <paper-fab icon="arrow-forward" hidden title="Finish sorting" id="fab-1" onclick="next()"></paper-fab>
+            </core-tooltip>
+
+        </div>
+
+        <div horizontal center-justified layout>
+            <div id="instruct2" class="deck">
+                <swipeable-card>
+                    <img src="img/instruct2.jpg" class="being-img">
+                </swipeable-card>
+            </div>
+        </div>
+
+        <div>
+
+            <div horizontal center-justified layout>
+                <div id="drop1" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="">
+                    <p id="prefLabel">1st choice</p>
+                </div>
+                <div id="drop2" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="">
+                    <p id="prefLabel">2nd choice</p>
+                </div>
+                <div id="drop3" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="">
+                    <p id="prefLabel">3rd choice</p>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <hr style="border: 1px dotted silver;">
+
+            <div id="being-choices" horizontal center-justified layout>
+
+                <div id="being-choice-1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag1">
+                </div>
+                <div id="being-choice-2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag2">
+                </div>
+                <div id="being-choice-3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag3">
+                </div>
+                <div id="being-choice-4" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag4">
+                </div>
+                <div id="being-choice-5" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag5">
+                </div>
+                <div id="being-choice-6" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag6">
+                </div>
+            </div>
+            <core-tooltip label="Continue to the next section" class="fancy" position="left" style="position: fixed;bottom: 42px;right: 75px;">
+                <paper-fab icon="arrow-forward" hidden title="Finish Sorting" id="fab-2" onclick="nextPage()"></paper-fab>
+            </core-tooltip>
+        </div>
+
+        <div horizontal center-justified layout>
+            <div id="instruct3" class="deck">
+
+                <swipeable-card>
+                    <img src="img/instruct3.jpg" class="being-img">
+                </swipeable-card>
+            </div>
+        </div>
+
+        <div horizontal center-justified layout id="step3">
+            <div horizontal center-justified wrap width="600px" layout>
+                <div id="cards7" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="caregiver">
+                        <img src="img/caregiver-doing.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="ruler">
+                        <img src="img/ruler-doing.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards8" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="innocent">
+                        <img src="img/innocent-doing.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="explorer">
+                        <img src="img/explorer-doing.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards9" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="sage">
+                        <img src="img/sage-doing.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="magician">
+                        <img src="img/magician-doing.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards10" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="outlaw">
+                        <img src="img/outlaw-doing.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="hero">
+                        <img src="img/hero-doing.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards11" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="lover">
+                        <img src="img/lover-doing.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="regular">
+                        <img src="img/regular-doing.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+
+                <div id="cards12" class="deck">
+                    <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+                    <swipeable-card id="jester">
+                        <img src="img/jester-doing.jpg" class="being-img">
+                    </swipeable-card>
+                    <swipeable-card id="creator">
+                        <img src="img/creator-doing.jpg" class="being-img">
+                    </swipeable-card>
+                </div>
+            </div>
+
+            <div id="discard2" class="deck">
+                <div id="discardtext2"></div>
+                <swipeable-card disableSwipe="true" class="deckTitle"></swipeable-card>
+            </div>
+            <core-tooltip label="Continue to the next section" class="fancy" position="left" style="position: fixed;bottom: 42px;right: 75px;">
+                <paper-fab icon="arrow-forward" hidden title="Finish sorting" id="fab-3" onclick="doingNext()"></paper-fab>
+            </core-tooltip>
+
+        </div>
+
+        <div horizontal center-justified layout>
+            <div id="instruct4" class="deck">
+
+                <swipeable-card>
+                    <img src="img/instruct4.jpg" class="being-img">
+                </swipeable-card>
+            </div>
+        </div>
+
+        <div>
+
+            <div horizontal center-justified layout>
+                <div id="drop4" class="box" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="">
+                    <p id="prefLabel">1st choice</p>
+                </div>
+                <div id="drop5" class="box" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="">
+                    <p id="prefLabel">2nd choice</p>
+                </div>
+                <div id="drop6" class="box" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="">
+                    <p id="prefLabel">3rd choice</p>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <hr style="border: 1px dotted silver;">
+
+            <div id="doing-choices" horizontal center-justified layout>
+
+                <div id="doing-choice-1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag7">
+                </div>
+                <div id="doing-choice-2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag8">
+                </div>
+                <div id="doing-choice-3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag=9">
+                </div>
+                <div id="doing-choice-4" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag10">
+                </div>
+                <div id="doing-choice-5" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag11">
+                </div>
+                <div id="doing-choice-6" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" draggable="true" ondragstart="drag(event)" id="drag12">
+                </div>
+            </div>
+            <core-tooltip label="Continue to the next section" class="fancy" position="left" style="position: fixed;bottom: 42px;right: 75px;">
+                <paper-fab icon="arrow-forward" hidden title="Finish" id="fab-4" onclick="finish()"></paper-fab>
+            </core-tooltip>
+        </div>
+
+        <div>
+            <core-drag-drop></core-drag-drop>
+            <div class="topscores">
+                <div horizontal center-justified layout id="last1">
+                    <div class="finalLabel">
+                        <h1>PRIMARY ARCHETYPES</h1>
+                        <br />
+                        <h2>Your selections suggest that these archetypes feature more prevalently at the heart of your brand: they have played a greater role in shaping how it looks, behaves and feels in the world.</h2>
+                    </div>
+                    <div id="final" class="box" draggable="false">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <hr style="border: 1px dotted silver;">
+            <div class="secondscores">
+                <div horizontal center-justified layout id="last2">
+                    <div class="finalLabel">
+                        <h1>SECONDARY ARCHETYPES</h1>
+                        <br />
+                        <h2>Your selections indicate that these archetypes have also played a role in shaping how your brand manifests, albeit to a lesser extent than the primary archetype(s).</h2>
+                    </div>
+                    <div id="final2" class="box" draggable="false">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </core-animated-pages>
+    <div id="floatingInstructions" hidden>Swipe away 6 cards that least fit your brand</div>
+    <core-tooltip label="Reset this set of cards" class="fancy" position="right" style="position: fixed;bottom: 110px;left: 75px;">
+        <paper-fab showing="true" mini hidden icon="undo" title="Reset this set of cards" id="resetThis" onclick="reset()"></paper-fab>
+    </core-tooltip>
+    <core-tooltip label="Restart from the beginning" class="fancy" position="right" style="position: fixed;bottom: 42px;left: 75px;">
+        <paper-fab showing="true" icon="av:replay" title="Restart from the beginning" id="restart" onclick="restart()"></paper-fab>
+    </core-tooltip>
+
+    <script>
+    // SHOW THE USER THE DIALOG BOX WITH THIS ID
+    function showDialog(dialog) {
+        document.querySelector('#' + dialog).toggle();
+    }
+
+    // PAGE CONTROL
+    var tabs = document.querySelector('paper-tabs');
+    var pages = document.querySelector('core-animated-pages');
+
+    tabs.addEventListener('core-select', function() {
+        pages.selected = tabs.selected;
+        if ((pages.selected < 2) || (pages.selected == 3) || (pages.selected == 5) || (pages.selected == 7) || (pages.selected == 9)) {
+            hideButton('#floatingInstructions');
+            hideButton('#resetThis');
+        } else if (pages.selected == 2) {
+            showButton('#floatingInstructions');
+            document.querySelector('#floatingInstructions').innerText = "TASK 1 of 4: Swipe away 6 cards that least fit your brand.";
+        } else if (pages.selected == 4) {
+            showButton('#floatingInstructions');
+            showButton('#resetThis');
+            document.querySelector('#floatingInstructions').innerText = "TASK 2 of 4: Rank the cards that best fit your brand.";
+        } else if (pages.selected == 6) {
+            showButton('#floatingInstructions');
+            document.querySelector('#floatingInstructions').innerText = "TASK 3 of 4: Swipe away 6 cards that least fit your brand.";
+        } else if (pages.selected == 8) {
+            showButton('#floatingInstructions');
+            showButton('#resetThis');
+            document.querySelector('#floatingInstructions').innerText = "TASK 4 of 4: Rank the cards that best fit your brand.";
+        }
+    });
+
+    function nextPage() {
+        tabs.selected++;
+        pages.selected++;
+    }
+
+    function reset() {
+        if (pages.selected == 4) {
+            resetStep2();
+        } else if (pages.selected == 8) {
+            resetStep4();
+        }
+    }
+
+    var templateBeingNodes = document.querySelector('#being-choices').cloneNode(true);
+    var templateDoingNodes = document.querySelector('#doing-choices').cloneNode(true);
+
+    function resetStep2() {
+        var newClone = templateBeingNodes.cloneNode(true);
+
+        for (p = 1; p <= 3; p++) {
+            if (document.querySelector('#drop' + p + '').children.length > 2) {
+                document.querySelector('#drop' + p + '').removeChild(document.querySelector('#drop' + p + '').children[2])
+            }
+        }
+
+        for (p = 0; p < 6; p++) {
+            document.querySelector('#being-choices').removeChild(document.querySelector('#being-choices').children[0]);
+        }
+        for (p = 0; p < 6; p++) {
+            document.querySelector('#being-choices').appendChild(newClone.children[0]);
+        }
+
+        var currentCounter = 0;
+
+        // GO THROUGH THE 6 DECKS
+        for (k = 1; k <= 6; k++) {
+            // LOOK AT EACH CARD IN THIS DECK
+            for (j = 1; j < document.querySelector('#cards' + k).children.length; j++) {
+                currentCounter++;
+                document.querySelector('#being-choice-' + currentCounter).children[0].id = "";
+                document.querySelector('#being-choice-' + currentCounter).children[0].src = "";
+                document.querySelector('#being-choice-' + currentCounter).children[0].id = document.querySelector('#cards' + k).children[j].id;
+                document.querySelector('#being-choice-' + currentCounter).children[0].src = document.querySelector('#cards' + k).children[j].children[0].src;
+            }
+        }
+        checkDroppedStatus();
+    }
+
+    function resetStep4() {
+        var newClone = templateDoingNodes.cloneNode(true);
+
+        for (p = 4; p <= 6; p++) {
+            if (document.querySelector('#drop' + p + '').children.length > 2) {
+                document.querySelector('#drop' + p + '').removeChild(document.querySelector('#drop' + p + '').children[2]);
+            }
+        }
+        for (p = 0; p < 6; p++) {
+            document.querySelector('#doing-choices').removeChild(document.querySelector('#doing-choices').children[0]);
+        }
+        for (p = 0; p < 6; p++) {
+            document.querySelector('#doing-choices').appendChild(newClone.children[0]);
+        }
+
+        currentCounter = 0;
+
+        // GO THROUGH THE NEXT 6 DECKS
+        for (k = 7; k <= 12; k++) {
+            // LOOK AT EACH CARD IN THIS DECK
+            for (j = 1; j < document.querySelector('#cards' + k).children.length; j++) {
+                currentCounter++;
+                document.querySelector('#doing-choice-' + currentCounter).children[0].id = "";
+                document.querySelector('#doing-choice-' + currentCounter).children[0].src = "";
+                document.querySelector('#doing-choice-' + currentCounter).children[0].id = document.querySelector('#cards' + k).children[j].id;
+                document.querySelector('#doing-choice-' + currentCounter).children[0].src = document.querySelector('#cards' + k).children[j].children[0].src;
+            }
+        }
+        checkDroppedStatus();
+    }
+
+    function restart() {
+        setTimeout(function() {
+            location.reload();
+        }, 200);
+    }
+
+    // GO TO THE NEXT PAGE WHEN USER SWIPES THE INTRO/INSTRUCTION CARDS
+    document.querySelector('#intro').addEventListener('swipeable-card-swipe-away', function(e) {
+        e.target.parentNode.removeChild(e.target);
+        nextPage();
+    });
+
+    document.querySelector('#instruct1').addEventListener('swipeable-card-swipe-away', function(e) {
+        e.target.parentNode.removeChild(e.target);
+        nextPage();
+    });
+
+
+    // SHOW buttonName
+    function showButton(buttonName) {
+        document.querySelector(buttonName).removeAttribute('hidden');
+        setTimeout(function() {
+            document.querySelector(buttonName).setAttribute('showing', true);
+        }, 200);
+    }
+
+    // HIDE buttonName
+    function hideButton(buttonName) {
+        document.querySelector(buttonName).removeAttribute('showing');
+        setTimeout(function() {
+            document.querySelector(buttonName).setAttribute('hidden', true);
+        }, 100);
+    }
+
+    function checkDroppedStatus() {
+        if ((document.querySelector('#drop1').children.length == 3) && (document.querySelector('#drop2').children.length == 3) && (document.querySelector('#drop3').children.length == 3)) {
+            showButton('#fab-2');
+        } else {
+            hideButton('#fab-2');
+        }
+        if ((document.querySelector('#drop4').children.length == 3) && (document.querySelector('#drop5').children.length == 3) && (document.querySelector('#drop6').children.length == 3)) {
+            showButton('#fab-4');
+        } else {
+            hideButton('#fab-4');
+        }
+    }
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+        // checkDroppedStatus();
+    }
+
+    function drag(ev) {
+        console.log(ev.dataTransfer);
+        var img = document.createElement("img");
+        img.src = "img/1px.png";
+        ev.dataTransfer.setDragImage(img, 0, 0);
+        ev.dataTransfer.setData("text", ev.target.id);
+        checkDroppedStatus();
+    }
+
+    function drop(ev) {
+        var target = document.querySelector('#' + ev.target.id + '');
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var data2 = document.createElement("img");
+        if (target.children.length < 3) {
+            if (ev.target.id == "drop1" || ev.target.id == "drop2" || ev.target.id == "drop3") {
+                document.querySelectorAll('#' + data)[1].className = "being-img";
+                document.querySelector('#' + ev.target.id).appendChild(document.querySelectorAll('#' + data)[1]);
+            } else if (ev.target.id == "drop4" || ev.target.id == "drop5" || ev.target.id == "drop6") {
+                if (document.querySelectorAll('#' + data).length == 3) {
+                    document.querySelector('#' + ev.target.id).appendChild(document.querySelectorAll('#' + data)[2]);
+                } else if (document.querySelectorAll('#' + data).length == 4) {
+                    document.querySelector('#' + ev.target.id).appendChild(document.querySelectorAll('#' + data)[3]);
+                }
+            }
+        }
+        checkDroppedStatus();
+    }
+
+    // SWIPING CARDS FUNCTIONS
+
+    // ADD EVENT LISTENERS TO ALL SWIPEABLE CARDS
+    var decks = document.getElementsByTagName('div');
+    var x = 0;
+
+    while (x < decks.length) {
+        if ((decks[x].id.indexOf("cards")) == 0) {
+            addCardListener(decks[x].id);
+        } else if ((decks[x].id.indexOf("discard")) == 0) {
+            addDiscardDeckListener(decks[x].id);
+        } else if ((decks[x].id.indexOf('drop')) == 0) {
+            addDiscardListener(decks[x].id);
+        }
+        x++;
+    }
+
+    function addDiscardListener(name) {
+        document.querySelector('#' + name).addEventListener('swipeable-card-swipe-away', function(e) {
+            e.target.parentNode.removeChild(e.target);
+        });
+    }
+
+    document.getElementById("discardtext").innerHTML = "<h1>Discard 6 more</h1>"
+    document.getElementById("discardtext2").innerHTML = "<h1>Discard 6 more</h1>"
+
+    function addCardListener(name) {
+        document.querySelector('#' + name).addEventListener('swipeable-card-swipe-away', function(e) {
+
+            function animateCardReturn(e) {
+                setTimeout(function() {
+                    e.target.style.opacity = 1; // set opacity back to 1 (default)
+                    // set it's position and location back to default (and in webkit-based browsers)
+                    e.target.style.transform = "translate3d(0px, 0px, 0px) rotate(0deg)";
+                    e.target.style.webkitTransform = "translate3d(0px, 0px, 0px) rotate(0deg)";
+                }, 10);
+            }
+
+            // HANDLE CARD DECKS 1-6
+            if (name == 'cards1' || name == 'cards2' || name == 'cards3' || name == 'cards4' || name == 'cards5' || name == 'cards6') {
+                if (document.querySelector('#discard').children.length >= 8) {
+                    document.querySelector('#discard-full').show(); // pop the toast to warn user discard pile is full
+                    e.target.parentNode.removeChild(e.target); // removes this card
+                    document.querySelector('#' + name).appendChild(e.target); // puts this card back
+                    animateCardReturn(e)
+                } else if (document.querySelector('#discard').children.length < 8) {
+                        e.target.parentNode.removeChild(e.target); // removes this card
+                        document.querySelector('#discard').appendChild(e.target); // adds this card to the discard pile of step 1
+                        animateCardReturn(e);
+                    if (document.querySelector('#discard').children.length == 8) {
+                        showButton('#fab-1'); // show fab
+                        animateCardReturn(e);
+                    }
+                }
+                document.getElementById("discardtext").innerHTML = "<h1>Discard " + (8 - document.querySelector('#discard').children.length) + " more</h1>";
+            }
+
+            // HANDLE CARDS 7-12
+            if (name == 'cards7' || name == 'cards8' || name == 'cards9' || name == 'cards10' || name == 'cards11' || name == 'cards12') {
+                if (document.querySelector('#discard2').children.length >= 8) {
+                    document.querySelector('#discard-full').show(); // pop the toast to warn user discard pile is full
+                    e.target.parentNode.removeChild(e.target); // removes this card
+                    document.querySelector('#' + name).appendChild(e.target); // puts this card back
+                    animateCardReturn(e);
+                } else if (document.querySelector('#discard2').children.length < 8) {
+                        e.target.parentNode.removeChild(e.target); // removes this card
+                        document.querySelector('#discard2').appendChild(e.target); // adds this card to the discard pile of step 1
+                        animateCardReturn(e);
+                    if (document.querySelector('#discard2').children.length == 8) {
+                        showButton('#fab-3'); // show fab
+                        animateCardReturn(e);
+                    }
+                }
+                document.getElementById("discardtext2").innerHTML = "<h1>Discard " + (8 - document.querySelector('#discard2').children.length) + " more</h1>";
+            }
+        });
+    }
+
+    // ADD EVENT LISTENER TO THE DISCARD PILES
+    function addDiscardDeckListener(discardPileDeck) {
+        document.querySelector('#' + discardPileDeck).addEventListener('swipeable-card-swipe-away', function(e) {
+            // wait to make sure the animation completed and the card doesn't get swiped twice
+            setTimeout(function() {
+                e.target.swiped = false;
+            }, 10);
+
+            var currentCard = 1;
+            var smallestCardId = document.querySelector('#cards1').id;
+            var smallestCardLength = document.querySelector('#' + smallestCardId).children.length;
+
+            if (!e.target.swiped) {
+                e.target.parentNode.removeChild(e.target); // removes this card
+
+                // if user is discarding from the 1st pile...
+                if (discardPileDeck == "discard") {
+                    // loop through #cards1-6 to see which has the least cards
+                    while (currentCard < 7) {
+                        if (document.querySelector('#cards' + currentCard).children.length < smallestCardLength) {
+                            smallestCardId = document.querySelector('#cards' + currentCard).id;
+                            smallestCardLength = document.querySelector('#' + smallestCardId).children.length;
+                        }
+                        currentCard++;
+                    }
+
+                // if user is discarding from the 1st pile...
+                } else if (discardPileDeck == "discard2") {
+                    // loop through #cards7-12 to see which has the least cards
+                    currentCard = 7;
+                    smallestCardId = document.querySelector('#cards7').id;
+                    smallestCardLength = document.querySelector('#' + smallestCardId).children.length;
+                    while (currentCard < 13) {
+                        if (document.querySelector('#cards' + currentCard).children.length < smallestCardLength) {
+                            smallestCardId = document.querySelector('#cards' + currentCard).id;
+                            smallestCardLength = document.querySelector('#' + smallestCardId).children.length;
+                        }
+                        currentCard++;
+                    }
+                }
+                document.querySelector('#' + smallestCardId).appendChild(e.target); // adds this card to the deck with least cards
+
+                setTimeout(function() {
+                    e.target.style.opacity = 1; // set opacity back to 1 (default)
+                    // set it's position and location back to default
+                    e.target.style.transform = "translate3d(0px, 0px, 0px) rotate(0deg)";
+                    e.target.style.webkitTransform = "translate3d(0px, 0px, 0px) rotate(0deg)";
+                }, 10);
+
+                document.getElementById("discardtext").innerHTML = "<h1>Discard " + (8 - document.querySelector('#discard').children.length) + " more</h1>";
+                document.getElementById("discardtext2").innerHTML = "<h1>Discard " + (8 - document.querySelector('#discard2').children.length) + " more</h1>";
+
+
+                if (document.querySelector('#discard').children.length < 8) {
+                    hideButton('#fab-1');
+                }
+                if (document.querySelector('#discard2').children.length < 8) {
+                    hideButton('#fab-3');
+                }
+            }
+        });
+    }
+
+    // GO TO NEXT PAGE WHEN USER SWIPES INSTRUCTIONS AWAY
+    document.querySelector('#instruct2').addEventListener('swipeable-card-swipe-away', function(e) {
+        e.target.parentNode.removeChild(e.target);
+        nextPage();
+    });
+
+    document.querySelector('#instruct3').addEventListener('swipeable-card-swipe-away', function(e) {
+        e.target.parentNode.removeChild(e.target);
+        nextPage();
+    });
+
+    document.querySelector('#instruct4').addEventListener('swipeable-card-swipe-away', function(e) {
+        e.target.parentNode.removeChild(e.target);
+        nextPage();
+    });
+
+
+    // BRING THE CARDS THAT WERE NOT DISCARDED INTO THE NEXT PAGE
+    function next() {
+
+        nextPage();
+
+        var currentCounter = 0;
+
+        // GO THROUGH THE 6 DECKS
+        for (k = 1; k <= 6; k++) {
+            // IF THIS DECK HAS MORE THAN JUST THE TITLE CARD
+            // LOOK AT EACH CARD IN THIS DECK
+            for (j = 1; j < document.querySelector('#cards' + k).children.length; j++) {
+                currentCounter++;
+                document.querySelector('#being-choice-' + currentCounter).children[0].id = document.querySelector('#cards' + k).children[j].id;
+                document.querySelector('#being-choice-' + currentCounter).children[0].src = document.querySelector('#cards' + k).children[j].children[0].src;
+            }
+        }
+    }
+
+    function doingNext() {
+
+        nextPage();
+
+        var currentCounter = 0;
+
+        // GO THROUGH THE NEXT 6 DECKS
+        for (k = 7; k <= 12; k++) {
+            // IF THIS DECK HAS MORE THAN JUST THE TITLE CARD
+            // LOOK AT EACH CARD IN THIS DECK
+            for (j = 1; j < document.querySelector('#cards' + k).children.length; j++) {
+                currentCounter++;
+                document.querySelector('#doing-choice-' + currentCounter).children[0].id = document.querySelector('#cards' + k).children[j].id;
+                document.querySelector('#doing-choice-' + currentCounter).children[0].src = document.querySelector('#cards' + k).children[j].children[0].src;
+            }
+        }
+    }
+
+    // FUNCTIONS USED BY FINAL CALCULATIONS
+
+    function convertToID(indexNumber) {
+        switch (indexNumber) {
+            case 0:
+                return "caregiver";
+                break;
+            case 1:
+                return "ruler";
+                break;
+            case 2:
+                return "innocent";
+                break;
+            case 3:
+                return "explorer";
+                break;
+            case 4:
+                return "sage";
+                break;
+            case 5:
+                return "magician";
+                break;
+            case 6:
+                return "outlaw";
+                break;
+            case 7:
+                return "hero";
+                break;
+            case 8:
+                return "lover";
+                break;
+            case 9:
+                return "regular";
+                break;
+            case 10:
+                return "jester";
+                break;
+            case 11:
+                return "creator";
+                break;
+        }
+    }
+
+    function generateNewTopCard() {
+        var div = document.getElementById('final');
+        clone = div.cloneNode(true);
+        document.querySelector('#last1').appendChild(clone);
+    }
+
+    function generateNewSecondTopCard() {
+        var div = document.getElementById('final2');
+        clone = div.cloneNode(true);
+        document.querySelector('#last2').appendChild(clone);
+    }
+
+    // FINAL CALCULATIONS
+
+    function finish() {
+
+        nextPage();
+
+        var head1 = "";
+        var head2 = "";
+        var descript = "";
+        var pic = "";
+
+        function resultContent(name) {
+            switch (name) {
+                case "caregiver":
+                    head1 = "Caregiver";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/caregiver.png";
+                    break;
+                case "ruler":
+                    head1 = "Ruler";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/ruler.png";
+                    break;
+                case "innocent":
+                    head1 = "Innocent";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/innocent.png";
+                    break;
+                case "explorer":
+                    head1 = "Explorer";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/explorer.png";
+                    break;
+                case "sage":
+                    head1 = "Sage";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/sage.png";
+                    break;
+                case "magician":
+                    head1 = "Magician";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/magician.png";
+                    break;
+                case "outlaw":
+                    head1 = "Outlaw";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/outlaw.png";
+                    break;
+                case "hero":
+                    head1 = "Hero";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/hero.png";
+                    break;
+                case "lover":
+                    head1 = "Lover";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/lover.png";
+                    break;
+                case "regular":
+                    head1 = "Regular";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/regular.png";
+                    break;
+                case "jester":
+                    head1 = "Jester";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/jester.png";
+                    break;
+                case "creator":
+                    head1 = "Creator";
+                    head2 = "Caretaker, altruist, saint, parent, helper, supporter";
+                    descript = "caregiver descript";
+                    pic = "img/creator.png";
+                    break;
+            }
+        }
+
+        var topIndexes = [];
+        var secondIndexes = [];
+
+        listOfResponses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        var topScore = 3;
+        var midScore = 2;
+        var lowScore = 1;
+
+        function addPoints(name, scoreLevel) {
+            switch (name) {
+                case "caregiver":
+                    listOfResponses[0] = listOfResponses[0] + scoreLevel;
+                    break;
+                case "ruler":
+                    listOfResponses[1] = listOfResponses[1] + scoreLevel;
+                    break;
+                case "innocent":
+                    listOfResponses[2] = listOfResponses[2] + scoreLevel;
+                    break;
+                case "explorer":
+                    listOfResponses[3] = listOfResponses[3] + scoreLevel;
+                    break;
+                case "sage":
+                    listOfResponses[4] = listOfResponses[4] + scoreLevel;
+                    break;
+                case "magician":
+                    listOfResponses[5] = listOfResponses[5] + scoreLevel;
+                    break;
+                case "outlaw":
+                    listOfResponses[6] = listOfResponses[6] + scoreLevel;
+                    break;
+                case "hero":
+                    listOfResponses[7] = listOfResponses[7] + scoreLevel;
+                    break;
+                case "lover":
+                    listOfResponses[8] = listOfResponses[8] + scoreLevel;
+                    break;
+                case "regular":
+                    listOfResponses[9] = listOfResponses[9] + scoreLevel;
+                    break;
+                case "jester":
+                    listOfResponses[10] = listOfResponses[10] + scoreLevel;
+                    break;
+                case "creator":
+                    listOfResponses[11] = listOfResponses[11] + scoreLevel;
+                    break;
+            }
+        }
+
+
+        addPoints(document.querySelector('#drop1').children[2].id, topScore);
+        addPoints(document.querySelector('#drop2').children[2].id, midScore);
+        addPoints(document.querySelector('#drop3').children[2].id, lowScore);
+
+        addPoints(document.querySelector('#drop4').children[2].id, topScore);
+        addPoints(document.querySelector('#drop5').children[2].id, midScore);
+        addPoints(document.querySelector('#drop6').children[2].id, lowScore);
+
+        var highestScore = Math.max.apply(Math, listOfResponses);
+        topIndexes = [];
+        for (m = 0; m < listOfResponses.length; m++) {
+            if (listOfResponses[m] == highestScore) {
+                topIndexes.push(m);
+                listOfResponses[m] = 0;
+            }
+        }
+
+        var secondScore = Math.max.apply(Math, listOfResponses);
+        secondIndexes = [];
+        for (m = 0; m < listOfResponses.length; m++) {
+            if (listOfResponses[m] == secondScore) {
+                secondIndexes.push(m);
+                listOfResponses[m] = 0;
+            }
+        }
+
+        var finalImg = document.createElement('img');
+        var runnerUpImg = document.createElement('img');
+
+        var finalImages = [];
+        var runnerImages = [];
+
+        for (m = 0; m < topIndexes.length; m++) {
+            topIndexes[m] = convertToID(topIndexes[m]);
+            if (m > 0) {
+                generateNewTopCard();
+            }
+            finalImg = document.createElement('img');
+            finalImg.src = "img/" + topIndexes[m] + "-results.jpg";
+            finalImg.className = "being-img";
+            finalImages.push(finalImg);
+        }
+
+        for (m = 0; m < secondIndexes.length; m++) {
+            secondIndexes[m] = convertToID(secondIndexes[m]);
+            if (m > 0) {
+                generateNewSecondTopCard();
+            }
+            resultContent(secondIndexes[m]);
+            runnerUpImg = document.createElement('img');
+            runnerUpImg.src = "img/" + secondIndexes[m] + "-results.jpg";
+            runnerUpImg.className = "being-img";
+
+            runnerImages.push(runnerUpImg);
+        }
+
+        for (m = 0; m < finalImages.length; m++) {
+            document.querySelectorAll('#final')[m].appendChild(finalImages[m]);
+        }
+
+        for (m = 0; m < runnerImages.length; m++) {
+            document.querySelectorAll('#final2')[m].appendChild(runnerImages[m]);
+        }
+    }
+
+    </script>
+
+    <paper-toast id="discard-full" role="alert" text="You've already discarded 6 cards! You need to leave 6 cards here."></paper-toast>
+
+</body>
+
+</html>
