@@ -75,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <iron-swipeable-container swipe-style="curve">
 
         <paper-card class="swipe" id="card1"
-                    image="http://placehold.it/360x200/3f51b5/ffffff">
+                    image="../../images/moonrise.jpg">
           <div class="card-content">
             <div class="paper-font-headline">
               Top Western Road Trips
@@ -87,11 +87,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="card-actions horizontal layout">
 
             <div class="flex-6">
-              <paper-button>Share</paper-button>
-              <paper-button class="self-start">Explore</paper-button>
+              <paper-button toggles>Share</paper-button>
+              <paper-button class="self-start" toggles>Explore</paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
-              <paper-icon-button icon="expand-more" alt="expand-more" title="expand-more" id="expand"
+              <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand"
                                  aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse1"
                                  on-tap={{toggle}}></paper-icon-button>
             </div>
