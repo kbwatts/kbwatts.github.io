@@ -9,18 +9,98 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<!-- Iron elements -->
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/iron-swipeable-container/iron-swipeable-container.html">
+
+<!-- Paper elements -->
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles-classes.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
 <dom-module id="my-list">
   <template>
     <style>
       :host {
         display: block;
       }
+
+      .content {
+        margin-top: 32px;
+      }
+      paper-card {
+        width: 320px;
+        max-width: 320px;
+        display:block;
+        /*margin-bottom: 1024px;*/
+      }
+      paper-card:hover, paper-card:focus {
+        @apply(--shadow-elevation-3dp);
+        cursor: pointer;
+      }
+      paper-card:active {
+        @apply(--shadow-elevation-4dp);
+      }
+
+      .collapse-content {
+        padding: 12px 16px;
+      }
     </style>
-    <ul>
-      <template is="dom-repeat" items="{{items}}">
-        <li><span class="paper-font-body1">{{item}}</span></li>
-      </template>
-    </ul>
+
+    <div class='content vertical layout center'>
+      <iron-swipeable-container swipe-style="curve">
+
+        <paper-card class="swipe" id="card1"
+                    image="http://placehold.it/360x200/3f51b5/ffffff">
+          <div class="card-content">
+            <div class="paper-font-headline">
+              Top Western Road Trips
+            </div>
+            <div class="paper-font-body1 secondary">
+              1,000 miles of wonder
+            </div>
+          </div>
+          <div class="card-actions horizontal layout">
+
+            <div class="flex-6">
+              <paper-button>Share</paper-button>
+              <paper-button class="self-start">Explore</paper-button>
+            </div>
+            <div class="horizontal layout center flex" style="height:44px">
+              <paper-icon-button icon="expand-more" alt="expand-more" title="expand-more" id="expand"
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse1"
+                                 on-tap={{toggle}}></paper-icon-button>
+            </div>
+          </div>
+
+          <iron-collapse id="collapse1" tabindex="0" opened="{{opened1}}">
+            <div class="collapse-content paper-font-body1">
+              <div>
+                I'm a thing. But, like most politicians, he promised more than he could deliver. You won't
+                have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with
+                that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his
+                laundry? I've got to find a way to escape.
+              </div>
+            </div>
+          </iron-collapse>
+        </paper-card>
+
+      </iron-swipeable-container>
+    </div>
+
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    </paper-toast>
+
   </template>
 
   <script>
@@ -29,21 +109,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
       Polymer({
         is: 'my-list',
+        listeners: {
+          'expand.tap': 'toggle'
+        },
         properties: {
-          items: {
-            type: Array,
-            notify: true,
-          }
         },
         ready: function() {
-          this.items = [
-            'Responsive Web App boilerplate',
-            'Iron Elements and Paper Elements',
-            'End-to-end Build Tooling (including Vulcanize)',
-            'Unit testing with Web Component Tester',
-            'Routing with Page.js',
-            'Offline support with the Platinum Service Worker Elements'
-          ];
+        },
+        toggle: function() {
+          document.querySelector('#collapse1').toggle();
         }
       });
     })();
