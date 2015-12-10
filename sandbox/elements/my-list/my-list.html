@@ -69,12 +69,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .secondary {
         color: var(--secondary-text-color);
       }
-
-      #mainRefresh {
-        width: 128px;
-        height: 128px;
-        color: var(--secondary-text-color);
-      }
     </style>
 
     <div class='content vertical layout center'>
@@ -124,12 +118,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="card-actions horizontal layout center">
 
             <div class="flex-6">
-              <paper-button toggles>No</paper-button>
-              <paper-button class="self-start" toggles>Yes</paper-button>
+              <paper-button toggles><iron-icon icon="close"></iron-icon> No</paper-button>
+              <paper-button class="self-start" toggles><iron-icon icon="done"></iron-icon> Yes</paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
               <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand2"
-                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse1"
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse2"
                                  on-tap={{toggle}}></paper-icon-button>
             </div>
           </div>
@@ -152,12 +146,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </iron-collapse>
         </paper-card>
 
-        <div class="hoizontal flex layout centered" style="text-align:center">
-          <div></div>
-          <paper-icon-button icon="refresh" class="" id="mainRefresh" on-tap="{{refreshPage}}"></paper-icon-button>
-          <div></div>
-        </div>
+        <paper-card class="swipe" id="card3"
+                    image="https://raw.githubusercontent.com/kbwatts/kbwatts.github.io/master/sandbox/images/baby2.jpg">
+          <div class="card-content">
+            <div class="paper-font-headline">
+              Looking good!
+            </div>
+            <div class="paper-font-body1 secondary">
+              All signs are positive at this stage.
+            </div>
+          </div>
+          <div class="card-actions horizontal layout center">
 
+            <div class="flex-6">
+              <paper-button toggles id="mainRefresh" on-tap="{{refreshPage}}"><iron-icon icon="refresh"></iron-icon> Reset</paper-button>
+            </div>
+            <div class="horizontal layout center flex" style="height:44px">
+              <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand3"
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse3"
+                                 on-tap={{toggle}}></paper-icon-button>
+            </div>
+          </div>
+
+          <iron-collapse id="collapse3" tabindex="0" opened="{{opened3}}">
+            <div class="collapse-content paper-font-body1">
+              <div>
+                <p>
+                 You've now finished. Congratulations on the outcome!
+                </p>
+              </div>
+            </div>
+          </iron-collapse>
+        </paper-card>
 
       </iron-swipeable-container>
     </div>
@@ -177,17 +197,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         listeners: {
           'expand.tap': 'toggle',
           'expand2.tap': 'toggle2',
+          'expand3.tap': 'toggle3',
           'mainRefresh.tap': 'refreshPage'
         },
         properties: {
         },
         ready: function() {
         },
-        toggle: function(selector) {
+        toggle: function() {
           document.querySelector('#collapse1').toggle();
         },
-        toggle2: function(selector) {
+        toggle2: function() {
           document.querySelector('#collapse2').toggle();
+        },
+        toggle3: function() {
+          document.querySelector('#collapse3').toggle();
         },
         refreshPage: function() {
           location.reload();
