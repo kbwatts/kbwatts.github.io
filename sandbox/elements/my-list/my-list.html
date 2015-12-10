@@ -43,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 320px;
         max-width: 320px;
         display:block;
-        /*margin-bottom: 1024px;*/
+        margin-bottom: 100%;
       }
       paper-card:hover, paper-card:focus {
         @apply(--shadow-elevation-3dp);
@@ -69,26 +69,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .secondary {
         color: var(--secondary-text-color);
       }
+
+      #mainRefresh {
+        width: 128px;
+        height: 128px;
+        color: var(--secondary-text-color);
+      }
     </style>
 
     <div class='content vertical layout center'>
       <iron-swipeable-container swipe-style="curve">
 
-        <paper-card class="swipe" id="card1"
-                    image="https://raw.githubusercontent.com/kbwatts/kbwatts.github.io/master/sandbox/images/moonrise.jpg">
+        <paper-card class="swipe" id="card1">
           <div class="card-content">
             <div class="paper-font-headline">
-              Top Western Road Trips
+              <p>Natal Resuscitation Protocol</p>
             </div>
             <div class="paper-font-body1 secondary">
-              1,000 miles of wonder
+              An Interactive Learning Tool
             </div>
           </div>
-          <div class="card-actions horizontal layout">
+          <div class="card-actions horizontal layout center">
 
             <div class="flex-6">
-              <paper-button toggles>Share</paper-button>
-              <paper-button class="self-start" toggles>Explore</paper-button>
+              <paper-button toggles>Proceed</paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
               <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand"
@@ -100,14 +104,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-collapse id="collapse1" tabindex="0" opened="{{opened1}}">
             <div class="collapse-content paper-font-body1">
               <div>
-                I'm a thing. But, like most politicians, he promised more than he could deliver. You won't
-                have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with
-                that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his
-                laundry? I've got to find a way to escape.
+                <p>Swipe the cards or press the buttons to progress through.</p>
+                <p>Made by Kit Brown-Watts, Sarah Desbiens, & Verbowski Bros for nurses to help through the steps of NRP.</p>
               </div>
             </div>
           </iron-collapse>
         </paper-card>
+
+        <paper-card class="swipe" id="card2"
+                    image="../../images/baby.jpg">
+          <div class="card-content">
+            <div class="paper-font-headline">
+              Good tone?
+            </div>
+            <div class="paper-font-body1 secondary">
+              Baby sounds healthy, vocal?
+            </div>
+          </div>
+          <div class="card-actions horizontal layout center">
+
+            <div class="flex-6">
+              <paper-button toggles>No</paper-button>
+              <paper-button class="self-start" toggles>Yes</paper-button>
+            </div>
+            <div class="horizontal layout center flex" style="height:44px">
+              <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand2"
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse1"
+                                 on-tap={{toggle}}></paper-icon-button>
+            </div>
+          </div>
+
+          <iron-collapse id="collapse2" tabindex="0" opened="{{opened2}}">
+            <div class="collapse-content paper-font-body1">
+              <div>
+                <p>
+                  All newborns require initial assessment to determine whether resuscitation is required.
+                  Most newly born babies are vigorous, but approximately 10% of newborns require some
+                  assistance to begin breathing at birth.
+                </p>
+                <p>
+                  About 1% need extensive resuscitative measures
+                  to survive. Every birth should be attended by at least one person who has been trained
+                  in initiating neonatal resuscitation.
+                </p>
+              </div>
+            </div>
+          </iron-collapse>
+        </paper-card>
+
+        <div class="hoizontal flex layout centered" style="text-align:center">
+          <div></div>
+          <paper-icon-button icon="refresh" class="" id="mainRefresh" on-tap="{{refreshPage}}"></paper-icon-button>
+          <div></div>
+        </div>
+
 
       </iron-swipeable-container>
     </div>
@@ -125,14 +175,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Polymer({
         is: 'my-list',
         listeners: {
-          'expand.tap': 'toggle'
+          'expand.tap': 'toggle',
+          'expand2.tap': 'toggle2',
+          'mainRefresh.tap': 'refreshPage'
         },
         properties: {
         },
         ready: function() {
         },
-        toggle: function() {
+        toggle: function(selector) {
           document.querySelector('#collapse1').toggle();
+        },
+        toggle2: function(selector) {
+          document.querySelector('#collapse2').toggle();
+        },
+        refreshPage: function() {
+          location.reload();
         }
       });
     })();
