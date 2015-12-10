@@ -69,9 +69,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 0;
       }
       #lastResort {
-        width: 48px;
-        height: 48px;
+        width: 128px;
+        height: 128px;
         color: var(--secondary-text-color);
+      }
+      .affirmative {
+        background-color: var(--paper-green-100);
+      }
+      .negative {
+        background-color: var(--paper-red-100);
       }
     </style>
 
@@ -95,8 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
             <div class="horizontal layout center flex" style="height:44px">
               <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand"
-                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse1"
-                                 on-tap={{toggle}}></paper-icon-button>
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse1">
+              </paper-icon-button>
             </div>
           </div>
 
@@ -104,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="collapse-content paper-font-body1">
               <div>
                 Swipe the cards or press the buttons to progress through.
-                <p>Made by Kit Brown-Watts, Sarah Desbiens, & Verbowski Bros for nurses to help through the steps of NRP.</p>
+                <p>Made by Kit Brown-Watts, Sarah Desbiens, Chris Watts, & Verbowski Bros for nurses to help through the steps of NRP.</p>
               </div>
             </div>
           </iron-collapse>
@@ -123,13 +129,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="card-actions horizontal layout center">
 
             <div class="flex-6">
-              <paper-button toggles><iron-icon icon="close"></iron-icon> No</paper-button>
-              <paper-button class="self-start" toggles><iron-icon icon="done"></iron-icon> Yes</paper-button>
+              <paper-button class="negative">No</paper-button>
+              <paper-button class="self-start affirmative" toggles>Yes</paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
-              <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand2"
-                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse2"
-                                 on-tap={{toggle}}></paper-icon-button>
+              <paper-icon-button toggles raised icon="expand-more" alt="expand-more" title="expand-more" id="expand2"
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse2"></paper-icon-button>
             </div>
           </div>
 
@@ -140,10 +145,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   Most newly born babies are vigorous, but approximately 10% of newborns require some
                   assistance to begin breathing at birth.
                 <p>
-                  About 1% need extensive resuscitative measures
+                  About 1% need extensive recitative measures
                   to survive. Every birth should be attended by at least one person who has been trained
                   in initiating neonatal resuscitation.
                 </p>
+                <google-youtube
+                        video-id="bSg48AQTRsA"
+                        chromeless>
+                </google-youtube>
+
               </div>
             </div>
           </iron-collapse>
@@ -163,7 +173,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <div class="flex-6">
               <paper-button toggles id="mainRefresh" on-tap="{{refreshPage}}">
-                <iron-icon icon="refresh"></iron-icon> Reset
+                Start Over
               </paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
@@ -181,7 +191,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </iron-collapse>
         </paper-card>
 
-        <paper-icon-button icon="refresh" id="lastResort"></paper-icon-button>
+        <paper-icon-button raised icon="refresh" id="lastResort"></paper-icon-button>
 
       </iron-swipeable-container>
     </div>
