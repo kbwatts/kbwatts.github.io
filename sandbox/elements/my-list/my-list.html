@@ -65,9 +65,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         user-select: none;
         cursor: default;
       }
-
       .secondary {
         color: var(--secondary-text-color);
+      }
+      .collapse-content p {
+        margin-bottom: 0;
       }
     </style>
 
@@ -100,8 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="collapse-content paper-font-body1">
               <div>
                 Swipe the cards or press the buttons to progress through.
-                <br>
-                Made by Kit Brown-Watts, Sarah Desbiens, & Verbowski Bros for nurses to help through the steps of NRP.
+                <p>Made by Kit Brown-Watts, Sarah Desbiens, & Verbowski Bros for nurses to help through the steps of NRP.</p>
               </div>
             </div>
           </iron-collapse>
@@ -136,10 +137,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   All newborns require initial assessment to determine whether resuscitation is required.
                   Most newly born babies are vigorous, but approximately 10% of newborns require some
                   assistance to begin breathing at birth.
-                <br>
-                  About 1% need extensive recitative measures
+                <p>
+                  About 1% need extensive resuscitative measures
                   to survive. Every birth should be attended by at least one person who has been trained
                   in initiating neonatal resuscitation.
+                </p>
               </div>
             </div>
           </iron-collapse>
@@ -158,12 +160,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="card-actions horizontal layout center">
 
             <div class="flex-6">
-              <paper-button toggles id="mainRefresh" on-tap="{{refreshPage}}"><iron-icon icon="refresh"></iron-icon> Reset</paper-button>
+              <paper-button toggles id="mainRefresh" on-tap="{{refreshPage}}">
+                <iron-icon icon="refresh"></iron-icon> Reset
+              </paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
               <paper-icon-button toggles icon="expand-more" alt="expand-more" title="expand-more" id="expand3"
-                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse3"
-                                 on-tap={{toggle}}></paper-icon-button>
+                                 aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse3"></paper-icon-button>
             </div>
           </div>
 
@@ -214,7 +217,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           document.querySelector('#collapse3').toggle();
         },
         refreshPage: function() {
-          location.reload();
+          setTimeout(function() {
+            location.reload();
+          }, 300);
         }
       });
     })();

@@ -537,7 +537,7 @@ var n=this._rootDataHost;return n?n._scopeElementClass(t,e):void 0},stamp:functi
 </dom-module>
 <dom-module id="shared-styles" assetpath="../styles/"><template><style>.page-title{@apply(--paper-font-display2)}paper-menu a>*,paper-menu paper-icon-item>*,paper-menu paper-item>*{pointer-events:none}@media (max-width:600px){.page-title{font-size:24px!important}}</style></template></dom-module><dom-module id="my-list" assetpath="my-list/">
   <template>
-    <style>:host{display:block}*{-webkit-tap-highlight-color:transparent}.content{margin-top:32px}paper-card{width:320px;max-width:320px;display:block;margin-bottom:1000%}paper-card:focus,paper-card:hover{@apply(--shadow-elevation-3dp);cursor:pointer}paper-card:active{@apply(--shadow-elevation-4dp)}.collapse-content{padding:12px 16px}.swipe{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;user-select:none;cursor:default}.secondary{color:var(--secondary-text-color)}</style>
+    <style>:host{display:block}*{-webkit-tap-highlight-color:transparent}.content{margin-top:32px}paper-card{width:320px;max-width:320px;display:block;margin-bottom:1000%}paper-card:focus,paper-card:hover{@apply(--shadow-elevation-3dp);cursor:pointer}paper-card:active{@apply(--shadow-elevation-4dp)}.collapse-content{padding:12px 16px}.swipe{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;user-select:none;cursor:default}.secondary{color:var(--secondary-text-color)}.collapse-content p{margin-bottom:0}</style>
 
     <div class="content vertical layout center">
       <iron-swipeable-container swipe-style="curve">
@@ -565,8 +565,7 @@ var n=this._rootDataHost;return n?n._scopeElementClass(t,e):void 0},stamp:functi
             <div class="collapse-content paper-font-body1">
               <div>
                 Swipe the cards or press the buttons to progress through.
-                <br>
-                Made by Kit Brown-Watts, Sarah Desbiens, &amp; Verbowski Bros for nurses to help through the steps of NRP.
+                <p>Made by Kit Brown-Watts, Sarah Desbiens, &amp; Verbowski Bros for nurses to help through the steps of NRP.</p>
               </div>
             </div>
           </iron-collapse>
@@ -598,10 +597,11 @@ var n=this._rootDataHost;return n?n._scopeElementClass(t,e):void 0},stamp:functi
                   All newborns require initial assessment to determine whether resuscitation is required.
                   Most newly born babies are vigorous, but approximately 10% of newborns require some
                   assistance to begin breathing at birth.
-                <br>
-                  About 1% need extensive recitative measures
+                <p>
+                  About 1% need extensive resuscitative measures
                   to survive. Every birth should be attended by at least one person who has been trained
                   in initiating neonatal resuscitation.
+                </p>
               </div>
             </div>
           </iron-collapse>
@@ -619,10 +619,12 @@ var n=this._rootDataHost;return n?n._scopeElementClass(t,e):void 0},stamp:functi
           <div class="card-actions horizontal layout center">
 
             <div class="flex-6">
-              <paper-button toggles="" id="mainRefresh" on-tap="{{refreshPage}}"><iron-icon icon="refresh"></iron-icon> Reset</paper-button>
+              <paper-button toggles="" id="mainRefresh" on-tap="{{refreshPage}}">
+                <iron-icon icon="refresh"></iron-icon> Reset
+              </paper-button>
             </div>
             <div class="horizontal layout center flex" style="height:44px">
-              <paper-icon-button toggles="" icon="expand-more" alt="expand-more" title="expand-more" id="expand3" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse3" on-tap="{{toggle}}"></paper-icon-button>
+              <paper-icon-button toggles="" icon="expand-more" alt="expand-more" title="expand-more" id="expand3" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="collapse3"></paper-icon-button>
             </div>
           </div>
 
@@ -646,5 +648,5 @@ var n=this._rootDataHost;return n?n._scopeElementClass(t,e):void 0},stamp:functi
 
   </template>
 
-  <script>!function(){"use strict";Polymer({is:"my-list",listeners:{"expand.tap":"toggle","expand2.tap":"toggle2","expand3.tap":"toggle3","mainRefresh.tap":"refreshPage","lastResort.tap":"refreshPage"},properties:{},ready:function(){},toggle:function(){document.querySelector("#collapse1").toggle()},toggle2:function(){document.querySelector("#collapse2").toggle()},toggle3:function(){document.querySelector("#collapse3").toggle()},refreshPage:function(){location.reload()}})}();</script>
+  <script>!function(){"use strict";Polymer({is:"my-list",listeners:{"expand.tap":"toggle","expand2.tap":"toggle2","expand3.tap":"toggle3","mainRefresh.tap":"refreshPage","lastResort.tap":"refreshPage"},properties:{},ready:function(){},toggle:function(){document.querySelector("#collapse1").toggle()},toggle2:function(){document.querySelector("#collapse2").toggle()},toggle3:function(){document.querySelector("#collapse3").toggle()},refreshPage:function(){setTimeout(function(){location.reload()},300)}})}();</script>
 </dom-module></div></body></html>
