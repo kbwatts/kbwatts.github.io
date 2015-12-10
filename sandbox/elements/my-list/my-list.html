@@ -99,8 +99,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-collapse id="collapse1" tabindex="0" opened="{{opened1}}">
             <div class="collapse-content paper-font-body1">
               <div>
-                <p>Swipe the cards or press the buttons to progress through.</p>
-                <p>Made by Kit Brown-Watts, Sarah Desbiens, & Verbowski Bros for nurses to help through the steps of NRP.</p>
+                Swipe the cards or press the buttons to progress through.
+                <br>
+                Made by Kit Brown-Watts, Sarah Desbiens, & Verbowski Bros for nurses to help through the steps of NRP.
               </div>
             </div>
           </iron-collapse>
@@ -132,16 +133,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-collapse id="collapse2" tabindex="0" opened="{{opened2}}">
             <div class="collapse-content paper-font-body1">
               <div>
-                <p>
                   All newborns require initial assessment to determine whether resuscitation is required.
                   Most newly born babies are vigorous, but approximately 10% of newborns require some
                   assistance to begin breathing at birth.
-                </p>
-                <p>
-                  About 1% need extensive resuscitative measures
+                <br>
+                  About 1% need extensive recitative measures
                   to survive. Every birth should be attended by at least one person who has been trained
                   in initiating neonatal resuscitation.
-                </p>
               </div>
             </div>
           </iron-collapse>
@@ -172,13 +170,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-collapse id="collapse3" tabindex="0" opened="{{opened3}}">
             <div class="collapse-content paper-font-body1">
               <div>
-                <p>
                  You've now finished. Congratulations on the outcome!
-                </p>
               </div>
             </div>
           </iron-collapse>
         </paper-card>
+
+        <paper-icon-button icon="refresh" id="lastResort"></paper-icon-button>
 
       </iron-swipeable-container>
     </div>
@@ -199,7 +197,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           'expand.tap': 'toggle',
           'expand2.tap': 'toggle2',
           'expand3.tap': 'toggle3',
-          'mainRefresh.tap': 'refreshPage'
+          'mainRefresh.tap': 'refreshPage',
+          'lastResort.tap': 'refreshPage'
         },
         properties: {
         },
