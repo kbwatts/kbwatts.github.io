@@ -85,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class='content vertical layout center'>
-      <iron-swipeable-container swipe-style="curve">
+      <iron-swipeable-container swipe-style="curve" id="swipeable">
 
         <paper-card class="swipe" id="card1"
                     image="https://raw.githubusercontent.com/kbwatts/kbwatts.github.io/master/sandbox/images/baby0.jpg">
@@ -203,8 +203,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </iron-swipeable-container>
     </div>
 
-    <paper-toast id="toast">
-      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    <!--<paper-toast id="toast">-->
+      <!--<span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Swiped away</span>-->
+    <!--</paper-toast>-->
+
+    <paper-toast id="toast" text="Swiped away!">
+      <span role="button" tabindex="0" style="color: #B39DDB;float: right;cursor:pointer;">Undo</span>
     </paper-toast>
 
   </template>
@@ -220,11 +224,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           'expand2.tap': 'toggle2',
           'expand3.tap': 'toggle3',
           'mainRefresh.tap': 'refreshPage',
-          'lastResort.tap': 'refreshPage'
+          'lastResort.tap': 'refreshPage',
+          'swipeable.iron-swipe': 'swipeComplete',
+          'toast.tap': 'closeToast'
         },
         properties: {
         },
         ready: function() {
+        },
+        swipeComplete: function() {
+          document.querySelector('#toast').open();
         },
         toggle: function() {
           document.querySelector('#collapse1').toggle();
@@ -236,9 +245,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           document.querySelector('#collapse3').toggle();
         },
         refreshPage: function() {
+          // TODO: Need to not use setTimeout because it sucks
           setTimeout(function() {
             location.reload();
           }, 300);
+        },
+        closeToast: function() {
+          document.querySelector('#toast').close();
         }
       });
     })();
