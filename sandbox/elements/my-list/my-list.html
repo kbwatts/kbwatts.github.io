@@ -40,9 +40,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 32px;
       }
       paper-card {
-        width: 320px;
-        max-width: 320px;
+        /*width: calc(97.33% - 32px);*/
+        max-width: 360px;
         display:block;
+        margin: 8px 0;
         margin-bottom: 1000%;
       }
       paper-card:hover, paper-card:focus {
@@ -198,7 +199,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </iron-collapse>
         </paper-card>
 
-        <paper-icon-button raised icon="refresh" id="lastResort"></paper-icon-button>
+        <paper-icon-button icon="refresh" id="lastResort"></paper-icon-button>
 
       </iron-swipeable-container>
     </div>
