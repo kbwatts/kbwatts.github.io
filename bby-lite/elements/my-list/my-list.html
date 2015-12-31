@@ -1,0 +1,224 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="x-app">
+
+  <link rel="import" type="css" href="x-app.css">
+
+  <template>
+
+    <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
+
+      <div class="nav" drawer>
+        <!-- Nav Content -->
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <paper-icon-button id="menuPaperToggle" src="../../images/touch/bby-icon.svg" alt="Best Buy" title="Best Buy" paper-drawer-toggle></paper-icon-button>
+          <span class="paper-font-title">Best Buy Canada</span>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+          <a data-route="home" href="{{baseUrl}}">
+            <iron-icon icon="home"></iron-icon>
+            <span>Home</span>
+          </a>
+
+          <a data-route="users" href="{{baseUrl}}users">
+            <iron-icon icon="maps:local-mall"></iron-icon>
+            <span>Shop</span>
+          </a>
+
+          <a data-route="contact" href="{{baseUrl}}contact">
+            <iron-icon icon="maps:local-atm"></iron-icon>
+            <span>Deals</span>
+          </a>
+
+          <a data-route="contact" href="{{baseUrl}}contact">
+            <iron-icon icon="build"></iron-icon>
+            <span>Services</span>
+          </a>
+        </paper-menu>
+      </div>
+
+      <paper-drawer-panel id="mainDrawerPanel" class="main-drawer-panel" main responsive-width="600px"
+                          drawer-width="[[_computeListWidth(_isMobile)]]" drawer-toggle-attribute="list-toggle"
+                          narrow="{{_isMobile}}">
+
+        <paper-header-panel class="list-panel" drawer>
+
+          <!-- List Toolbar -->
+          <paper-toolbar>
+            <paper-icon-button src="../../images/touch/bby-icon.svg" paper-drawer-toggle></paper-icon-button>
+            <paper-button class="paper-font-title">Deals <paper-icon icon="arrow-drop-down"></paper-icon></paper-button>
+          </paper-toolbar>
+
+          <!-- List -->
+          <paper-menu class="list" on-iron-activate="_listTap">
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
+
+                <div class="flexchild">
+                  <div class="primary">LG - Tone Infinim Wireless Earphones</div>
+                  <div class="ratings">
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star-half"></iron-icon>
+                    <iron-icon icon="star-border"></iron-icon>
+                  </div>
+                  <div class="secondary">$149.99</div>
+                </div>
+                <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">Sony - Wireless On-Ear Ster...</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <!--<div class="rating-count">(1687)</div>-->
+                </div>
+                <div class="secondary">$179.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">Jaybird X2 Wireless Earphones</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                </div>
+                <div class="secondary">$129.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item>4</paper-item>
+            <paper-item>5</paper-item>
+            <paper-item>6</paper-item>
+            <paper-item>7</paper-item>
+            <paper-item>8</paper-item>
+            <paper-item>9</paper-item>
+            <paper-item>10</paper-item>
+            <paper-item>11</paper-item>
+            <paper-item>12</paper-item>
+            <paper-item>13</paper-item>
+            <paper-item>14</paper-item>
+          </paper-menu>
+
+        </paper-header-panel>
+
+        <paper-header-panel class="content-panel" main>
+
+          <!-- Main Toolbar -->
+          <paper-toolbar>
+            <paper-icon-button icon="arrow-back" list-toggle></paper-icon-button>
+          </paper-toolbar>
+
+          <!-- Main Content -->
+          <div class="content">
+            <div class="paper-font-headline">Jaybird X2 Wireless Earphones</div>
+            <div>
+              <img src="http://placehold.it/350x200">
+            </div>
+            <div class="paper-font-title">$149.00</div>
+            <div class="ratings">
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star-border"></iron-icon>
+              <iron-icon icon="star-border"></iron-icon>
+            </div>
+            <div>
+              <paper-button raised class="buy-button">Buy Now</paper-button>
+            </div>
+            <div class="item-description">
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" onclick="toggle('#overview')">Overview</paper-button>
+              <iron-collapse id="overview" tabindex="0" opened>
+              The JayBird X2 wireless in-ear headphones are designed to keep up with your vigorous workouts.
+              SignalPlus ensures your music and calls are transmitted clearly without signal drops, while a noise
+              isolating design blocks out background noise so you can focus on what's important: your music.
+              Secure-fit ear-fins also deliver a snug and comfortable fit.
+                </iron-collapse>
+            </div>
+            <div class="item-description">
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" onclick="toggle('#details')">Details & Specs</paper-button>
+              <iron-collapse id="details" tabindex="0">
+                <ul>
+                  <li>
+                    Super-capacity Battery HD lasts up to 8 hours on a single charge
+                  </li>
+                  <li>
+                    SignalPlus delivers enhanced Bluetooth functionality so you can enjoy skip-free music and crystal-clear calls
+                  </li>
+                  <li>
+                    Shift premium Bluetooth audio delivers rich, crisp sound that rivals and challenges the best in wired headphones
+                  </li>
+                </ul>
+              </iron-collapse>
+            </div>
+            <div class="paper-font-body2">Recommended products:</div>
+            <div class="paper-font-body2 flex-horizontal">
+              <img src="http://placehold.it/100x100">
+              <img src="http://placehold.it/100x100">
+              <img src="http://placehold.it/100x100">
+            </div>
+
+          </div>
+
+          </div>
+
+        </paper-header-panel>
+
+      </paper-drawer-panel>
+
+    </paper-drawer-panel>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'x-app',
+
+      _computeListWidth: function(isMobile) {
+        // when in mobile screen size, make the list be 100% width to cover the whole screen
+        return isMobile ? '100%' : '33%';
+      },
+
+      _listTap: function() {
+        this.$.mainDrawerPanel.closeDrawer();
+      }
+
+    });
+  </script>
+  <script>
+    function toggle(selector) {
+      document.querySelector(selector).toggle();
+    }
+  </script>
+
+</dom-module>
