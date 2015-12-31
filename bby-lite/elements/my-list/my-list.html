@@ -26,26 +26,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-toolbar>
 
         <!-- Drawer Content -->
-        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="{{baseUrl}}">
-            <iron-icon icon="home"></iron-icon>
-            <span>Home</span>
-          </a>
+        <!--<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">-->
+          <!--<a data-route="home" href="{{baseUrl}}">-->
+            <!--<iron-icon icon="home"></iron-icon>-->
+            <!--<span>Home</span>-->
+          <!--</a>-->
 
-          <a data-route="users" href="{{baseUrl}}users">
-            <iron-icon icon="maps:local-mall"></iron-icon>
-            <span>Shop</span>
-          </a>
+          <!--<a data-route="users" href="{{baseUrl}}users">-->
+            <!--<iron-icon icon="maps:local-mall"></iron-icon>-->
+            <!--<span>Shop</span>-->
+          <!--</a>-->
 
-          <a data-route="contact" href="{{baseUrl}}contact">
-            <iron-icon icon="maps:local-atm"></iron-icon>
-            <span>Deals</span>
-          </a>
+          <!--<a data-route="contact" href="{{baseUrl}}contact">-->
+            <!--<iron-icon icon="maps:local-atm"></iron-icon>-->
+            <!--<span>Deals</span>-->
+          <!--</a>-->
 
-          <a data-route="contact" href="{{baseUrl}}contact">
-            <iron-icon icon="build"></iron-icon>
-            <span>Services</span>
-          </a>
+          <!--<a data-route="contact" href="{{baseUrl}}contact">-->
+            <!--<iron-icon icon="build"></iron-icon>-->
+            <!--<span>Services</span>-->
+          <!--</a>-->
+        <!--</paper-menu>-->
+        <paper-menu>
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <iron-icon icon="maps:local-mall"></iron-icon>
+              <span>Shop</span>
+            </paper-item>
+            <paper-menu class="menu-content sublist">
+              <paper-item>Optional Special Menu Entry</paper-item>
+              <paper-item>Cell Phones</paper-item>
+              <paper-item>Computers, Tablets & eReaders</paper-item>
+              <paper-item>Ink, Office Supplies & Telephones</paper-item>
+              <paper-item>TV & Home Theatre</paper-item>
+              <paper-item>Headphones</paper-item>
+            </paper-menu>
+          </paper-submenu>
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <iron-icon icon="maps:local-atm"></iron-icon>
+              <span>Deals</span>
+            </paper-item>
+            <paper-menu class="menu-content sublist" multi>
+              <paper-item>Brands</paper-item>
+              <paper-item>Carriers</paper-item>
+              <paper-item>Seasonal</paper-item>
+            </paper-menu>
+          </paper-submenu>
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <iron-icon icon="build"></iron-icon>
+              <span>Services</span>
+            </paper-item>
+            <paper-menu class="menu-content sublist" multi>
+              <paper-item>Geek Squad</paper-item>
+              <paper-item>Compare Rate Plans</paper-item>
+              <paper-item></paper-item>
+            </paper-menu>
+          </paper-submenu>
         </paper-menu>
       </div>
 
@@ -56,9 +94,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-header-panel class="list-panel" drawer>
 
           <!-- List Toolbar -->
-          <paper-toolbar>
+          <paper-toolbar id="listToolbar">
             <paper-icon-button src="../../images/touch/bby-icon.svg" paper-drawer-toggle></paper-icon-button>
-            <paper-button class="paper-font-title">Deals <paper-icon icon="arrow-drop-down"></paper-icon></paper-button>
+            <!--<paper-button class="paper-font-title">Deals <paper-icon icon="arrow-drop-down"></paper-icon></paper-button>-->
+            <div class="paper-font-title">Shop <iron-icon icon="chevron-right"></iron-icon> Headphones<paper-icon icon="arrow-drop-down"></div>
           </paper-toolbar>
 
           <!-- List -->
@@ -68,15 +107,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                           sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
 
                 <div class="flexchild">
-                  <div class="primary">LG - Tone Infinim Wireless Earphones</div>
+                  <div class="primary">Jaybird X2 Wireless Earphones</div>
                   <div class="ratings">
                     <iron-icon icon="star"></iron-icon>
                     <iron-icon icon="star"></iron-icon>
                     <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
                     <iron-icon icon="star-half"></iron-icon>
-                    <iron-icon icon="star-border"></iron-icon>
                   </div>
-                  <div class="secondary">$149.99</div>
+                  <div class="secondary">$169.99</div>
                 </div>
                 <paper-icon-button noink icon="chevron-right"></paper-icon-button>
             </paper-item>
@@ -90,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <iron-icon icon="star"></iron-icon>
                   <iron-icon icon="star"></iron-icon>
                   <iron-icon icon="star"></iron-icon>
-                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
                   <iron-icon icon="star-border"></iron-icon>
                   <!--<div class="rating-count">(1687)</div>-->
                 </div>
@@ -103,21 +142,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                           sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
 
               <div class="flexchild">
-                <div class="primary">Jaybird X2 Wireless Earphones</div>
+                <div class="primary">LG - Tone Infinim Wireless Earphones</div>
                 <div class="ratings">
                   <iron-icon icon="star"></iron-icon>
                   <iron-icon icon="star"></iron-icon>
                   <iron-icon icon="star"></iron-icon>
-                  <iron-icon icon="star-border"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
                   <iron-icon icon="star-border"></iron-icon>
                 </div>
-                <div class="secondary">$129.99</div>
+                <div class="secondary">$149.99</div>
               </div>
               <paper-icon-button noink icon="chevron-right"></paper-icon-button>
             </paper-item>
-            <paper-item>4</paper-item>
-            <paper-item>5</paper-item>
-            <paper-item>6</paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
+
+                <div class="flexchild">
+                  <div class="primary">Jaybird X1 Wireless Earphones</div>
+                  <div class="ratings">
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star-border"></iron-icon>
+                    <iron-icon icon="star-border"></iron-icon>
+                  </div>
+                  <div class="secondary">$169.99</div>
+                </div>
+                <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">Samsung - Wireless On-Ear Ster...</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <!--<div class="rating-count">(1687)</div>-->
+                </div>
+                <div class="secondary">$179.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade src="http://lorempixel.com/40/40"></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">LG - Tone Infinim Wireless Earphones</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                </div>
+                <div class="secondary">$149.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+
             <paper-item>7</paper-item>
             <paper-item>8</paper-item>
             <paper-item>9</paper-item>
@@ -133,23 +222,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-header-panel class="content-panel" main>
 
           <!-- Main Toolbar -->
-          <paper-toolbar>
+          <paper-toolbar id="itemToolbar">
             <paper-icon-button icon="arrow-back" list-toggle></paper-icon-button>
+            <div id="itemTitle" class="paper-font-title">Jaybird X2 Wireless Earphones</div>
+            <!--<paper-input id="searchInput" hidden>Search</paper-input>-->
+            <paper-input label="search!" type="search" class="showing" id="searchInput" autosave="test" results="5" hidden>
+            </paper-input>
+            <div class="flex"></div>
+
+            <!-- Toolbar icons -->
+            <!--<paper-icon-button icon="refresh"></paper-icon-button>-->
+            <paper-icon-button id="searchButton" icon="search" onclick="toggleHeader()"></paper-icon-button>
+            <!--<paper-icon-button id="cartButton" icon="shopping-cart" alt="inbox">-->
+            <!--</paper-icon-button>-->
+            <!--<paper-badge for="cartButton" label="4">-->
+            <!--</paper-badge>-->
+            <paper-menu-button horizontal-align="right">
+              <paper-icon-button id="cartButton" icon="shopping-cart" class="dropdown-trigger"></paper-icon-button>
+              <paper-menu class="dropdown-content">
+                <paper-item onclick="openToast('#toast1')">View Cart</paper-item>
+                <paper-item onclick="openToast('#toast1')">Account Details</paper-item>
+                <paper-item onclick="openToast('#toast1')">Settings</paper-item>
+                <paper-item onclick="openToast('#toast1')">Help & Feedback</paper-item>
+              </paper-menu>
+            </paper-menu-button>
+            <paper-badge for="cartButton" label="4">
+            </paper-badge>
           </paper-toolbar>
 
           <!-- Main Content -->
           <div class="content">
-            <div class="paper-font-headline">Jaybird X2 Wireless Earphones</div>
-            <div>
-              <img src="http://placehold.it/350x200">
-            </div>
-            <div class="paper-font-title">$149.00</div>
+            <!--<div class="paper-font-headline">Jaybird X2 Wireless Earphones</div>-->
+            <!--<img src="../../images/example-headphones1.jpg">-->
+            <div class="placeholder-banner"></div>
+            <div class="paper-font-title">$169.00</div>
             <div class="ratings">
               <iron-icon icon="star"></iron-icon>
               <iron-icon icon="star"></iron-icon>
               <iron-icon icon="star"></iron-icon>
-              <iron-icon icon="star-border"></iron-icon>
-              <iron-icon icon="star-border"></iron-icon>
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star-half"></iron-icon>
             </div>
             <div>
               <paper-button raised class="buy-button">Buy Now</paper-button>
@@ -181,9 +293,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
             <div class="paper-font-body2">Recommended products:</div>
             <div class="paper-font-body2 flex-horizontal">
-              <img src="http://placehold.it/100x100">
-              <img src="http://placehold.it/100x100">
-              <img src="http://placehold.it/100x100">
+              <div class="placeholder-thumbnail"></div>
+              <div class="placeholder-thumbnail"></div>
+              <div class="placeholder-thumbnail"></div>
+              <!--<img src="http://placehold.it/100x100">-->
+              <!--<img src="http://placehold.it/100x100">-->
+              <!--<img src="http://placehold.it/100x100">-->
             </div>
 
           </div>
@@ -195,6 +310,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-drawer-panel>
 
     </paper-drawer-panel>
+    <paper-toast id="toast1" text="This feature coming soon.">
+      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="closeToast('#toast1')">SIGN ME UP</span>
+    </paper-toast>
 
   </template>
 
@@ -218,6 +336,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     function toggle(selector) {
       document.querySelector(selector).toggle();
+    }
+    function toggleHeader() {
+//      document.querySelector('#listToolbar').toggleClass('searching');
+      document.querySelector('#itemToolbar').toggleClass('searching');
+      document.querySelector('#searchButton').toggleClass('inverse');
+      document.querySelector('#cartButton').toggleClass('inverse');
+//      document.querySelector('#itemTitle').toggleClass('inverse');
+//      document.querySelector('#search-input').toggleClass('inverse');
+//      document.querySelector('#itemTitle').toggleClass('showing');
+//      document.querySelector('#search-input').toggleClass('showing');
+    }
+    function openToast(selector) {
+      document.querySelector(selector).open();
+    }
+    function closeToast(selector) {
+      document.querySelector(selector).close();
+      window.location.href = "mailto:cbrownwa@bestbuycanada.ca?subject=Let's%20get%20this%20Polymer%20Party%20Started!";
     }
   </script>
 
