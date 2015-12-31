@@ -232,7 +232,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <!-- Toolbar icons -->
             <!--<paper-icon-button icon="refresh"></paper-icon-button>-->
-            <paper-icon-button id="searchButton" icon="search" onclick="toggleHeader()"></paper-icon-button>
+            <paper-icon-button id="searchButton" icon="search" on-tap="toggleHeader"></paper-icon-button>
             <!--<paper-icon-button id="cartButton" icon="shopping-cart" alt="inbox">-->
             <!--</paper-icon-button>-->
             <!--<paper-badge for="cartButton" label="4">-->
@@ -267,7 +267,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-button raised class="buy-button">Buy Now</paper-button>
             </div>
             <div class="item-description">
-              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" onclick="toggle('#overview')">Overview</paper-button>
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview</paper-button>
               <iron-collapse id="overview" tabindex="0" opened>
               The JayBird X2 wireless in-ear headphones are designed to keep up with your vigorous workouts.
               SignalPlus ensures your music and calls are transmitted clearly without signal drops, while a noise
@@ -276,7 +276,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-collapse>
             </div>
             <div class="item-description">
-              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" onclick="toggle('#details')">Details & Specs</paper-button>
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" on-tap="toggleDetails">Details & Specs</paper-button>
               <iron-collapse id="details" tabindex="0">
                 <ul>
                   <li>
@@ -311,7 +311,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </paper-drawer-panel>
     <paper-toast id="toast1" text="This feature coming soon.">
-      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="closeToast('#toast1')">SIGN ME UP</span>
+      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
     </paper-toast>
 
   </template>
@@ -322,8 +322,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       is: 'x-app',
 
+      toggleHeader: function() {
+        document.querySelector('#itemToolbar').toggleClass('searching');
+        document.querySelector('#searchButton').toggleClass('inverse');
+        document.querySelector('#cartButton').toggleClass('inverse');
+      },
+
       openToast: function() {
         document.querySelector('#toast1').open();
+      },
+
+      closeToast: function() {
+        document.querySelector("#toast1").close();
+        window.location.href = "mailto:cbrownwa@bestbuycanada.ca?subject=Let's%20get%20this%20Polymer%20Party%20Started!";
+      },
+
+      toggleOverview: function() {
+        document.querySelector('#overview').toggle();
+      },
+
+      toggleDetails: function() {
+        document.querySelector('#details').toggle();
       },
 
       _computeListWidth: function(isMobile) {
@@ -337,24 +356,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     });
   </script>
-  <script>
-    function toggle(selector) {
-      document.querySelector(selector).toggle();
-    }
-    function toggleHeader() {
-//      document.querySelector('#listToolbar').toggleClass('searching');
-      document.querySelector('#itemToolbar').toggleClass('searching');
-      document.querySelector('#searchButton').toggleClass('inverse');
-      document.querySelector('#cartButton').toggleClass('inverse');
-//      document.querySelector('#itemTitle').toggleClass('inverse');
-//      document.querySelector('#search-input').toggleClass('inverse');
-//      document.querySelector('#itemTitle').toggleClass('showing');
-//      document.querySelector('#search-input').toggleClass('showing');
-    }
-    function closeToast(selector) {
-      document.querySelector(selector).close();
-      window.location.href = "mailto:cbrownwa@bestbuycanada.ca?subject=Let's%20get%20this%20Polymer%20Party%20Started!";
-    }
-  </script>
-
 </dom-module>
