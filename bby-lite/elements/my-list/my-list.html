@@ -264,7 +264,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-icon icon="star-half"></iron-icon>
             </div>
             <div>
-              <paper-button raised class="buy-button">Buy Now</paper-button>
+              <paper-button raised class="buy-button" on-tap="addToCart">Buy Now</paper-button>
             </div>
             <div class="item-description">
               <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview</paper-button>
@@ -314,6 +314,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
     </paper-toast>
 
+    <paper-toast id="cartToast" text="Item added to cart.">
+      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeToast">UNDO</span>
+    </paper-toast>
+
   </template>
 
   <script>
@@ -326,6 +330,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.querySelector('#itemToolbar').toggleClass('searching');
         document.querySelector('#searchButton').toggleClass('inverse');
         document.querySelector('#cartButton').toggleClass('inverse');
+      },
+
+      addToCart: function() {
+        document.querySelector('#cartToast').open();
       },
 
       openToast: function() {
