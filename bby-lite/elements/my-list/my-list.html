@@ -315,7 +315,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-toast>
 
     <paper-toast id="cartToast" text="Item added to cart.">
-      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeToast">UNDO</span>
+      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeCartToast">UNDO</span>
     </paper-toast>
 
   </template>
@@ -334,6 +334,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       addToCart: function() {
         document.querySelector('#cartToast').open();
+      },
+      closeCartToast: function() {
+        document.querySelector('#cartToast').close();
       },
 
       openToast: function() {
