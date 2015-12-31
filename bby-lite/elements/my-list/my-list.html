@@ -240,10 +240,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-menu-button horizontal-align="right">
               <paper-icon-button id="cartButton" icon="shopping-cart" class="dropdown-trigger"></paper-icon-button>
               <paper-menu class="dropdown-content">
-                <paper-item onclick="openToast('#toast1')">View Cart</paper-item>
-                <paper-item onclick="openToast('#toast1')">Account Details</paper-item>
-                <paper-item onclick="openToast('#toast1')">Settings</paper-item>
-                <paper-item onclick="openToast('#toast1')">Help & Feedback</paper-item>
+                <paper-item on-tap="openToast">View Cart</paper-item>
+                <paper-item on-tap="openToast">Account Details</paper-item>
+                <paper-item on-tap="openToast">Settings</paper-item>
+                <paper-item on-tap="openToast">Help & Feedback</paper-item>
               </paper-menu>
             </paper-menu-button>
             <paper-badge for="cartButton" label="4">
@@ -322,6 +322,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       is: 'x-app',
 
+      openToast: function() {
+        document.querySelector('#toast1').open();
+      },
+
       _computeListWidth: function(isMobile) {
         // when in mobile screen size, make the list be 100% width to cover the whole screen
         return isMobile ? '100%' : '33%';
@@ -346,9 +350,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //      document.querySelector('#search-input').toggleClass('inverse');
 //      document.querySelector('#itemTitle').toggleClass('showing');
 //      document.querySelector('#search-input').toggleClass('showing');
-    }
-    function openToast(selector) {
-      document.querySelector(selector).open();
     }
     function closeToast(selector) {
       document.querySelector(selector).close();
