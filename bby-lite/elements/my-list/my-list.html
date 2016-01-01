@@ -14,7 +14,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" type="css" href="x-app.css">
 
   <template>
-
     <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
 
       <div class="nav" drawer>
@@ -248,6 +247,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-menu-button>
             <paper-badge for="cartButton" label="4">
             </paper-badge>
+            <!--<paper-progress value="40" secondary-progress="42" class="bottom fit"></paper-progress>-->
           </paper-toolbar>
 
           <!-- Main Content -->
@@ -397,49 +397,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       is: 'x-app',
 
+      properties: {
+        animating:  {
+          type: Boolean,
+          value: true
+        }
+      },
+
+      ready: function() {
+      },
+
+      /**
+       * Toggles the header to switch into Search Mode (background and icons invert colour)
+       */
       toggleHeader: function() {
         document.querySelector('#itemToolbar').toggleClass('searching');
         document.querySelector('#searchButton').toggleClass('inverse');
         document.querySelector('#cartButton').toggleClass('inverse');
       },
+      /**
+       * Toggles Push Notifications and pops a relevant toast
+       * TODO: requires a bit of further work to get going
+       */
       togglePush: function() {
         document.querySelector('platinum-push-messaging').testPush('Testing');
         document.querySelector('#warningToast').open();
       },
+      /**
+       * Adds item to cart and increments cart count
+       */
       addToCart: function() {
         document.querySelector('#cartToast').open();
         document.querySelector('paper-badge').label++;
       },
+      /**
+       * Pulls toast and decrements cart count
+       */
       cartToastUndo: function() {
         document.querySelector('#cartToast').close();
         document.querySelector('paper-badge').label--;
       },
-
+      /**
+       * TODO: The following methods all pop their own toasts and dialogs and must be refactored to pop the same toast
+       * or dialog, respectively, and simply manipulate its contents instead. Close functions can be unified as well
+       * as a result.
+       */
       openToast: function() {
         document.querySelector('#toast1').open();
       },
-
       openSettings: function() {
         document.querySelector('#settingsDialog').open();
       },
-
       openAccountDetails: function() {
         document.querySelector('#accountDialog').open();
       },
-
       saveDetails: function() {
         document.querySelector('#savedToast').open();
       },
-
       detailsToastDismiss: function() {
         document.querySelector('#savedToast').close();
       },
-
       closeToast: function() {
         document.querySelector("#toast1").close();
         window.location.href = "mailto:cbrownwa@bestbuycanada.ca?subject=Let's%20get%20this%20Polymer%20Party%20Started!";
       },
 
+      /**
+       * Rotates the little chevron to expand or collapse and denote current state.
+       * TODO: refactor
+       */
       toggleOverview: function() {
         document.querySelector('#overview').toggle();
         document.querySelector('#expand1').toggleClass('rotate');
