@@ -314,16 +314,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <!--<h4>Transitions</h4>-->
               <!--<paper-button data-dialog="animated">transitions</paper-button>-->
-              <paper-dialog id="animated" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
-                            class="flex-vertical" style="text-align:left" with-backdrop>
-                <h2 class="paper-font-title">Settings</h2>
-                <paper-toggle-button on-tap="togglePush">Enable Push Notifications</paper-toggle-button>
-                <div class="buttons">
-                  <!--<paper-button >More Info...</paper-button>-->
-                  <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
-                  <paper-button dialog-confirm autofocus>Close</paper-button>
-                </div>
-              </paper-dialog>
+
 
           </div>
 
@@ -334,6 +325,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-drawer-panel>
 
     </paper-drawer-panel>
+    <paper-dialog id="animated" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
+                  class="flex-vertical" style="text-align:left" with-backdrop>
+      <h2 class="paper-font-title flexchild-vertical">Settings</h2>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Subscribe to deals (Enable Push Notifications)</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Enable Shake for random product</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Enable Bluetooth for Best Buy Connect</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Enable search by colour</paper-toggle-button>
+      <div class="buttons">
+        <!--<paper-button >More Info...</paper-button>-->
+        <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
+        <paper-button dialog-confirm autofocus>Close</paper-button>
+      </div>
+    </paper-dialog>
     <paper-toast id="toast1" text="This feature coming soon.">
       <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
     </paper-toast>
@@ -342,7 +346,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="cartToastUndo">UNDO</span>
     </paper-toast>
 
-    <paper-toast id="warningToast" text="// TODO: enablePushNotifications();">
+    <paper-toast id="warningToast" text="// TODO: enableThisFeaturec();">
     </paper-toast>
 
     <platinum-push-messaging
