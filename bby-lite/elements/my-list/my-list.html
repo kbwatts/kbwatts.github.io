@@ -242,7 +242,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-menu class="dropdown-content">
                 <paper-item on-tap="openToast">View Cart</paper-item>
                 <paper-item on-tap="openToast">Account Details</paper-item>
-                <paper-item on-tap="openToast">Settings</paper-item>
+                <paper-item on-tap="openSettings">Settings</paper-item>
                 <paper-item on-tap="openToast">Help & Feedback</paper-item>
               </paper-menu>
             </paper-menu-button>
@@ -254,7 +254,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="content">
             <!--<div class="paper-font-headline">Jaybird X2 Wireless Earphones</div>-->
             <!--<img src="../../images/example-headphones1.jpg">-->
+            <iron-swipeable-container>
             <div class="placeholder-banner"></div>
+            </iron-swipeable-container>
             <div class="paper-font-title">$169.00</div>
             <div class="ratings">
               <iron-icon icon="star"></iron-icon>
@@ -262,6 +264,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-icon icon="star"></iron-icon>
               <iron-icon icon="star"></iron-icon>
               <iron-icon icon="star-half"></iron-icon>
+              <p class="paper-font-caption">
+                (1355)
+              </p>
             </div>
             <div>
               <paper-button raised class="buy-button" on-tap="addToCart">Buy Now</paper-button>
@@ -293,13 +298,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
             <div class="paper-font-body2">Recommended products:</div>
             <div class="paper-font-body2 flex-horizontal">
-              <div class="placeholder-thumbnail"></div>
-              <div class="placeholder-thumbnail"></div>
-              <div class="placeholder-thumbnail"></div>
+              <iron-swipeable-container swipe-style="curve">
+                <div class="placeholder-thumbnail"></div>
+              </iron-swipeable-container>
+              <iron-swipeable-container swipe-style="curve">
+                <div class="placeholder-thumbnail"></div>
+              </iron-swipeable-container>
+              <iron-swipeable-container swipe-style="curve">
+                <div class="placeholder-thumbnail"></div>
+              </iron-swipeable-container>
               <!--<img src="http://placehold.it/100x100">-->
               <!--<img src="http://placehold.it/100x100">-->
               <!--<img src="http://placehold.it/100x100">-->
             </div>
+
+              <!--<h4>Transitions</h4>-->
+              <!--<paper-button data-dialog="animated">transitions</paper-button>-->
+              <paper-dialog id="animated" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
+                            class="flex-vertical" style="text-align:left" with-backdrop>
+                <h2 class="paper-font-title">Settings</h2>
+                <paper-toggle-button on-tap="togglePush">Enable Push Notifications</paper-toggle-button>
+                <div class="buttons">
+                  <!--<paper-button >More Info...</paper-button>-->
+                  <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
+                  <paper-button dialog-confirm autofocus>Close</paper-button>
+                </div>
+              </paper-dialog>
 
           </div>
 
@@ -315,8 +339,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-toast>
 
     <paper-toast id="cartToast" text="Item added to cart.">
-      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeCartToast">UNDO</span>
+      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="cartToastUndo">UNDO</span>
     </paper-toast>
+
+    <paper-toast id="warningToast" text="// TODO: enablePushNotifications();">
+    </paper-toast>
+
+    <platinum-push-messaging
+      title="Push Notifications Enabled"
+      message="Now you won't miss any amazing deals!"
+      icon-url="../../images/bby-icon.png"
+      click-url="notification.html">
+    </platinum-push-messaging>
 
   </template>
 
@@ -331,16 +365,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.querySelector('#searchButton').toggleClass('inverse');
         document.querySelector('#cartButton').toggleClass('inverse');
       },
-
+      togglePush: function() {
+        document.querySelector('platinum-push-messaging').testPush('Testing');
+        document.querySelector('#warningToast').open();
+      },
       addToCart: function() {
         document.querySelector('#cartToast').open();
+        document.querySelector('paper-badge').label++;
       },
-      closeCartToast: function() {
+      cartToastUndo: function() {
         document.querySelector('#cartToast').close();
+        document.querySelector('paper-badge').label--;
       },
 
       openToast: function() {
         document.querySelector('#toast1').open();
+      },
+
+      openSettings: function() {
+        document.querySelector('paper-dialog').open();
       },
 
       closeToast: function() {
