@@ -272,7 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-button raised class="buy-button" on-tap="addToCart">Buy Now</paper-button>
             </div>
             <div class="item-description">
-              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview</paper-button>
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview <iron-icon class="expand" icon="arrow-drop-down"></iron-icon></paper-button>
               <iron-collapse id="overview" tabindex="0" opened>
               The JayBird X2 wireless in-ear headphones are designed to keep up with your vigorous workouts.
               SignalPlus ensures your music and calls are transmitted clearly without signal drops, while a noise
@@ -281,7 +281,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-collapse>
             </div>
             <div class="item-description">
-              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" on-tap="toggleDetails">Details & Specs</paper-button>
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" on-tap="toggleDetails">Details & Specs <iron-icon class="expand" icon="arrow-drop-down"></iron-icon></paper-button>
               <iron-collapse id="details" tabindex="0">
                 <ul>
                   <li>
@@ -328,10 +328,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-dialog id="animated" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
                   class="flex-vertical" style="text-align:left" with-backdrop>
       <h2 class="paper-font-title flexchild-vertical">Settings</h2>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Subscribe to deals (Enable Push Notifications)</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Enable Shake for random product</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Enable Bluetooth for Best Buy Connect</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Enable search by colour</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Notify me about deals</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Local Deals</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Voice search</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Camera search</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Shake</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Bluetooth</paper-toggle-button>
       <div class="buttons">
         <!--<paper-button >More Info...</paper-button>-->
         <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
