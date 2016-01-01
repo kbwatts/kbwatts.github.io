@@ -241,7 +241,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-icon-button id="cartButton" icon="shopping-cart" class="dropdown-trigger"></paper-icon-button>
               <paper-menu class="dropdown-content">
                 <paper-item on-tap="openToast">View Cart</paper-item>
-                <paper-item on-tap="openToast">Account Details</paper-item>
+                <paper-item on-tap="openAccountDetails">Account Details</paper-item>
                 <paper-item on-tap="openSettings">Settings</paper-item>
                 <paper-item on-tap="openToast">Help & Feedback</paper-item>
               </paper-menu>
@@ -313,11 +313,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <!--<img src="http://placehold.it/100x100">-->
               <!--<img src="http://placehold.it/100x100">-->
             </div>
-
-              <!--<h4>Transitions</h4>-->
-              <!--<paper-button data-dialog="animated">transitions</paper-button>-->
-
-
           </div>
 
           </div>
@@ -327,7 +322,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-drawer-panel>
 
     </paper-drawer-panel>
-    <paper-dialog id="animated" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
+    <paper-dialog id="settingsDialog" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
                   class="flex-vertical" style="text-align:left" with-backdrop>
       <h2 class="paper-font-title flexchild-vertical">Settings</h2>
       <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="notification:mms"></iron-icon> Notify me about deals</paper-toggle-button>
@@ -340,6 +335,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!--<paper-button >More Info...</paper-button>-->
         <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
         <paper-button dialog-confirm autofocus>Close</paper-button>
+      </div>
+    </paper-dialog>
+    <paper-dialog id="accountDialog" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
+                  class="flex-vertical" style="text-align:left" with-backdrop>
+      <h2 class="paper-font-title flexchild-vertical">Account Details</h2>
+      <gold-email-input required auto-validate error-message="Please enter a valid email" label="Email contact"></gold-email-input>
+      <gold-phone-input
+              label="Phone number"
+              country-code="1"
+              phone-number-pattern="XXX-XXX-XXXX"
+              auto-validate
+              error-message="Please enter a valid 10-digit phone number">
+      </gold-phone-input>
+      <gold-zip-input required auto-validate error-message="Please enter a valid Canadian postal code" label="Postal Code"></gold-zip-input>
+      <gold-cc-input auto-validate label="Credit card number" error-message="Please eter a valid credit card number" required></gold-cc-input>
+      <gold-cc-expiration-input required auto-validate error-message="Please enter a valid date" label="Credit Card Expiration"></gold-cc-expiration-input>
+      <gold-cc-cvc-input required auto-validate error-message="Please enter a valid CVC"></gold-cc-cvc-input>
+      <div class="buttons">
+        <!--<paper-button >More Info...</paper-button>-->
+        <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
+        <paper-button dialog-confirm autofocus>Save</paper-button>
       </div>
     </paper-dialog>
     <paper-toast id="toast1" text="This feature coming soon.">
@@ -391,7 +407,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       openSettings: function() {
-        document.querySelector('paper-dialog').open();
+        document.querySelector('#settingsDialog').open();
+      },
+
+      openAccountDetails: function() {
+        document.querySelector('#accountDialog').open();
       },
 
       closeToast: function() {
