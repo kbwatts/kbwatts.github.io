@@ -322,42 +322,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-drawer-panel>
 
     </paper-drawer-panel>
-    <paper-dialog id="settingsDialog" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
-                  class="flex-vertical" style="text-align:left" with-backdrop>
-      <h2 class="paper-font-title flexchild-vertical">Settings</h2>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="notification:mms"></iron-icon> Notify me about deals</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="device:gps-fixed"></iron-icon> Local Deals (GPS)</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="av:mic"></iron-icon> Voice search</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="image:photo-camera"></iron-icon> Camera search</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="notification:vibration"></iron-icon> Shake for Product</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="device:bluetooth"></iron-icon> Bluetooth</paper-toggle-button>
+    <paper-dialog id="settingsDialog" with-backdrop>
+      <h2 class="paper-font-title">Settings</h2>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="notification:mms"></iron-icon> Notify me about deals</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="device:gps-fixed"></iron-icon> Local Deals (GPS)</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="av:mic"></iron-icon> Voice search</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="image:photo-camera"></iron-icon> Camera search</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="notification:vibration"></iron-icon> Shake for Product</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="device:bluetooth"></iron-icon> Bluetooth</paper-toggle-button>
+        </p>
       <div class="buttons">
-        <!--<paper-button >More Info...</paper-button>-->
-        <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
         <paper-button dialog-confirm autofocus>Close</paper-button>
       </div>
     </paper-dialog>
-    <paper-dialog id="accountDialog" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
-                  class="flex-vertical" style="text-align:left" with-backdrop>
-      <h2 class="paper-font-title flexchild-vertical">Account Details</h2>
-      <gold-email-input required auto-validate error-message="Please enter a valid email" label="Email contact"></gold-email-input>
-      <gold-phone-input
-              label="Phone number"
-              country-code="1"
-              phone-number-pattern="XXX-XXX-XXXX"
-              auto-validate
-              error-message="Please enter a valid 10-digit phone number">
-      </gold-phone-input>
-      <gold-zip-input required auto-validate error-message="Please enter a valid Canadian postal code" label="Postal Code"></gold-zip-input>
-      <gold-cc-input auto-validate label="Credit card number" error-message="Please eter a valid credit card number" required></gold-cc-input>
-      <gold-cc-expiration-input required auto-validate error-message="Please enter a valid date" label="Credit Card Expiration"></gold-cc-expiration-input>
-      <gold-cc-cvc-input required auto-validate error-message="Please enter a valid CVC"></gold-cc-cvc-input>
-      <div class="buttons">
-        <!--<paper-button >More Info...</paper-button>-->
-        <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
-        <paper-button dialog-confirm autofocus>Save</paper-button>
-      </div>
-    </paper-dialog>
+      <paper-dialog id="accountDialog" with-backdrop>
+        <h2 class="paper-font-title">Account Details</h2>
+        <paper-dialog-scrollable>
+          <gold-email-input required auto-validate error-message="Please enter a valid email" label="Email contact"></gold-email-input>
+          <gold-phone-input
+          label="Phone number"
+          country-code="1"
+          phone-number-pattern="XXX-XXX-XXXX"
+          auto-validate
+          error-message="Please enter a valid 10-digit phone number">
+          </gold-phone-input>
+          <gold-zip-input required auto-validate error-message="Please enter a valid Canadian postal code" label="Postal Code"></gold-zip-input>
+          <gold-cc-input auto-validate label="Credit card number" error-message="Please eter a valid credit card number" required></gold-cc-input>
+          <gold-cc-expiration-input required auto-validate error-message="Please enter a valid date" label="Credit Card Expiration"></gold-cc-expiration-input>
+          <gold-cc-cvc-input required auto-validate error-message="Please enter a valid CVC"></gold-cc-cvc-input>
+        </paper-dialog-scrollable>
+        <div class="buttons">
+          <paper-button dialog-dismiss>Cancel</paper-button>
+          <paper-button dialog-confirm autofocus on-tap="saveDetails">Save</paper-button>
+        </div>
+      </paper-dialog>
     <paper-toast id="toast1" text="This feature coming soon.">
       <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
     </paper-toast>
@@ -367,6 +376,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-toast>
 
     <paper-toast id="warningToast" text="// TODO: enableThisFeaturec();">
+    </paper-toast>
+
+    <paper-toast id="savedToast" text="Changes saved.">
+      <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="detailsToastDismiss">OK</span>
     </paper-toast>
 
     <platinum-push-messaging
@@ -412,6 +425,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       openAccountDetails: function() {
         document.querySelector('#accountDialog').open();
+      },
+
+      saveDetails: function() {
+        document.querySelector('#savedToast').open();
+      },
+
+      detailsToastDismiss: function() {
+        document.querySelector('#savedToast').close();
       },
 
       closeToast: function() {
