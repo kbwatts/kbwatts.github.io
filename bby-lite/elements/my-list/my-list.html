@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-toolbar id="listToolbar">
             <paper-icon-button src="../../images/touch/bby-icon.svg" paper-drawer-toggle></paper-icon-button>
             <!--<paper-button class="paper-font-title">Deals <paper-icon icon="arrow-drop-down"></paper-icon></paper-button>-->
-            <div class="paper-font-title">Shop <iron-icon icon="chevron-right"></iron-icon> Headphones<paper-icon icon="arrow-drop-down"></div>
+            <div class="paper-font-title">Shop : Headphones<paper-icon icon="arrow-drop-down"></div>
           </paper-toolbar>
 
           <!-- List -->
@@ -272,7 +272,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-button raised class="buy-button" on-tap="addToCart">Buy Now</paper-button>
             </div>
             <div class="item-description">
-              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview <iron-icon class="expand" icon="arrow-drop-down"></iron-icon></paper-button>
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview
+                <iron-icon class="expand" id="expand1" icon="arrow-drop-down"></iron-icon></paper-button>
               <iron-collapse id="overview" tabindex="0" opened>
               The JayBird X2 wireless in-ear headphones are designed to keep up with your vigorous workouts.
               SignalPlus ensures your music and calls are transmitted clearly without signal drops, while a noise
@@ -281,7 +282,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-collapse>
             </div>
             <div class="item-description">
-              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" on-tap="toggleDetails">Details & Specs <iron-icon class="expand" icon="arrow-drop-down"></iron-icon></paper-button>
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" on-tap="toggleDetails">Details & Specs
+                <iron-icon class="expand rotate" id="expand2" icon="arrow-drop-down"></iron-icon></paper-button>
               <iron-collapse id="details" tabindex="0">
                 <ul>
                   <li>
@@ -399,10 +401,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       toggleOverview: function() {
         document.querySelector('#overview').toggle();
+        document.querySelector('#expand1').toggleClass('rotate');
       },
 
       toggleDetails: function() {
         document.querySelector('#details').toggle();
+        document.querySelector('#expand2').toggleClass('rotate');
       },
 
       _computeListWidth: function(isMobile) {
