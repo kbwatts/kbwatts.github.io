@@ -330,12 +330,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-dialog id="animated" entry-animation="ripple-animation" exit-animation="reverse-ripple-animation"
                   class="flex-vertical" style="text-align:left" with-backdrop>
       <h2 class="paper-font-title flexchild-vertical">Settings</h2>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Notify me about deals</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Local Deals</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Voice search</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Camera search</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Shake</paper-toggle-button>
-      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush">Bluetooth</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="notification:mms"></iron-icon> Notify me about deals</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="device:gps-fixed"></iron-icon> Local Deals (GPS)</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="av:mic"></iron-icon> Voice search</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="image:photo-camera"></iron-icon> Camera search</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="notification:vibration"></iron-icon> Shake for Product</paper-toggle-button>
+      <paper-toggle-button class="flexchild-vertical" on-tap="togglePush"><iron-icon icon="device:bluetooth"></iron-icon> Bluetooth</paper-toggle-button>
       <div class="buttons">
         <!--<paper-button >More Info...</paper-button>-->
         <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
@@ -343,11 +343,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </paper-dialog>
     <paper-toast id="toast1" text="This feature coming soon.">
-      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
+      <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
     </paper-toast>
 
     <paper-toast id="cartToast" text="Item added to cart.">
-      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" on-tap="cartToastUndo">UNDO</span>
+      <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="cartToastUndo">UNDO</span>
     </paper-toast>
 
     <paper-toast id="warningToast" text="// TODO: enableThisFeaturec();">
