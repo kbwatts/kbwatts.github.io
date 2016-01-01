@@ -245,8 +245,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-item on-tap="openToast">Help & Feedback</paper-item>
               </paper-menu>
             </paper-menu-button>
-            <paper-badge for="cartButton" label="4">
-            </paper-badge>
+            <firebase-collection
+                    order-by-child="value"
+                    location="https://shining-torch-3826.firebaseio.com"
+                    data="{{items}}"></firebase-collection>
+            <template is="dom-repeat" items="[[items]]" as="item">
+              <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+              <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+              <paper-badge for="cartButton" label="{{item.value}}">
+              </paper-badge>
+            </template>
+
             <!--<paper-progress value="40" secondary-progress="42" class="bottom fit"></paper-progress>-->
           </paper-toolbar>
 
@@ -302,28 +311,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="paper-font-body2 flex-horizontal">
               <iron-swipeable-container swipe-style="curve">
                 <div class="placeholder-thumbnail paper-font-body1"></div>
-                <firebase-collection
-                        order-by-child="value"
-                        location="https://shining-torch-3826.firebaseio.com"
-                        data="{{items}}"></firebase-collection>
-                <template is="dom-repeat" items="[[items]]" as="item">
-                  <h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>
-                  <span>$</span><span>[[item.value]]</span><span> CAD</span>
-                </template>
+                <!--<firebase-collection-->
+                        <!--order-by-child="value"-->
+                        <!--location="https://shining-torch-3826.firebaseio.com"-->
+                        <!--data="{{items}}"></firebase-collection>-->
+                <!--<template is="dom-repeat" items="[[items]]" as="item">-->
+                  <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+                  <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+                <!--</template>-->
               </iron-swipeable-container>
               <iron-swipeable-container swipe-style="curve">
                 <div class="placeholder-thumbnail"></div>
-                <template is="dom-repeat" items="[[items]]" as="item">
-                  <h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>
-                  <span>$</span><span>[[item.value]]</span><span> CAD</span>
-                </template>
+                <!--<template is="dom-repeat" items="[[items]]" as="item">-->
+                  <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+                  <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+                <!--</template>-->
               </iron-swipeable-container>
               <iron-swipeable-container swipe-style="curve">
                 <div class="placeholder-thumbnail"></div>
-                <template is="dom-repeat" items="[[items]]" as="item">
-                  <h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>
-                  <span>$</span><span>[[item.value]]</span><span> CAD</span>
-                </template>
+                <!--<template is="dom-repeat" items="[[items]]" as="item">-->
+                  <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+                  <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+                <!--</template>-->
               </iron-swipeable-container>
               <!--<img src="http://placehold.it/100x100">-->
               <!--<img src="http://placehold.it/100x100">-->
