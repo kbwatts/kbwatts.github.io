@@ -359,8 +359,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </gold-phone-input>
           <gold-zip-input required error-message="Please enter a valid Canadian postal code" label="Postal Code"></gold-zip-input>
           <gold-cc-input auto-validate label="Credit card number" error-message="Please eter a valid credit card number" required></gold-cc-input>
-          <gold-cc-expiration-input required auto-validate error-message="Please enter a valid date" label="Credit Card Expiration"></gold-cc-expiration-input>
-          <gold-cc-cvc-input required auto-validate error-message="Please enter a valid CVC"></gold-cc-cvc-input>
+
+          <div class="flex-horizontal">
+            <gold-cc-expiration-input required auto-validate error-message="Please enter a valid date" label="Credit Card Expiration"></gold-cc-expiration-input>
+            <gold-cc-cvc-input required auto-validate error-message="Please enter a valid CVC"></gold-cc-cvc-input>
+          </div>
+
+          <paper-checkbox id="subscribeMe">Keep me posted on the best deals</paper-checkbox>
         </paper-dialog-scrollable>
         <div class="buttons">
           <paper-button dialog-dismiss>Cancel</paper-button>
