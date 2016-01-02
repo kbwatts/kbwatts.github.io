@@ -469,8 +469,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.querySelector('paper-badge').label--;
       },
       /**
-       * TODO: The following methods all pop their own toasts and dialogs and must be refactored to pop the same toast
-       * or dialog, respectively, and simply manipulate its contents instead. Close functions can be unified as well
+       * TODO: The following methods all pop their own toasts and
+       * dialogs and must be refactored to pop the same toast
+       * or dialog, respectively, and simply manipulate its contents instead.
+       * Close functions can be unified as well
        * as a result.
        */
       openToast: function() {
@@ -489,8 +491,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.querySelector('#savedToast').close();
       },
       closeToast: function() {
-        document.querySelector("#toast1").close();
-        window.location.href = "mailto:cbrownwa@bestbuycanada.ca?subject=Let's%20get%20this%20Polymer%20Party%20Started!";
+        document.querySelector('#toast1').close();
+        window.location.href =
+                'mailto:cbrownwa@bestbuycanada.ca?subject=Let' +
+                '&lsquo;s' +
+                '%20get%20this%20Polymer%20Party%20Started!';
       },
 
       /**
