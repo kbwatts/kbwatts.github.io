@@ -1,0 +1,535 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="x-app">
+
+  <link rel="import" type="css" href="x-app.css">
+
+  <template>
+    <div id="electronToolbar" class="flex-horizontal">
+      <div class="flex"></div>
+      <!--<paper-button icon="minimize" id="electronMinimizeButton">&#95;</paper-button>-->
+      <!--<paper-button id="electronMaximizeButton">&square;</paper-button>-->
+
+      <paper-icon-button src="../../images/minimize.svg" id="electronMinimizeButton">_</paper-icon-button>
+      <paper-icon-button src="../../images/maximize.svg" id="electronMaximizeButton"></paper-icon-button>
+      <paper-icon-button src="../../images/close.svg" id="electronCloseButton"></paper-icon-button>
+    </div>
+    <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
+
+      <div class="nav" drawer>
+        <!-- Nav Content -->
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <paper-icon-button id="menuPaperToggle" src="../../images/touch/bby-icon.svg" alt="Best Buy" title="Best Buy" paper-drawer-toggle></paper-icon-button>
+          <span class="paper-font-title">Best Buy Canada</span>
+        </paper-toolbar>
+
+        <!-- Drawer Content - uses routing -->
+        <!--<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">-->
+          <!--<a data-route="home" href="{{baseUrl}}">-->
+            <!--<iron-icon icon="home"></iron-icon>-->
+            <!--<span>Home</span>-->
+          <!--</a>-->
+
+          <!--<a data-route="users" href="{{baseUrl}}users">-->
+            <!--<iron-icon icon="maps:local-mall"></iron-icon>-->
+            <!--<span>Shop</span>-->
+          <!--</a>-->
+
+          <!--<a data-route="contact" href="{{baseUrl}}contact">-->
+            <!--<iron-icon icon="maps:local-atm"></iron-icon>-->
+            <!--<span>Deals</span>-->
+          <!--</a>-->
+
+          <!--<a data-route="contact" href="{{baseUrl}}contact">-->
+            <!--<iron-icon icon="build"></iron-icon>-->
+            <!--<span>Services</span>-->
+          <!--</a>-->
+        <!--</paper-menu>-->
+        <paper-menu>
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <iron-icon icon="maps:local-mall"></iron-icon>
+              <span>Shop</span>
+            </paper-item>
+            <paper-menu class="menu-content sublist">
+              <paper-item>Optional Special Menu Entry</paper-item>
+              <paper-item>Cell Phones</paper-item>
+              <paper-item>Computers, Tablets & eReaders</paper-item>
+              <paper-item>Ink, Office Supplies & Telephones</paper-item>
+              <paper-item>TV & Home Theatre</paper-item>
+              <paper-item>Headphones</paper-item>
+            </paper-menu>
+          </paper-submenu>
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <iron-icon icon="maps:local-atm"></iron-icon>
+              <span>Deals</span>
+            </paper-item>
+            <paper-menu class="menu-content sublist" multi>
+              <paper-item>Brands</paper-item>
+              <paper-item>Carriers</paper-item>
+              <paper-item>Seasonal</paper-item>
+            </paper-menu>
+          </paper-submenu>
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <iron-icon icon="build"></iron-icon>
+              <span>Services</span>
+            </paper-item>
+            <paper-menu class="menu-content sublist" multi>
+              <paper-item>Geek Squad</paper-item>
+              <paper-item>Compare Rate Plans</paper-item>
+              <paper-item></paper-item>
+            </paper-menu>
+          </paper-submenu>
+        </paper-menu>
+      </div>
+
+      <paper-drawer-panel id="mainDrawerPanel" class="main-drawer-panel" main responsive-width="600px"
+                          drawer-width="[[_computeListWidth(_isMobile)]]" drawer-toggle-attribute="list-toggle"
+                          narrow="{{_isMobile}}">
+
+        <paper-header-panel class="list-panel" drawer>
+
+          <!-- List Toolbar -->
+          <paper-toolbar id="listToolbar">
+            <paper-icon-button src="../../images/touch/bby-icon.svg" paper-drawer-toggle></paper-icon-button>
+            <!--<paper-button class="paper-font-title">Deals <paper-icon icon="arrow-drop-down"></paper-icon></paper-button>-->
+            <div class="paper-font-title">Shop : Headphones<paper-icon icon="arrow-drop-down"></div>
+          </paper-toolbar>
+
+          <!-- List -->
+          <paper-menu class="list" on-iron-activate="_listTap">
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade></iron-image>
+
+                <div class="flexchild">
+                  <div class="primary">Jaybird X2 Wireless Earphones</div>
+                  <div class="ratings">
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star-half"></iron-icon>
+                  </div>
+                  <div class="secondary">$169.99</div>
+                </div>
+                <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">Sony - Wireless On-Ear Ster...</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <!--<div class="rating-count">(1687)</div>-->
+                </div>
+                <div class="secondary">$179.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">Bose In-Ear Headphones</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                </div>
+                <div class="secondary">$119.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade></iron-image>
+
+                <div class="flexchild">
+                  <div class="primary">Jaybird X1 Wireless Earphones</div>
+                  <div class="ratings">
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star"></iron-icon>
+                    <iron-icon icon="star-border"></iron-icon>
+                    <iron-icon icon="star-border"></iron-icon>
+                  </div>
+                  <div class="secondary">$169.99</div>
+                </div>
+                <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">Samsung - Wireless On-Ear Ster...</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <!--<div class="rating-count">(1687)</div>-->
+                </div>
+                <div class="secondary">$179.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+            <paper-item class="container flex-horizontal">
+              <iron-image style="width:40px; height:40px; background-color: lightgray;" class="item-image"
+                          sizing="cover" preload fade></iron-image>
+
+              <div class="flexchild">
+                <div class="primary">LG - Tone Infinim Wireless</div>
+                <div class="ratings">
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star"></iron-icon>
+                  <iron-icon icon="star-half"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                  <iron-icon icon="star-border"></iron-icon>
+                </div>
+                <div class="secondary">$149.99</div>
+              </div>
+              <paper-icon-button noink icon="chevron-right"></paper-icon-button>
+            </paper-item>
+
+            <paper-item>7</paper-item>
+            <paper-item>8</paper-item>
+            <paper-item>9</paper-item>
+            <paper-item>10</paper-item>
+            <paper-item>11</paper-item>
+            <paper-item>12</paper-item>
+            <paper-item>13</paper-item>
+            <paper-item>14</paper-item>
+          </paper-menu>
+
+        </paper-header-panel>
+
+        <paper-header-panel class="content-panel" main>
+
+          <!-- Main Toolbar -->
+          <paper-toolbar id="itemToolbar">
+            <paper-icon-button icon="arrow-back" list-toggle></paper-icon-button>
+            <div id="itemTitle" class="paper-font-title">Jaybird X2 Wireless Earphones</div>
+            <!--<paper-input id="searchInput" hidden>Search</paper-input>-->
+            <paper-input label="search!" type="search" class="showing" id="searchInput" autosave="test" results="5" hidden>
+            </paper-input>
+            <div class="flex"></div>
+
+            <!-- Toolbar icons -->
+            <!--<paper-icon-button icon="refresh"></paper-icon-button>-->
+            <paper-icon-button id="searchButton" icon="search" on-tap="toggleHeader"></paper-icon-button>
+            <!--<paper-icon-button id="cartButton" icon="shopping-cart" alt="inbox">-->
+            <!--</paper-icon-button>-->
+            <!--<paper-badge for="cartButton" label="4">-->
+            <!--</paper-badge>-->
+            <paper-menu-button horizontal-align="right">
+              <paper-icon-button id="cartButton" icon="shopping-cart" class="dropdown-trigger"></paper-icon-button>
+              <paper-menu class="dropdown-content">
+                <paper-item on-tap="openToast">View Cart</paper-item>
+                <paper-item on-tap="openAccountDetails">Account Details</paper-item>
+                <paper-item on-tap="openSettings">Settings</paper-item>
+                <paper-item on-tap="openToast">Help & Feedback</paper-item>
+              </paper-menu>
+            </paper-menu-button>
+            <firebase-collection
+                    order-by-child="value"
+                    location="https://shining-torch-3826.firebaseio.com"
+                    data="{{items}}"></firebase-collection>
+            <template is="dom-repeat" items="[[items]]" as="item">
+              <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+              <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+              <paper-badge for="cartButton" label="{{item.value}}">
+              </paper-badge>
+            </template>
+
+            <!--<paper-progress value="40" secondary-progress="42" class="bottom fit"></paper-progress>-->
+          </paper-toolbar>
+
+          <!-- Main Content -->
+          <div class="content">
+            <!--<div class="paper-font-headline">Jaybird X2 Wireless Earphones</div>-->
+            <!--<img src="../../images/example-headphones1.jpg">-->
+            <iron-swipeable-container>
+            <div class="placeholder-banner"></div>
+            </iron-swipeable-container>
+            <div class="paper-font-title">$169.00</div>
+            <div class="ratings">
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star"></iron-icon>
+              <iron-icon icon="star-half"></iron-icon>
+              <p class="paper-font-caption">
+                (1355)
+              </p>
+            </div>
+            <div>
+              <paper-button raised class="buy-button" id="buyButton" on-tap="addToCart">Buy Now</paper-button>
+            </div>
+            <div class="item-description">
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="overview" on-tap="toggleOverview">Overview
+                <iron-icon class="expand" id="expand1" icon="arrow-drop-down"></iron-icon></paper-button>
+              <iron-collapse id="overview" tabindex="0" opened>
+              The JayBird X2 wireless in-ear headphones are designed to keep up with your vigorous workouts.
+              SignalPlus ensures your music and calls are transmitted clearly without signal drops, while a noise
+              isolating design blocks out background noise so you can focus on what's important: your music.
+              Secure-fit ear-fins also deliver a snug and comfortable fit.
+                </iron-collapse>
+            </div>
+            <div class="item-description">
+              <paper-button class="heading" aria-expanded$="[[isExpanded(opened1)]]" aria-controls="details" on-tap="toggleDetails">Details & Specs
+                <iron-icon class="expand rotate" id="expand2" icon="arrow-drop-down"></iron-icon></paper-button>
+              <iron-collapse id="details" tabindex="0">
+                <ul>
+                  <li>
+                    Super-capacity Battery HD lasts up to 8 hours on a single charge
+                  </li>
+                  <li>
+                    SignalPlus delivers enhanced Bluetooth functionality so you can enjoy skip-free music and crystal-clear calls
+                  </li>
+                  <li>
+                    Shift premium Bluetooth audio delivers rich, crisp sound that rivals and challenges the best in wired headphones
+                  </li>
+                </ul>
+              </iron-collapse>
+            </div>
+            <div class="paper-font-body2">Recommended products:</div>
+            <div class="paper-font-body2 flex-horizontal">
+              <iron-swipeable-container swipe-style="curve">
+                <div class="placeholder-thumbnail paper-font-body1"></div>
+                <!--<firebase-collection-->
+                        <!--order-by-child="value"-->
+                        <!--location="https://shining-torch-3826.firebaseio.com"-->
+                        <!--data="{{items}}"></firebase-collection>-->
+                <!--<template is="dom-repeat" items="[[items]]" as="item">-->
+                  <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+                  <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+                <!--</template>-->
+              </iron-swipeable-container>
+              <iron-swipeable-container swipe-style="curve">
+                <div class="placeholder-thumbnail"></div>
+                <!--<template is="dom-repeat" items="[[items]]" as="item">-->
+                  <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+                  <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+                <!--</template>-->
+              </iron-swipeable-container>
+              <iron-swipeable-container swipe-style="curve">
+                <div class="placeholder-thumbnail"></div>
+                <!--<template is="dom-repeat" items="[[items]]" as="item">-->
+                  <!--<h4 class="paper-font-subhead">[[item.__firebaseKey__]]</h4>-->
+                  <!--<span>$</span><span>[[item.value]]</span><span> CAD</span>-->
+                <!--</template>-->
+              </iron-swipeable-container>
+              <!--<img src="http://placehold.it/100x100">-->
+              <!--<img src="http://placehold.it/100x100">-->
+              <!--<img src="http://placehold.it/100x100">-->
+            </div>
+
+          </div>
+
+          </div>
+
+        </paper-header-panel>
+
+      </paper-drawer-panel>
+
+    </paper-drawer-panel>
+    <paper-dialog id="settingsDialog" with-backdrop>
+      <h2 class="paper-font-title">Settings</h2>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="notification:mms"></iron-icon> Notify me about deals</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="device:gps-fixed"></iron-icon> Local Deals (GPS)</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="av:mic"></iron-icon> Voice search</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="image:photo-camera"></iron-icon> Camera search</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="notification:vibration"></iron-icon> Shake for Product</paper-toggle-button>
+        </p>
+        <p>
+          <paper-toggle-button on-tap="togglePush"><iron-icon icon="device:bluetooth"></iron-icon> Bluetooth</paper-toggle-button>
+        </p>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Close</paper-button>
+      </div>
+    </paper-dialog>
+      <paper-dialog id="accountDialog" with-backdrop>
+        <h2 class="paper-font-title">Account Details</h2>
+        <paper-dialog-scrollable>
+          <gold-email-input required auto-validate error-message="Please enter a valid email" label="Email contact"></gold-email-input>
+          <gold-phone-input
+          label="Phone number"
+          country-code="1"
+          phone-number-pattern="XXX-XXX-XXXX"
+          auto-validate
+          error-message="Please enter a valid 10-digit phone number">
+          </gold-phone-input>
+          <gold-zip-input required error-message="Please enter a valid Canadian postal code" label="Postal Code"></gold-zip-input>
+          <gold-cc-input auto-validate label="Credit card number" error-message="Please eter a valid credit card number" required></gold-cc-input>
+
+          <div class="flex-horizontal">
+            <gold-cc-expiration-input required auto-validate error-message="Please enter a valid date" label="Credit Card Expiration"></gold-cc-expiration-input>
+            <gold-cc-cvc-input required auto-validate error-message="Please enter a valid CVC"></gold-cc-cvc-input>
+          </div>
+
+          <paper-checkbox id="subscribeMe">Keep me posted on the best deals</paper-checkbox>
+        </paper-dialog-scrollable>
+        <div class="buttons">
+          <paper-button dialog-dismiss>Cancel</paper-button>
+          <paper-button dialog-confirm autofocus on-tap="saveDetails">Save</paper-button>
+        </div>
+      </paper-dialog>
+    <paper-toast id="toast1" text="This feature coming soon.">
+      <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="closeToast">SIGN ME UP</span>
+    </paper-toast>
+
+    <paper-toast id="cartToast" text="Item added to cart.">
+      <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="cartToastUndo">UNDO</span>
+    </paper-toast>
+
+    <paper-toast id="warningToast" text="// TODO: enableThisFeaturec();">
+    </paper-toast>
+
+    <paper-toast id="savedToast" text="Changes saved.">
+      <span role="button" tabindex="0" style="color: #fff200;margin: 10px" on-tap="detailsToastDismiss">DISMISS</span>
+    </paper-toast>
+
+    <platinum-push-messaging
+      title="Push Notifications Enabled"
+      message="Now you won't miss any amazing deals!"
+      icon-url="../../images/touch/icon-128x128.png"
+      click-url="notification.html">
+    </platinum-push-messaging>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'x-app',
+
+      properties: {
+        animating:  {
+          type: Boolean,
+          value: true
+        }
+      },
+
+      ready: function() {
+      },
+
+      /**
+       * Toggles the header to switch into Search Mode (background and icons invert colour)
+       */
+      toggleHeader: function() {
+        document.querySelector('#itemToolbar').toggleClass('searching');
+        document.querySelector('#searchButton').toggleClass('inverse');
+        document.querySelector('#cartButton').toggleClass('inverse');
+      },
+      /**
+       * Toggles Push Notifications and pops a relevant toast
+       * TODO: requires a bit of further work to get going
+       */
+      togglePush: function() {
+        document.querySelector('platinum-push-messaging').testPush('Testing');
+        document.querySelector('#warningToast').open();
+      },
+      /**
+       * Adds item to cart and increments cart count
+       */
+      addToCart: function() {
+        document.querySelector('#cartToast').open();
+        document.querySelector('paper-badge').label++;
+      },
+      /**
+       * Pulls toast and decrements cart count
+       */
+      cartToastUndo: function() {
+        document.querySelector('#cartToast').close();
+        document.querySelector('paper-badge').label--;
+      },
+      /**
+       * TODO: The following methods all pop their own toasts and
+       * dialogs and must be refactored to pop the same toast
+       * or dialog, respectively, and simply manipulate its contents instead.
+       * Close functions can be unified as well
+       * as a result.
+       */
+      openToast: function() {
+        document.querySelector('#toast1').open();
+      },
+      openSettings: function() {
+        document.querySelector('#settingsDialog').open();
+      },
+      openAccountDetails: function() {
+        document.querySelector('#accountDialog').open();
+      },
+      saveDetails: function() {
+        document.querySelector('#savedToast').open();
+      },
+      detailsToastDismiss: function() {
+        document.querySelector('#savedToast').close();
+      },
+      closeToast: function() {
+        document.querySelector('#toast1').close();
+        window.location.href =
+                'mailto:cbrownwa@bestbuycanada.ca?subject=Let' +
+                '&lsquo;s' +
+                '%20get%20this%20Polymer%20Party%20Started!';
+      },
+
+      /**
+       * Rotates the little chevron to expand or collapse and denote current state.
+       * TODO: refactor
+       */
+      toggleOverview: function() {
+        document.querySelector('#overview').toggle();
+        document.querySelector('#expand1').toggleClass('rotate');
+      },
+
+      toggleDetails: function() {
+        document.querySelector('#details').toggle();
+        document.querySelector('#expand2').toggleClass('rotate');
+      },
+
+      _computeListWidth: function(isMobile) {
+        // when in mobile screen size, make the list be 100% width to cover the whole screen
+        return isMobile ? '100%' : '33%';
+      },
+
+      _listTap: function() {
+        this.$.mainDrawerPanel.closeDrawer();
+      }
+
+    });
+  </script>
+</dom-module>
