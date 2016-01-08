@@ -91,26 +91,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                   </ul>
 
-                  <ul>
-                    <li class="paper-font-title">
-                      <a href="http://www.bestbuy.ca/en-CA/category/geek-squad/22042a.aspx#support-pillar">
-                        Get Help Now</a>
-                    </li>
-                    <ul>
-                      <li class="paper-font-body2">
-                        <a href="https://online.geeksquad.ca/support/services/Geek_Squad_CA_Help_Is_Here">
-                        Click to chat</a>
-                      </li>
-                      <li class="paper-font-body2">
-                        <a href="tel:+6494461709">
-                        Call us
-                        </a>
-                      </li>
-                      <li class="paper-font-body2">
-                        <a href="http://www.bestbuy.ca/en-CA/stores/store-locator.aspx">
-                        Visit us in-store</a></li>
-                    </ul>
-                  </ul>
                 </div>
                 <div class="flex3child">
                   <ul>
@@ -152,7 +132,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       </li>
                       </ul>
                   </ul>
+                </div>
 
+                <div class="flex2child placeholder"></div>
+              </div>
+
+              <div class="flex-horizontal">
+                <div class="flex6child">
+                  <!--<ul>-->
+                    <div class="paper-font-title">
+                      <a href="http://www.bestbuy.ca/en-CA/category/geek-squad/22042a.aspx#support-pillar">
+                        Get Help Now</a>
+                    </div>
+                    <!--</ul>-->
+                  </div>
+                <div class="flex2child placeholder"></div>
+                </div>
+
+              <div class="flex-horizontal">
+                <div class="flex3child">
+                  <ul>
+                    <ul>
+                      <li class="paper-font-body2">
+                        <a href="https://online.geeksquad.ca/support/services/Geek_Squad_CA_Help_Is_Here">
+                          Click to chat</a>
+                      </li>
+                      <li class="paper-font-body2">
+                        <a href="tel:+18004335778">
+                          Call us
+                        </a>
+                      </li>
+
+                    </ul>
+                  </ul>
+                </div>
+                <div class="flex3child">
+                  <ul>
+                    <ul>
+                      <li class="paper-font-body2">
+                        <a href="http://www.bestbuy.ca/en-CA/stores/store-locator.aspx">
+                          Visit us in-store</a></li>
+                    </ul>
+                  </ul>
                 </div>
                 <div class="flex2child placeholder"></div>
               </div>
@@ -164,14 +185,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="paper-font-caption">
       <div class="caption-text">
         <iron-icon icon="label-outline" class="callout"></iron-icon>
-      Items bearing this icon require a subtle callout indicating that a non-Geek Squad service provider is used, so customers
+      These items require a subtle callout indicating that a non-Geek Squad service provider is used, so customers
       are prepared to expect a slightly different experience.
       </div>
     </div>
     <div class="paper-font-caption">
       <div class="caption-text">
       <iron-icon icon="launch" class="newTab"></iron-icon>
-      Items bearing this icon link to a non-BBY-branded website and must open in a new tab so as not to confuse customers.
+      These items link to a non-BBY-branded website and must open in a new tab so as not to leave customers confused
+        when the navigation changes.
       </div>
     </div>
     </div>
@@ -189,29 +211,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
       is: 'x-app',
-      toggleLinks: function(linksMode) {
-        this.set('linkTitle.link', 'NewTitle');
-      },
-      properties: {
-        linksMode: false
-      },
       ready: function() {
-      },
-      created: function() {
-        console.log(this.localName + '#' + this.id + ' was created');
-      },
-
-      attached: function() {
-        console.log(this.localName + '#' + this.id + ' was attached');
-      },
-
-      detached: function() {
-        console.log(this.localName + '#' + this.id + ' was detached');
-      },
-
-      attributeChanged: function(name, type) {
-        console.log(this.localName + '#' + this.id + ' attribute ' + name +
-                ' was changed to ' + this.getAttribute(name));
       }
     });
   </script>
