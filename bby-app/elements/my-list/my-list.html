@@ -21,9 +21,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!--<paper-button icon="minimize" id="electronMinimizeButton">&#95;</paper-button>-->
       <!--<paper-button id="electronMaximizeButton">&square;</paper-button>-->
 
-      <paper-icon-button src="../../images/minimize.svg" id="electronMinimizeButton">_</paper-icon-button>
-      <paper-icon-button src="../../images/maximize.svg" id="electronMaximizeButton"></paper-icon-button>
-      <paper-icon-button src="../../images/close.svg" id="electronCloseButton"></paper-icon-button>
+      <paper-icon-button src="../../images/minimize.svg" id="electronMinimizeButton" name="electronMinimizeButton" on-tap="electronMinimize">_</paper-icon-button>
+      <paper-icon-button src="../../images/maximize.svg" id="electronMaximizeButton" name="electronMaximizeButton" on-tap="electronMaximize"></paper-icon-button>
+      <paper-icon-button src="../../images/close.svg" id="electronCloseButton" name="electronCloseButton" on-tap="electronClose"></paper-icon-button>
     </div>
     <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
 
@@ -509,6 +509,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 '%20get%20this%20Polymer%20Party%20Started!';
       },
 
+      electronMinimize: function() {
+        console.log('Pressed Minimize button!');
+      },
+      electronMaximize: function() {
+        console.log('Pressed Maximize button!');
+      },
+      electronClose: function() {
+        console.log('Pressed Close button!');
+      },
+
       /**
        * Rotates the little chevron to expand or collapse and denote current state.
        * TODO: refactor
@@ -530,7 +540,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _listTap: function() {
         this.$.mainDrawerPanel.closeDrawer();
-      }
+      },
 
     });
   </script>
