@@ -19811,7 +19811,80 @@ module.exports = Array.isArray || function (arr) {
     })();
   </script>
 </dom-module>
-<dom-module id="my-list" assetpath="my-list/">
+<dom-module id="html-canvas-image" assetpath="../bower_components/html-canvas-image/">
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'html-canvas-image',
+
+        properties: {
+          /**
+           * The id (parent container) of the element to generator image from
+           */
+          container: {
+            type: String
+          },
+
+          filename: {
+            type: String
+          }
+        },
+
+        downloadMedia: function(strData, strFileName, strMimeType) {
+          var D = document,
+              A = arguments,
+              downloadLinkEle = D.createElement('a');
+
+          if ('download' in downloadLinkEle) {
+            downloadLinkEle.href = strData;
+            downloadLinkEle.setAttribute('download', strFileName);
+
+            D.body.appendChild(downloadLinkEle);
+            setTimeout(function() {
+                var e = D.createEvent('MouseEvents');
+                e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                downloadLinkEle.dispatchEvent(e); // fire click
+                D.body.removeChild(downloadLinkEle);
+            }, 66);
+            return true;
+          }
+        },
+
+        /**
+         * Performs an AJAX request to the specified URL.
+         *
+         * @return {!IronRequestElement}
+         */
+        generateImage: function() {
+          var containerEle = document.getElementById(this.container);
+          if(!containerEle) {
+            throw 'Container ID is invalid!';
+          }
+
+          var self = this;
+
+          html2canvas(containerEle, {
+            logging: true,
+            useCORS: true,
+            onrendered: function(canvas) {
+              var img = canvas.toDataURL('image/png');
+              self.downloadMedia(img, self.filename, 'image/png');
+            }
+          });
+        },
+
+        ready: function() {
+          if (!window.html2canvas) {
+            throw 'Requires html2canvas lib! - https://html2canvas.hertzen.com/';
+          }
+        }
+      });
+    })();
+  </script>
+</dom-module>
+<dom-module id="meme-generator" assetpath="meme-generator/">
   <template>
     <style>
       :host {
@@ -19828,6 +19901,12 @@ module.exports = Array.isArray || function (arr) {
         z-index: 9999;
         transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);;
       }
+
+      paper-fab.download {
+        left: 50%;
+        background: #03a9f4;
+      }
+
       paper-card {
         max-width: 350px;
         max-height: 350px;
@@ -19918,7 +19997,6 @@ module.exports = Array.isArray || function (arr) {
           </iron-pages>
 
 
-
           <div class="flexchild"></div>
         </div>
 
@@ -19935,6 +20013,8 @@ module.exports = Array.isArray || function (arr) {
       <input is="iron-input" value="{{footer::input}}">
       <paper-icon-button suffix="" icon="close"></paper-icon-button>
     </paper-input-container>
+
+
 
     
     
@@ -19956,6 +20036,9 @@ module.exports = Array.isArray || function (arr) {
       
     
 
+    <html-canvas-image id="memeImageGenerator" container="memePages" filename="meme.png"></html-canvas-image>
+    <paper-fab icon="file-download" title="Download" on-tap="saveImage" class="download"></paper-fab>
+
     <paper-fab icon="chevron-left" title="left" id="pageLeft" on-tap="previousPage"></paper-fab>
     <paper-fab icon="chevron-right" title="right" id="pageRight" on-tap="nextPage"></paper-fab>
 
@@ -19967,7 +20050,7 @@ module.exports = Array.isArray || function (arr) {
       'use strict';
 
       Polymer({
-        is: 'my-list',
+        is: 'meme-generator',
 
         properties: {
           items: {
@@ -19987,6 +20070,13 @@ module.exports = Array.isArray || function (arr) {
         },
         listeners: {
           'iron-swipe': 'nextPage'
+        },
+
+        /**
+         * Generate image
+         */
+        saveImage: function() {
+          this.$.memeImageGenerator.generateImage();
         },
 
         ready: function() {
