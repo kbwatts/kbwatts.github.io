@@ -23993,21 +23993,20 @@ if (!window.Promise) {
 
         <div class="container flex-horizontal">
           <div class="flexchild"></div>
-          <iron-ajax auto="" url="https://raw.githubusercontent.com/ux-testing/polymer-starter-kit/master/app/elements/meme-generator/memes.json" handle-as="json" last-response="{{memesDataResponse}}"></iron-ajax>
+          <iron-ajax auto="" url="https://api.imgflip.com/get_memes" handle-as="json" last-response="{{memesDataResponse}}"></iron-ajax>
           <iron-pages id="memePages" selected="0">
-            <template is="dom-repeat" items="[[memesDataResponse.items]]">
+
+            <template is="dom-repeat" items="[[memesDataResponse.data.memes]]">
               <iron-swipeable-container swipe-style="curve">
-                <paper-card heading="{{footer}}" image="../../images/memes/[[item.imageUrl]]" contenteditable="true">
+                <paper-card heading="{{footer}}" image="[[item.url]]">
                   <div class="heading">
                     {{greeting}}
                   </div>
                 </paper-card>
-
               </iron-swipeable-container>
             </template>
 
           </iron-pages>
-
 
           <div class="flexchild"></div>
         </div>
@@ -24015,14 +24014,17 @@ if (!window.Promise) {
 
     <div class="container flex-horizontal">
       <div class="flexchild"></div>
-      <paper-dropdown-menu label="Choose your meme">
+
+      <paper-dropdown-menu label="Choose your meme" id="memeDropdownSelect">
         <paper-listbox class="dropdown-content">
-          <paper-item>chemistry-cat</paper-item>
-          <paper-item>interesting-man</paper-item>
-          <paper-item>cat-news</paper-item>
-          <paper-item>yo-dawg</paper-item>
+
+          <template is="dom-repeat" items="[[memesDataResponse.data.memes]]">
+            <paper-item>[[item.name]]</paper-item>
+          </template>
+
         </paper-listbox>
       </paper-dropdown-menu>
+
       <div class="flexchild"></div>
     </div>
 
@@ -24069,7 +24071,8 @@ if (!window.Promise) {
           }
         },
         listeners: {
-          'iron-swipe': 'nextPage'
+          'iron-swipe': 'nextPage',
+          'paper-dropdown-close': 'memeSelected'
         },
 
         /**
@@ -24099,6 +24102,9 @@ if (!window.Promise) {
         },
         previousPage: function() {
           this.$.memePages.selectPrevious();
+        },
+        memeSelected: function() {
+          console.log(this.$.memeDropdownSelect);
         }
       });
     })();
