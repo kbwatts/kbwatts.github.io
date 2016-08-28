@@ -12,6 +12,10 @@
  * 
  * Released on: February 7, 2016
  */
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .swiper-container {
   margin: 0 auto;
   position: relative;
@@ -196,7 +200,6 @@
   border-radius: 100%;
   background: #000;
   opacity: 0.2;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 button.swiper-pagination-bullet {
   border: none;
@@ -207,11 +210,9 @@ button.swiper-pagination-bullet {
   -ms-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .swiper-pagination-clickable .swiper-pagination-bullet {
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .swiper-pagination-white .swiper-pagination-bullet {
   background: #fff;
@@ -437,7 +438,6 @@ button.swiper-pagination-bullet {
 .swiper-container-cube .swiper-slide-next + .swiper-slide {
   pointer-events: auto;
   visibility: visible;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .swiper-container-cube .swiper-cube-shadow {
   position: absolute;
