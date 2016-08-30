@@ -1,28 +1,38 @@
-sc-swiper
-============
+# \<sc-swiper-app\>
 
-Polymer 1.0 element that wraps Swiper.js
 
-`<sc-swiper>` is an element that wraps around Swiper.js to render awesome sliders/carousels.
 
-## Getting started
+## Install the Polymer-CLI
 
-### Install with bower
+First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
 
-First you need bower, [see their site](http://bower.io/) for details
+## Viewing Your Application
 
 ```
-bower install --save sc-swiper
+$ polymer serve
 ```
 
-### How to use
+## Building Your Application
 
-```html
-  <sc-swiper>
-    <img src="http://lorempixel.com/640/480/cats">
-    <img src="http://lorempixel.com/640/480/sports">
-    <img src="http://lorempixel.com/640/480/animals">
-  </sc-swiper>
+```
+$ polymer build
 ```
 
-Contributions welcome, please create issues!
+This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
+containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
+CSS, and JS optimizers.
+
+You can serve the built versions by giving `polymer serve` a folder to serve
+from:
+
+```
+$ polymer serve build/bundled
+```
+
+## Running Tests
+
+```
+$ polymer test
+```
+
+Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.

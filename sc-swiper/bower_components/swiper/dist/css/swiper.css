@@ -12,10 +12,6 @@
  * 
  * Released on: February 7, 2016
  */
-* {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
 .swiper-container {
   margin: 0 auto;
   position: relative;
@@ -194,8 +190,8 @@
 }
 /* Bullets */
 .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   display: inline-block;
   border-radius: 100%;
   background: #000;
@@ -241,7 +237,7 @@ button.swiper-pagination-bullet {
   display: block;
 }
 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
-  margin: 0 8px;
+  margin: 0 5px;
 }
 /* Progress */
 .swiper-pagination-progress {
