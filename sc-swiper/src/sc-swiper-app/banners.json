@@ -1,0 +1,72 @@
+{
+  is-active: true,
+  autoplay: true,
+  images: [
+    {
+      image-urls: {
+      en-CA: "http://placekitten.com/800/505"
+    },
+      link-urls: {
+      en-CA: "something-en"
+    },
+      alt-text: {
+      en-CA: "something-en"
+    }
+    },
+    {
+      image-urls: {
+      en-CA: "http://placekitten.com/800/501"
+    },
+      link-urls: {
+      en-CA: "something-en"
+    },
+      alt-text: {
+      en-CA: "something-en"
+    }
+    },
+    {
+      image-urls: {
+      en-CA: "http://placekitten.com/800/502"
+    },
+      link-urls: {
+      en-CA: "something-en"
+    },
+      alt-text: {
+      en-CA: "something-en"
+    }
+    },
+    {
+      image-urls: {
+      en-CA: "http://placekitten.com/800/503"
+    },
+      link-urls: {
+      en-CA: "something-en"
+    },
+      alt-text: {
+      en-CA: "something-en"
+    }
+    },
+    {
+      image-urls: {
+      en-CA: "http://placekitten.com/800/504"
+    },
+      link-urls: {
+      en-CA: "something-en"
+    },
+      alt-text: {
+      en-CA: "something-en"
+    }
+    },
+    {
+      image-urls: {
+      en-CA: "http://placekitten.com/800/500"
+    },
+      link-urls: {
+      en-CA: "something-en"
+    },
+      alt-text: {
+      en-CA: "something-en"
+    }
+    }
+  ]
+}

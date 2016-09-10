@@ -7,10 +7,12 @@
     <style>
       :host {
         display: block;
+        max-width: 640px;
+        /*height: 320px;*/
       }
     </style>
 
-    <iron-ajax url="http://pastebin.com/raw/rCjH7vNd" handle-as="json" last-response="{{slideShow}}" auto></iron-ajax>
+    <iron-ajax url="https://raw.githubusercontent.com/kbwatts/kbwatts.github.io/master/sc-swiper/src/sc-swiper-app/banners.json" handle-as="json" last-response="{{slideShow}}" auto></iron-ajax>
 
     <sc-swiper loop 
                pagination 
@@ -42,7 +44,7 @@
       },
 
       computeSlideShowOptions: function(slideShow) {
-        var slideShowSpeedMs = 5000;
+        var slideShowSpeedMs = 3200;
 
         var options = {};
 
